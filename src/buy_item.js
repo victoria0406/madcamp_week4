@@ -48,7 +48,7 @@ class Buylist extends Component {
                     <p>{this.state.count}</p>
                     <button onClick={this.buy_more}>+</button>
                 </div>
-            </div>
+            </div> 
         )
     }
 }
