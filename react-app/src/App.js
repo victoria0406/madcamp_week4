@@ -8,16 +8,17 @@ import {
   BrowserRouter as Router,
   HashRouter,
   Route,
+  Routes
 } from "react-router-dom";
 
 
 
 function App() {
   return (
-    <Router>
-      <Route path="/main" exact component={Gameview}/>
-      <Route path="/" exact component={Buyview}/>
-    </Router>
+    <Routes>
+      <Route path="/main" element={<Gameview/>}/>
+      <Route path="/" element={<Buyview/>}/>
+    </Routes>
   );
 }
 
