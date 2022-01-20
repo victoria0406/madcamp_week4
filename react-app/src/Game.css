@@ -1,3 +1,5 @@
+
+/*Game.js에서 이용*/
 .main {
     width: 1200px; 
     height: 800px;
@@ -16,17 +18,92 @@
     background-color: white;
     height:750px;
 }
-.novel{
-    width: 730px;
-    margin: 10px;
+
+.phone{
+    margin: 25px;
+    background: url("./images/background_phone.jpg");
+    background-size: 100% 100%;
+    background-position: center;
+}
+.phone_element{
+    margin: 25px;
+    margin-top: 40px;
+}
+.app_buttons{
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
     position: absolute;
-    bottom: 3.5%;
-    background-color:aliceblue;
+    bottom:80px;
+    margin: 25px;
+}
+.applications{
+    width: 50px;
+    height: 50px;
+}
+
+/*market.js에서 이용*/
+#carrot{
+    height: 50px;
+    width: 302px;
+    background-color: orange;
+    text-align: center;
+    color: white;
+
 }
 .itemlist{
-    width: 350px;
+    width: 300px;
     background-color: white;
-    margin: 25px;
     display: flex;
     flex-direction: row;
+    border: 1px solid black;
+}
+.item_name{
+    font-weight: bold;
+}
+
+.buy_count{
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+/*novel.js에서 이용*/
+.novel{
+    position: absolute;
+    bottom: 25px;
+    margin: 10px;
+}
+#script_name{
+    width: 150px;
+    height: 40px;
+    background-color: aliceblue;
+}
+#script_text{
+    width: 730px;
+    height: 150px;
+    background-color:aliceblue;
+}
+#script_next{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+/*bank.js에서 사용*/
+#toss{
+    height: 50px;
+    width: 302px;
+    background-color: blue;
+    text-align: center;
+    color: white;
+}
+
+/*chat.js에서 사용*/
+#kakao{
+    height: 50px;
+    width: 302px;
+    background-color: yellow;
+    text-align: center;
+    color:black;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 
 
 //images of items
@@ -42,33 +43,30 @@ function ratio(){
     return Math.floor(Math.random() * 10)/10+0.4;
 }
 
-class Itemlist extends Component {
-    render() {
-      return (
+function Itemlist(props){
+    return (
           <div class = "itemlist">
-              <img src = {this.props.img} alt="item_image" width ="100px"/>
+              <img src = {props.img} alt="item_image" width ="100px"/>
               <div>
-                <div>{this.props.name}</div>
-                <div>{this.props.cost}원 에서 {Math.round(this.props.cost*this.props.ratio)} ({Math.round(this.props.ratio*100)}%) </div>
+                <div class = "item_name">{props.name}</div>
+                <div>{Math.round(props.cost*props.ratio)} ({Math.round(props.ratio*100)}%) </div>
                 <button>O</button>
                 <button>X</button>
               </div>
-              
           </div>
-      )
-    }
-  }
+      );
+};
 
-
-class Marketview extends Component {
-    render(){
-        return(
+function Marketview(){
+    return(
             <div>
+                <div id="carrot">삽니다! 당근마켓</div>
+                <div>사고싶어용</div>
                 {choose_items()}
+                <div>거래를 합시당</div>
+                
             </div>
         );
-    }
-    
 }
 
 export default Marketview;

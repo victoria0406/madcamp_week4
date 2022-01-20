@@ -1,49 +1,51 @@
 import './Game.css';
 
 
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 
 const scenario = [
     {
-      "name": "김애저",
-      "text": "첫번째 샘플 텍스트입니다."
+      "name": "김만장",
+      "text": "안녕하세요.닉네임 만장일치 입니다."
     },
     {
-      "name": "김애저",
+      "name": "김만정",
       "text": "두번쨰 샘플 텍스트입니다."
     },
     {
       "text": "이름이 없는 경우에는 이름 창이 사라졌으면 좋겠어요."
     },
     {
-      "name": "rladowj",
+      "name": "개",
       "text": "왈왈"
     }
   ]
+function Novelview(){
+  const [count, setCount] = useState(1);
+  const [name, setName] = useState(scenario[0].name);
+  const [text, setText] = useState(scenario[0].text);
 
-class Novelview extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            name: scenario[0].name,
-            text: scenario[0].text,
-            count:1
-        }
+  function go_next(){
+    setCount(count+1);
+    setName(scenario[count].name);
+    setText(scenario[count].text);
+    if(scenario[count].name==null){
+      document.getElementById("script_name").style.visibility = "hidden";
+    }else{
+      document.getElementById("script_name").style.visibility = "visible";
     }
-    next_script = () =>{
-        this.setState({name:scenario[this.state.count].name})
-        this.setState({text:scenario[this.state.count].text})
-        this.setState({count:this.state.count+1})
-    }
-    render(){
-        return(
-            <div class="novel">
-                <div>{this.state.name}</div>
-                <div>{this.state.text}</div>
-                <button onClick={this.next_script}>넘어가기</button>
-            </div>
-        );
-    }
-    
+  }
+  return(
+    <div class="novel">
+      <div id="script_name">{name}</div>
+      <div id = "script_text">
+        {text}
+        <button onClick={()=>{go_next();}} id = "script_next">넘어가기</button>
+        </div>
+    </div>
+  );
 }
+
+
+
 export default Novelview;
