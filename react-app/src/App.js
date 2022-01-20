@@ -21,7 +21,6 @@ function App() {
   return (
     <Routes>
       <Route path="/main" element={<Gameview/>}/>
-      <Route path="/" element={<Buyview/>}/>
       <Route path="/login" element = {<Login/>}/>
       <Route path="/ending" element = {<Endview/>}/>
     </Routes>

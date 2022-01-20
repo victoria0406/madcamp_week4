@@ -10,6 +10,7 @@ import Chatview from './chat';
 
 const days = ['일', '월', '화', '수', '목', '금', '토']
 const doing_ment = ["출근 준비 중", "일하는 중","거래하는 중"];
+const next_do_ment = ["출근시키기", "퇴근하기"];
 const end_day = 14;
 
 function ratio(){
@@ -81,10 +82,11 @@ function Gameview(){
     return(
         <div class = "main">
             <div class = "game_image">
-                <div className='Day'>day {day} ({days[day%7]})</div>
+                <div className='Day'>day {day} ({days[(day-1)%7]})</div>
                 <div className='doing'>{doing_ment[doing]}</div>
-                <button onClick = {()=> {do_next_work();}}>다음 행동 하기</button>
-                {doing===2 ?<Novelview/>:<></>}
+                {doing===2?<></>:<button onClick = {()=> {do_next_work();}}>{next_do_ment[doing]}</button>}
+                
+                {doing===2 ?<Novelview final_next = {do_next_work}/>:<></>}
                 
             </div>
             <div class = "phone" >
@@ -94,14 +96,14 @@ function Gameview(){
                     swipeOptions={{continuous:false}}
                     ref = {el=>(reactSwipeEl=el)}>
                         <div><Bankview/></div>
-                        <div><Marketview items ={items} /></div>
+                        <div>{day%7==1?<Buyview/>:<Marketview items ={items}/>}</div>
                         <div><Chatview/></div>
                     </ReactSwipe>
                     
                 </div>
                 <div class = "app_buttons">
                     <button class="applications" onClick = {()=>{go_toss()}}>토스</button>
-                    <button class="applications" onClick={()=>{go_carrot()}}>당근</button>
+                    <button class="applications" onClick={()=>{go_carrot()}}>{day%7==1?"P":"당근"}</button>
                     <button class="applications" onClick={()=>{go_kakao()}}>카톡</button>
                 </div>
             </div>

@@ -20,7 +20,7 @@ const scenario = [
       "text": "왈왈"
     }
   ]
-function Novelview(){
+function Novelview(props){
   const [count, setCount] = useState(1);
   const [name, setName] = useState(scenario[0].name);
   const [text, setText] = useState(scenario[0].text);
@@ -40,7 +40,8 @@ function Novelview(){
       <div id="script_name">{name}</div>
       <div id = "script_text">
         {text}
-        <button onClick={()=>{go_next();}} id = "script_next">넘어가기</button>
+        {count===scenario.length?<button onClick={()=>{props.final_next();}} id = "script_next">거래마치기</button>:<button onClick={()=>{go_next();}} id = "script_next">넘어가기</button>}
+        
         </div>
     </div>
   );
