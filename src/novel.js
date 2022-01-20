@@ -1,3 +1,6 @@
+import './Game.css';
+
+
 import React, { Component } from 'react';
 
 const scenario = [
@@ -34,7 +37,7 @@ class Novelview extends Component {
     }
     render(){
         return(
-            <div>
+            <div class="novel">
                 <div>{this.state.name}</div>
                 <div>{this.state.text}</div>
                 <button onClick={this.next_script}>넘어가기</button>
