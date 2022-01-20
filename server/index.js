@@ -40,8 +40,10 @@ app.post("/register", (req, res) => {
       console.log(req.body);
       return res.json({ success: false, err });
     }
+    console.log("Register Success!!");
     return res.status(200).json({
       success: true,
+      userId: user._id
     });
   });
 });
@@ -52,14 +54,14 @@ app.post('/api/users/login', (req, res) => {
       if(!user) {
           return res.json({
               loginSuccess: false,
-              message: "제공된 이메일에 해당하는 유저가 없습니다."
+              message: "wrong email"
           })
       }
 
       // 요청된 이메일이 데이터베이스에 있다면 비밀번호가 맞는 비밀번호 인지 확인
       user.comparePassword(req.body.password, (err, isMatch) => {
           if(!isMatch) 
-              return res.json({loginSuccess: false, message: "비밀번호가 틀렸습니다."
+              return res.json({loginSuccess: false, message: "wrong passwd"
           })
 
           // 비밀번호까지 맞다면 토큰을 생성
@@ -68,20 +70,9 @@ app.post('/api/users/login', (req, res) => {
               
               // 정상적일 경우 토큰을 쿠키나 로컬스토리지 등에 저장 -> 그러나 이번에는 로컬스토리지에 저장할 계획이다!
               // 쿠키에 저장
-              res.cookie("x_auth", user.token)
-              .status(200)
-              .json({loginSuccess: true, userId: user._id})
+              res.status(200).json({loginSuccess: true, userId: user._id})
 
           })
-      })
-  })
-})
-
-app.get('/api/users/logout', auth, (req, res) => {
-  User.findOneAndUpdate({_id: req.user._id}, {token: ""}, (err, user) => { //토큰을 ""으로 지워줘서 로그아웃 하게 하기!
-      if(err) return res.json({success: false, err});
-      return res.status(200).send({
-          success: true
       })
   })
 })
