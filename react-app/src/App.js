@@ -10,11 +10,8 @@ import {
   BrowserRouter as Router,
   HashRouter,
   Route,
-  Routes
+  Routes,
 } from "react-router-dom";
-
-
-
 
 
 function App() {
