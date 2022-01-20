@@ -72,7 +72,7 @@ class Buyview extends Component {
                 <Buylist index="2"state={this.state} setState={this.setState}/>
                 <Buylist index="3"state={this.state} setState={this.setState}/>
                 <Buylist index="4"state={this.state} setState={this.setState}/>
-                
+                <button >구매하기</button>
             </div>
         );
     }
