@@ -2,13 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Login.css";
 
-const BASE_URL = "http://192.249.18.165:443";
+const BASE_URL = "http://192.249.18.165";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
-  //const [isLogin, setIsLogin] = useState(false); //로그인 상태 관리용
+  const [isLogin, setIsLogin] = useState(false); //로그인 상태 관리용
   const [newAccount, setNewAccount] = useState(false);
   const [error, setError] = useState("");
   const [isCorrect, setIsCorrect] = useState(""); //아이디, 비밀번호 확인용
@@ -32,17 +32,24 @@ const Login = () => {
     event.preventDefault();
     try {
       if (newAccount) {
+        //Sign up
         axios
-          .post(BASE_URL + "/account/signup", {
+          .post(BASE_URL + "/register", {
+            name: nickname,
             email: email,
-            nickname: nickname,
             password: password,
           })
           .then((response) => {
-            console.log(response);
-            // 유저의 레터 스페이스로 보내줘야 함.
-            sessionStorage.setItem("user_id", response.data); //유저 id를 session storage에 저장
-            document.location.href = `mypage/${response.data}`; // 내 페이지로 이동! -> 아이디 나중에 넣기
+            if (response.data.success === true) {
+              console.log(response);
+              // 유저의 레터 스페이스로 보내줘야 함.
+              localStorage.setItem("user_id", response.data.userId); //유저 id를 local storage에 저장
+              document.location.href = `/main`; // 게임 페이지로 이동
+            } else {
+              console.log("Retry plz!"); //백엔드에서 금지하는 사항은 프론트에서 핸들링해줘야 할 듯.
+              console.log(response);
+              console.log(response.data.success);
+            }
           })
           .catch((error) => {
             console.log("signup errror!" + error);
@@ -51,13 +58,13 @@ const Login = () => {
         console.log(email, password);
         //log in
         axios
-          .post(BASE_URL + "/account/login", {
+          .post(BASE_URL + "/api/users/login", {
             email: email,
             password: password,
           })
           .then((response) => {
             console.log(response);
-            switch (response.data) {
+            switch (response.data.message) {
               case "wrong passwd":
                 console.log("wrong passwd");
                 setIsCorrect("wrongPW"); //하단에 비번 틀렸다고 표시
@@ -68,11 +75,11 @@ const Login = () => {
                 break;
               default:
                 //response.data에 user의 id가 넘겨져 옴.
-                console.log(response.data);
+                console.log(response.data.userId);
                 //localStorage??
-                sessionStorage.setItem("user_id", response.data); //유저 id를 session storage에 저장
+                localStorage.setItem("user_id", response.data.userId); //유저 id를 session storage에 저장
                 setIsCorrect("correct");
-                document.location.href = `mypage/${response.data}`; // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
+                document.location.href = `/main`; // 게임 페이지로 이동
                 break;
             }
           })
