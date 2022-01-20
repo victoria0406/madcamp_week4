@@ -11,10 +11,6 @@ const port = process.env.PORT || 80; // .env파일에서 포트를 가져오거�
 app.use(cors()); // cors 미들웨어 사용
 app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);  
-});
-
 app.get("/", (req, res) => res.send("Hello World! 안녕하세요"));
 
 const uri = process.env.ATLAS_URI; //env에서 uri를 불러옴
@@ -40,7 +36,7 @@ app.post("/register", (req, res) => {
   user.save((err, userInfo) => {
     if (err) {
       console.log("false!!");
-      //에러가 날 경우 에러 핸들링 해주기 -> 비번이 틀렸는지, 아이디가 틀렸는지, 중복된 이메일인지!
+      //에러가 날 경우 에러 핸들링 해주기 -> 중복된 이메일인지!
       console.log(req.body);
       return res.json({ success: false, err });
     }
@@ -48,4 +44,48 @@ app.post("/register", (req, res) => {
       success: true,
     });
   });
+});
+
+app.post('/api/users/login', (req, res) => {
+  // 요청된 이메일을 데이터베이스에서 있는지 찾는다
+  User.findOne({email: req.body.email}, (err, user) => {
+      if(!user) {
+          return res.json({
+              loginSuccess: false,
+              message: "제공된 이메일에 해당하는 유저가 없습니다."
+          })
+      }
+
+      // 요청된 이메일이 데이터베이스에 있다면 비밀번호가 맞는 비밀번호 인지 확인
+      user.comparePassword(req.body.password, (err, isMatch) => {
+          if(!isMatch) 
+              return res.json({loginSuccess: false, message: "비밀번호가 틀렸습니다."
+          })
+
+          // 비밀번호까지 맞다면 토큰을 생성
+          user.generateToken((err, user) => {
+              if(err) return res.status(400).send(err);
+              
+              // 정상적일 경우 토큰을 쿠키나 로컬스토리지 등에 저장 -> 그러나 이번에는 로컬스토리지에 저장할 계획이다!
+              // 쿠키에 저장
+              res.cookie("x_auth", user.token)
+              .status(200)
+              .json({loginSuccess: true, userId: user._id})
+
+          })
+      })
+  })
+})
+
+app.get('/api/users/logout', auth, (req, res) => {
+  User.findOneAndUpdate({_id: req.user._id}, {token: ""}, (err, user) => { //토큰을 ""으로 지워줘서 로그아웃 하게 하기!
+      if(err) return res.json({success: false, err});
+      return res.status(200).send({
+          success: true
+      })
+  })
+})
+
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);  
 });
