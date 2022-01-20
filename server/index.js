@@ -1,23 +1,23 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose"); //mongoDB 연결 위함
+const mongoose = require("mongoose"); //Mongo DB
+const { User } = require('./models/User'); //User 스키마 import
 
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 80; // .env파일에서 포트를 가져오거나 5000번을 사용
+const port = process.env.PORT || 80; // .env파일에서 포트를 가져오거나 포트 80 사용함.
 
 app.use(cors()); // cors 미들웨어 사용
 app.use(express.json());
 
 app.listen(port, () => {
-  // 해당 포트로 서버가 실행되고 있을 때 실행됨
-  console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}`);  
 });
 
 app.get("/", (req, res) => res.send("Hello World! 안녕하세요"));
 
-const uri = process.env.ATLAS_URI; // mongoDB uri를 .env에서 불러온다. (보안상의 이유로 .env에 저장)
+const uri = process.env.ATLAS_URI; //env에서 uri를 불러옴
 mongoose
   .connect(
     uri,
@@ -35,9 +35,15 @@ app.post("/register", (req, res) => {
   // 회원 가입 할 때 필요한 정보들을 client에서 가져오면
   // 그것들을 데이터베이스에 넣어준다.
   const user = new User(req.body);
+
   // 정보 저장, 에러 시 json 형식으로 전달
   user.save((err, userInfo) => {
-    if (err) return res.json({ success: false, err });
+    if (err) {
+      console.log("false!!");
+      //에러가 날 경우 에러 핸들링 해주기 -> 비번이 틀렸는지, 아이디가 틀렸는지, 중복된 이메일인지!
+      console.log(req.body);
+      return res.json({ success: false, err });
+    }
     return res.status(200).json({
       success: true,
     });
