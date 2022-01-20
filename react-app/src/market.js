@@ -45,12 +45,15 @@ function ratio(){
 class Itemlist extends Component {
     render() {
       return (
-          <div>
+          <div class = "itemlist">
               <img src = {this.props.img} alt="item_image" width ="100px"/>
-              <div>{this.props.name}</div>
-              <div>{this.props.cost}원 에서 {Math.round(this.props.cost*this.props.ratio)} ({Math.round(this.props.ratio*100)}%) </div>
-              <button>O</button>
-              <button>X</button>
+              <div>
+                <div>{this.props.name}</div>
+                <div>{this.props.cost}원 에서 {Math.round(this.props.cost*this.props.ratio)} ({Math.round(this.props.ratio*100)}%) </div>
+                <button>O</button>
+                <button>X</button>
+              </div>
+              
           </div>
       )
     }

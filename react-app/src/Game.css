@@ -1,0 +1,32 @@
+.main {
+    width: 1200px; 
+    height: 800px;
+    background-color: beige;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+}
+
+.game_image{
+    width:750px;
+    margin: 25px;
+    background-color: white;
+    height:750px;
+}
+.novel{
+    width: 730px;
+    margin: 10px;
+    position: absolute;
+    bottom: 3.5%;
+    background-color:aliceblue;
+}
+.itemlist{
+    width: 350px;
+    background-color: white;
+    margin: 25px;
+    display: flex;
+    flex-direction: row;
+}
