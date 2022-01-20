@@ -4,11 +4,11 @@ import "./Login.css";
 
 const BASE_URL = "http://192.249.18.165:443";
 
-const Login= () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
-  const [isLogin, setIsLogin] = useState(false); //로그인 상태 관리용
+  //const [isLogin, setIsLogin] = useState(false); //로그인 상태 관리용
   const [newAccount, setNewAccount] = useState(false);
   const [error, setError] = useState("");
   const [isCorrect, setIsCorrect] = useState(""); //아이디, 비밀번호 확인용
@@ -89,49 +89,54 @@ const Login= () => {
 
   return (
     <>
-    <div className="wrapWelcome">
-    <div>
-      <p className="welcomeTxt"> {newAccount ? "회원가입" : "로그인"} </p>
-    </div>
-    <form onSubmit={onSubmit} className="welcomeContainer">
-    {newAccount ? (    
-    <input
-        name="nickname"
-        type="nickname"
-        placeholder="nickname"
-        required
-        value={nickname}
-        onChange={onChange}
-        className="authInput"
-        autoComplete="off"
-      />): <div className="login_subment">{newAccount? "": "로그인을 안하면 소중한 돈이 사라져요!!"}</div>}
-      <input
-        name="email"
-        type="email"
-        placeholder="Email"
-        required
-        value={email}
-        className="authInput"
-        onChange={onChange}
-        autoComplete="off"
-      />
-      <input
-        name="password"
-        type="password"
-        placeholder="Password"
-        required
-        value={password}
-        className="authInput"
-        onChange={onChange}
-        autoComplete="off"
-      />
-      <input
-        type="submit"
-        className="authInput authSubmit"
-        value={newAccount ? "Create Account" : "Sign In"}
-      />
-       {error && <span className="authError">{error}</span>}
-    </form>
+      <div className="wrapWelcome">
+        <div>
+          <p className="welcomeTxt"> {newAccount ? "회원가입" : "로그인"} </p>
+        </div>
+        <form onSubmit={onSubmit} className="welcomeContainer">
+          {newAccount ? (
+            <input
+              name="nickname"
+              type="nickname"
+              placeholder="nickname"
+              required
+              value={nickname}
+              onChange={onChange}
+              className="authInput"
+              autoComplete="off"
+            />
+          ) : (
+            <div className="login_subment">
+              {newAccount ? "" : "로그인을 안하면 소중한 돈이 사라져요!!"}
+            </div>
+          )}
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            required
+            value={email}
+            className="authInput"
+            onChange={onChange}
+            autoComplete="off"
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            required
+            value={password}
+            className="authInput"
+            onChange={onChange}
+            autoComplete="off"
+          />
+          <input
+            type="submit"
+            className="authInput authSubmit"
+            value={newAccount ? "Create Account" : "Sign In"}
+          />
+          {error && <span className="authError">{error}</span>}
+        </form>
 
         <span className="authError">
           {isCorrect == "wrongPW" ? "비밀번호가 틀렸습니다" : ""}
