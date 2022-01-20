@@ -12,7 +12,7 @@ import img_healthy from "./images/홍삼.jpg";
 
 //function for choosing items
 
-const list_of_items = ["공기청정기","청소기","캠슐커피머신","바람막이","홍삼"];
+const list_of_items = ["공기청정기","청소기","캡슐커피머신","바람막이","홍삼"];
 const cost_of_items = [400000, 800000, 200000, 100000, 50000];
 const img_of_items = [img_fresh,img_clean,img_coffee,img_wind, img_healthy];
 var total_cost = 0;

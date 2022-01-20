@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import ReactSwipe from 'react-swipe';
 
 import './Game.css';
 import Buyview from './buy_item';
@@ -7,21 +8,101 @@ import Novelview from './novel';
 import Bankview from './bank';
 import Chatview from './chat';
 
+const days = ['일', '월', '화', '수', '목', '금', '토']
+const doing_ment = ["출근 준비 중", "일하는 중","거래하는 중"];
+const end_day = 14;
+
+function ratio(){
+    return Math.floor(Math.random() * 10)/10+0.4;
+}
+
+function choose_items(){
+    //item 3가지 뽑기
+    const item1 = Math.floor(Math.random() * 5);
+    var item2 = item1;
+    while (item2===item1){
+        item2 = Math.floor(Math.random() * 5);
+    }
+    var item3 = item1;
+    while (item3===item1||item3===item2){
+        item3 = Math.floor(Math.random() * 5);
+    }
+    // 각각의 상승률 정하기
+    return [{item:item1, ratio:ratio()}, {item:item2, ratio:ratio()}, {item:item3, ratio:ratio()}];
+}
+
 function Gameview(){
-    const [page, setPage] = useState(<Marketview/>);
+    let reactSwipeEl;
+    const [page, setPage] = useState(0);
+    //const [market, setMarket] = useState(<Marketview/>);
+    const [items,setItems] = useState(choose_items());
+    const [day,setDay] = useState(1);
+    const [doing, setDoing] = useState(0);
+    function go_toss(){
+        for(var i=0;i<page;i++){
+            reactSwipeEl.prev();
+        }
+        setPage(0);
+    }
+    function go_carrot(){
+        if(page===0){
+            reactSwipeEl.next()
+        }
+        else if(page===2){
+            reactSwipeEl.prev()
+        }
+        setPage(1);
+    }
+    function go_kakao(){
+        for(var i=0;i<2-page;i++){
+            reactSwipeEl.next();
+        }
+        setPage(2);
+    }
+    function do_next_work(){
+        if (doing===0){
+            setDoing(1);
+            go_carrot();
+        }
+        else if(doing===1){
+            setDoing(2);
+            go_carrot();
+        }else if (doing===2){
+            if(day ===end_day){
+                document.location.href = "/ending"; //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
+            }else{
+                setDoing(0);
+                go_toss();
+                setDay(day+1);
+                setItems(choose_items());
+            }
+        }
+    }
     return(
         <div class = "main">
             <div class = "game_image">
-                <Novelview/>
+                <div className='Day'>day {day} ({days[day%7]})</div>
+                <div className='doing'>{doing_ment[doing]}</div>
+                <button onClick = {()=> {do_next_work();}}>다음 행동 하기</button>
+                {doing===2 ?<Novelview/>:<></>}
+                
             </div>
             <div class = "phone" >
                 <div class="phone_element">
-                    {page}
+                    <ReactSwipe
+                    className='page'
+                    swipeOptions={{continuous:false}}
+                    ref = {el=>(reactSwipeEl=el)}>
+                        <div><Bankview/></div>
+                        <div><Marketview items ={items} /></div>
+                        <div><Chatview/></div>
+                    </ReactSwipe>
+                    
                 </div>
                 <div class = "app_buttons">
-                    <button class="applications" onClick = {()=>{setPage(<Marketview/>)}}>당근</button>
-                    <button class="applications" onClick={()=>{setPage(<Bankview/>)}}>토스</button>
-                    <button class="applications" onClick={()=>{setPage(<Chatview/>)}}>카톡</button>
+                    <button class="applications" onClick = {()=>{go_toss()}}>토스</button>
+                    <button class="applications" onClick={()=>{go_carrot()}}>당근</button>
+                    <button class="applications" onClick={()=>{go_kakao()}}>카톡</button>
                 </div>
             </div>
         </div>
