@@ -8,6 +8,7 @@ import Marketview from './market';
 import Novelview from './novel';
 import Bankview from './bank';
 import Chatview from './chat';
+import { Modal } from 'bootstrap';
 
 const BASE_URL = "http://192.249.18.165";
 

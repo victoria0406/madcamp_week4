@@ -25,24 +25,14 @@ function Itemlist(props){
               <img src = {props.img} alt="item_image" width ="100px"/>
               <div>
                 <div class = "item_name">{props.name}</div>
+                {props.state?<div>예약중</div>:<div></div>}
                 <div>{Math.round(props.cost*props.ratio)} ({Math.round(props.ratio*100)}%) </div>
-                <button onClick={()=>{props.setSt(true)}}>O</button>
-                <button>X</button>
+                <button onClick={()=>{props.setSt(!props.state)}}>{props.state?"거래 취소하기":"거래하기"}</button>
               </div>
           </div>
       );
 };
-function Selllist(props){
-    return(
-        <div className='itemlist'>
-            <img src = {props.img} alt="item_image" width ="100px"/>
-              <div>
-                <div class = "item_name">{props.name}</div>
-                <div>{Math.round(props.cost*props.ratio)} ({Math.round(props.ratio*100)}%) </div>
-              </div>
-        </div>
-    )
-}
+
 
 
 function Marketview(props){
@@ -52,14 +42,9 @@ function Marketview(props){
     return(
             <div>
                 <div id="carrot">삽니다! 당근마켓</div>
-                <div>사고싶어용</div>
-                {state1?<></>:<Itemlist setSt={setState1} name={list_of_items[props.items[0].item]} cost = {cost_of_items[props.items[0].item]} ratio = {props.items[0].ratio} img = {img_of_items[props.items[0].item]}/>}
-                {state2?<></>:<Itemlist setSt={setState2} name={list_of_items[props.items[1].item]} cost = {cost_of_items[props.items[1].item]} ratio = {props.items[1].ratio} img = {img_of_items[props.items[1].item]}/>}
-                {state3?<></>:<Itemlist setSt={setState3} name={list_of_items[props.items[2].item]} cost = {cost_of_items[props.items[2].item]} ratio = {props.items[2].ratio} img = {img_of_items[props.items[2].item]}/>}
-                <div>거래를 합시당</div>
-                {state1?<Selllist name={list_of_items[props.items[0].item]} cost = {cost_of_items[props.items[0].item]} ratio = {props.items[0].ratio} img = {img_of_items[props.items[0].item]}/>:<></>}
-                {state2?<Selllist name={list_of_items[props.items[1].item]} cost = {cost_of_items[props.items[1].item]} ratio = {props.items[1].ratio} img = {img_of_items[props.items[1].item]}/>:<></>}
-                {state3?<Selllist name={list_of_items[props.items[2].item]} cost = {cost_of_items[props.items[2].item]} ratio = {props.items[2].ratio} img = {img_of_items[props.items[2].item]}/>:<></>}
+                <Itemlist state = {state1} setSt={setState1} name={list_of_items[props.items[0].item]} cost = {cost_of_items[props.items[0].item]} ratio = {props.items[0].ratio} img = {img_of_items[props.items[0].item]}/>
+                <Itemlist state = {state2} setSt={setState2} name={list_of_items[props.items[1].item]} cost = {cost_of_items[props.items[1].item]} ratio = {props.items[1].ratio} img = {img_of_items[props.items[1].item]}/>
+                <Itemlist state = {state3} setSt={setState3} name={list_of_items[props.items[2].item]} cost = {cost_of_items[props.items[2].item]} ratio = {props.items[2].ratio} img = {img_of_items[props.items[2].item]}/>
                 
             </div>
         );
