@@ -1,0 +1,32 @@
+.wrapWelcome{
+    width: 1200px; 
+    height: 800px;
+    background-color: beige;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.welcomeContainer{
+    height: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+}
+.welcomeTxt{
+    font-weight: bold;
+    font-size: 60px;
+    height: 70px;
+}
+.authInput{
+    height: 30px;
+}
+.login_subment{
+    height: 30px;
+}
