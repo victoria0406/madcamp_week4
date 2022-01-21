@@ -21,16 +21,33 @@ var total_cost = 0;
 
 function Buylist(props) {
     const [count, setCount] =useState(0);
+    function reduce_item(){
+        if(count!==0){
+            setCount(count-1); 
+            props.setCost(props.cost-cost_of_items[props.index]);
+            var reduce = props.item;
+            reduce[props.index]--;
+            props.setItem(reduce);
+        }
+    }
+    function increase_item(){
+        setCount(count+1);
+        props.setCost(props.cost+cost_of_items[props.index]);
+        var increase = props.item;
+        increase[props.index]++;
+        props.setItem(increase);
+    
+    }
     return(
         <div class="itemlist">
-            <img src = {img_of_items[Number(props.index)]} alt="item_image" width ="100px"/>
+            <img src = {img_of_items[props.index]} alt="item_image" width ="100px"/>
             <div>
-                <div>{list_of_items[Number(props.index)]}</div>
-                <div>{cost_of_items[Number(props.index)]} </div>
+                <div>{list_of_items[props.index]}</div>
+                <div>{cost_of_items[props.index]} </div>
                 <div class = "buy_count">
-                    <button onClick={()=>{if(count!==0){setCount(count-1); props.setCost(props.cost-cost_of_items[Number(props.index)]);}}}>-</button>
+                    <button onClick={reduce_item}>-</button>
                     <p>{count}</p>
-                    <button onClick={()=>{setCount(count+1);props.setCost(props.cost+cost_of_items[Number(props.index)]);}}>+</button>
+                    <button onClick={increase_item}>+</button>
                 </div>
             </div>
             
@@ -40,17 +57,27 @@ function Buylist(props) {
 }
 
 
-function Buyview(){
-    const [total_cost, setTotal_cost] = useState(0)
+function Buyview(props){
+    const [total_cost, setTotal_cost] = useState(0);
+    const [buyitem, setBuyItem] = useState(props.items.slice());
+    function update_list(){
+        if(props.point>=total_cost){
+            props.setPoint(props.point-total_cost); 
+        props.setItems(buyitem);
+        }
+        else{
+            //구매 못한다고 팝업 띄우기
+        }
+    }
     return(
         <div>
             <div>{total_cost}</div>
-            <Buylist index="0" cost = {total_cost} setCost = {setTotal_cost}/>
-            <Buylist index="1" cost = {total_cost} setCost = {setTotal_cost}/>
-            <Buylist index="2" cost = {total_cost} setCost = {setTotal_cost}/>
-            <Buylist index="3" cost = {total_cost} setCost = {setTotal_cost}/>
-            <Buylist index="4" cost = {total_cost} setCost = {setTotal_cost}/>
-            <button >구매하기</button>
+            <Buylist index={0} cost = {total_cost} setCost = {setTotal_cost} item = {buyitem} setItem = {setBuyItem}/>
+            <Buylist index={1} cost = {total_cost} setCost = {setTotal_cost} item = {buyitem} setItem = {setBuyItem}/>
+            <Buylist index={2} cost = {total_cost} setCost = {setTotal_cost} item = {buyitem} setItem = {setBuyItem}/>
+            <Buylist index={3} cost = {total_cost} setCost = {setTotal_cost} item = {buyitem} setItem = {setBuyItem}/>
+            <Buylist index={4} cost = {total_cost} setCost = {setTotal_cost} item = {buyitem} setItem = {setBuyItem}/>
+            <button onClick={update_list}>구매하기</button>
         </div>
     );
 }
