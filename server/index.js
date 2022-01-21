@@ -32,6 +32,15 @@ app.post("/register", (req, res) => {
   // 그것들을 데이터베이스에 넣어준다.
   console.log("I got POST requset : register");
   const user = new User(req.body);
+  let check = 0 ;
+
+  User.findOne({email: user.email}, (err, user) => {
+    if(user) {
+        console.log("same EM!");
+        check = 1;
+      } 
+  })
+
 
   // 정보 저장, 에러 시 json 형식으로 전달
   user.save((err, userInfo) => {
@@ -39,6 +48,11 @@ app.post("/register", (req, res) => {
       console.log("false!!");
       //에러가 날 경우 에러 핸들링 해주기 -> 중복된 이메일인지!
       console.log(req.body);
+
+      if (check == 1) {
+        return res.json({ success: false, err, message : "sameEM"});
+      }
+
       return res.json({ success: false, err });
     }
     console.log("Register Success!!");
