@@ -107,6 +107,44 @@ app.get('/users/:id', (req,res) => {
   })
 })
 
+app.get('/load/:id', (req,res) => { 
+  console.log("I got GET requset : find");
+  const id = parseInt(req.params.id, 10) // 10 진수로 변환
+
+  if (Number.isNaN(id)){
+    return res.status(400).end()
+  }
+  User.findOne({id: req.params.id} , (err, user) => {
+    if (!user){
+      return res.status(404).end()
+    }
+    res.json(user)
+  })
+})
+
+app.post('/save/:id', (req,res) => { 
+  console.log("I got POST requset : save");
+  const user = new User(req.body);
+
+  const id = parseInt(req.params.id, 10) // 10 진수로 변환
+
+
+  // 정보 저장, 에러 시 json 형식으로 전달
+  user.save((err, userInfo) => {
+    if (err) {
+      console.log("false!!");
+      //에러가 날 경우 에러 핸들링 해주기 -> 중복된 이메일인지!
+      console.log(req.body);
+      return res.json({ success: false, err });
+    }
+    console.log("Save Success!!");
+    return res.status(200).json({
+      success: true,
+      userId: user._id
+    });
+  });
+})
+
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);  
