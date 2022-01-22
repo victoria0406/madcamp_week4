@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 
 
@@ -22,45 +22,46 @@ const img_of_items = [img_fresh,img_clean,img_coffee,img_wind, img_healthy];
 function Itemlist(props){
     return (
           <div class = "itemlist">
-              <img src = {props.img} alt="item_image" width ="100px"/>
+              <img src = {props.img} alt="item_image" width ="80px" height = "80px"/>
               <div>
-                <div class = "item_name">{props.name}</div>
+                <span className='horiz'><div class = "item_name">{props.name}</div>{props.state?<div className='register'>예약</div>:<div></div>}</span>
                 <div>{Math.round(props.cost*props.ratio)} ({Math.round(props.ratio*100)}%) </div>
-                <button onClick={()=>{props.setSt(true)}}>O</button>
-                <button>X</button>
+                
               </div>
+              <button className='deal_button' onClick={()=>{props.setSt(!props.state)}}>{props.state?"거래취소":"거래하기"}</button>
+              {props.have?<></>:<div className='gray'>소유하지 않은 물건입니다.</div>}
           </div>
       );
 };
-function Selllist(props){
-    return(
-        <div className='itemlist'>
-            <img src = {props.img} alt="item_image" width ="100px"/>
-              <div>
-                <div class = "item_name">{props.name}</div>
-                <div>{Math.round(props.cost*props.ratio)} ({Math.round(props.ratio*100)}%) </div>
-              </div>
-        </div>
-    )
-}
+
 
 
 function Marketview(props){
     const [state1, setState1] = useState(false);
     const [state2, setState2] = useState(false);
     const [state3, setState3] = useState(false);
+    useEffect(()=>{
+        props.items[0].sell = state1;
+        props.items[1].sell = state2;
+        props.items[2].sell = state3;
+    })
+    useEffect(()=>{
+        setState1(false);
+        setState2(false);
+        setState3(false);
+    },[props.doing]);
+    
     return(
             <div>
                 <div id="carrot">삽니다! 당근마켓</div>
-                <div>사고싶어용</div>
-                {state1?<></>:<Itemlist setSt={setState1} name={list_of_items[props.items[0].item]} cost = {cost_of_items[props.items[0].item]} ratio = {props.items[0].ratio} img = {img_of_items[props.items[0].item]}/>}
-                {state2?<></>:<Itemlist setSt={setState2} name={list_of_items[props.items[1].item]} cost = {cost_of_items[props.items[1].item]} ratio = {props.items[1].ratio} img = {img_of_items[props.items[1].item]}/>}
-                {state3?<></>:<Itemlist setSt={setState3} name={list_of_items[props.items[2].item]} cost = {cost_of_items[props.items[2].item]} ratio = {props.items[2].ratio} img = {img_of_items[props.items[2].item]}/>}
-                <div>거래를 합시당</div>
-                {state1?<Selllist name={list_of_items[props.items[0].item]} cost = {cost_of_items[props.items[0].item]} ratio = {props.items[0].ratio} img = {img_of_items[props.items[0].item]}/>:<></>}
-                {state2?<Selllist name={list_of_items[props.items[1].item]} cost = {cost_of_items[props.items[1].item]} ratio = {props.items[1].ratio} img = {img_of_items[props.items[1].item]}/>:<></>}
-                {state3?<Selllist name={list_of_items[props.items[2].item]} cost = {cost_of_items[props.items[2].item]} ratio = {props.items[2].ratio} img = {img_of_items[props.items[2].item]}/>:<></>}
-                
+                {props.can_buy?
+                <div>
+                    <Itemlist state = {state1} setSt={setState1} name={list_of_items[props.items[0].item]} cost = {cost_of_items[props.items[0].item]} ratio = {props.items[0].ratio} img = {img_of_items[props.items[0].item]} have = {props.have_items[props.items[0].item]!=0}/>
+                    <Itemlist state = {state2} setSt={setState2} name={list_of_items[props.items[1].item]} cost = {cost_of_items[props.items[1].item]} ratio = {props.items[1].ratio} img = {img_of_items[props.items[1].item]} have = {props.have_items[props.items[1].item]!=0}/>
+                    <Itemlist state = {state3} setSt={setState3} name={list_of_items[props.items[2].item]} cost = {cost_of_items[props.items[2].item]} ratio = {props.items[2].ratio} img = {img_of_items[props.items[2].item]} have = {props.have_items[props.items[2].item]!=0}/>
+                </div>:
+                <div className='simple_text'>아직 물건이 올라오지 않았습니다.</div>
+                }
             </div>
         );
 }

@@ -5,7 +5,6 @@ import React, { Component, useEffect, useState } from 'react';
 
 const scenario = [
     {
-      "name": "김만장",
       "text": "안녕하세요.닉네임 만장일치 입니다."
     },
     {
@@ -29,15 +28,10 @@ function Novelview(props){
     setCount(count+1);
     setName(scenario[count].name);
     setText(scenario[count].text);
-    if(scenario[count].name==null){
-      document.getElementById("script_name").style.visibility = "hidden";
-    }else{
-      document.getElementById("script_name").style.visibility = "visible";
-    }
   }
   return(
     <div class="novel">
-      <div id="script_name">{name}</div>
+      {name==null?<></>:<div id="script_name">{name}</div>}
       <div id = "script_text">
         {text}
         {count===scenario.length?<button onClick={()=>{props.final_next();}} id = "script_next">거래마치기</button>:<button onClick={()=>{go_next();}} id = "script_next">넘어가기</button>}
