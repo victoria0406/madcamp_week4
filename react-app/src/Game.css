@@ -1,3 +1,29 @@
+*{
+    font-family: "pf";
+}
+
+@font-face {
+    font-family: "pf";
+    src: url("./font/PF스타더스트.ttf");
+}
+@font-face {
+    font-family: "pf_bold";
+    src: url("./font/PF스타더스트+Bold.ttf");
+}
+img{
+    margin: 10px;
+}
+.horiz{
+    display: flex;
+    flex-direction: row;
+}
+.simple_text{
+    height: 500px;
+    text-align: center;
+    line-height: 500px;
+    font-size: 20px;
+}
+
 
 /*Game.js에서 이용*/
 .main {
@@ -46,20 +72,23 @@
 .page{
     width: 302px;
     height: 600px;
-    background-color: azure;
+    background-color: white;
 }
 
 /*market.js에서 이용*/
 #carrot{
+    font-weight: bold;
     height: 50px;
     width: 302px;
     background-color: orange;
     text-align: center;
     color: white;
+    line-height: 50px;
 
 }
 .itemlist{
     width: 300px;
+    height: 100px;
     background-color: white;
     display: flex;
     flex-direction: row;
@@ -67,13 +96,58 @@
 }
 .item_name{
     font-weight: bold;
+    font-size: large;
+}
+
+/*buy_item.js에서 사용*/
+.itemlist_buy{
+    width: 300px;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .buy_count{
     height: 30px;
+    width: 100px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
 }
+.buy_button{
+    width: 300px;
+    height: 50px;
+    background-color: gray;
+    color: white;
+}
+
+.gray{
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    background-color:rgba(0, 0, 0, 0.5);
+    color: white;
+    line-height: 100px;
+    text-align: center;
+}
+
+.register{
+    margin-left: 10px;
+    background-color:rgb(19, 83, 43);
+    height: 25px;
+    width: 50px;
+    border-radius: 7px;
+    text-align: center;
+    line-height: 25px;
+    color: white;
+}
+
 
 /*novel.js에서 이용*/
 .novel{
@@ -99,18 +173,52 @@
 
 /*bank.js에서 사용*/
 #toss{
+    font-weight: bold;
     height: 50px;
     width: 302px;
     background-color: blue;
+    line-height: 50px;
     text-align: center;
     color: white;
 }
 
+.blue{
+    color: blue;
+    font-weight: bolder;
+}
+.head_text{
+    line-height: 44px;
+    margin-left: 10px;
+    height: 44px;
+    font-size: 24px;
+}
+.have_list{
+    border-bottom: 1px solid gray;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 40px;
+}
+
 /*chat.js에서 사용*/
 #kakao{
+    font-weight: bold;
     height: 50px;
     width: 302px;
     background-color: yellow;
+    line-height: 50px;
     text-align: center;
     color:black;
+}
+
+#hyendai{
+    font-weight: bold;
+    height: 50px;
+    width: 302px;
+    background-color: gray;
+    line-height: 50px;
+    text-align: center;
+    color:white;
 }
