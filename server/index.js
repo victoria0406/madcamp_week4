@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose"); //Mongo DB
-const { User } = require('./models/User'); //User 스키마 import
+const { UserNew } = require('./models/userNew'); //User 스키마 import
 var ObjectId = require('mongodb').ObjectId; 
 
 
@@ -33,10 +33,10 @@ app.post("/register", (req, res) => {
   // 회원 가입 할 때 필요한 정보들을 client에서 가져오면
   // 그것들을 데이터베이스에 넣어준다.
   console.log("I got POST requset : register");
-  const user = new User(req.body);
+  const user = new UserNew(req.body);
   let check = 0 ;
 
-  User.findOne({email: user.email}, (err, user) => {
+  UserNew.findOne({email: user.email}, (err, user) => {
     if(user) {
         console.log("same EM!");
         check = 1;
@@ -68,7 +68,7 @@ app.post("/register", (req, res) => {
 app.post('/api/users/login', (req, res) => {
   // 요청된 이메일이 데이터베이스에 있는지 찾는다
   console.log("I got POST requset : login");
-  User.findOne({email: req.body.email}, (err, user) => {
+  UserNew.findOne({email: req.body.email}, (err, user) => {
       if(!user) {
           return res.json({
               loginSuccess: false,
@@ -105,7 +105,7 @@ app.get('/users/:id', (req,res) => {
 
   var o_id = new ObjectId(req.params.id);
 
-  User.findOne({"_id": o_id} , (err, user) => {
+  UserNew.findOne({"_id": o_id} , (err, user) => {
     if (!user){
       return res.status(404).end()
     }
@@ -123,17 +123,21 @@ app.get('/load/:id', (req,res) => {
   if (Number.isNaN(id)){
     return res.status(400).end()
   }
-  User.findOne({id: req.params.id} , (err, user) => {
+  var o_id = new ObjectId(req.params.id);
+
+  UserNew.findOne({"_id": o_id} , (err, user) => {
     if (!user){
       return res.status(404).end()
     }
-    res.json(user)
+
+  console.log(user);
+    res.json({point: user.point, money: user.money, itemList : user.item_list, day:user.day})
   })
 })
 
 app.post('/save/:id', (req,res) => { 
   console.log("I got POST requset : save");
-  const user = new User(req.body);
+  const user = new UserNew(req.body);
 
   const id = parseInt(req.params.id, 10) // 10 진수로 변환
 
