@@ -40,7 +40,9 @@ const Login = () => {
             password: password,
           })
           .then((response) => {
-            if (response.data.success === true) {
+            if (password.length <= 5) {
+              setIsCorrect("shortPW");
+            } else if (response.data.success === true) {
               console.log(response);
               // 유저의 레터 스페이스로 보내줘야 함.
               localStorage.setItem("user_id", response.data.userId); //유저 id를 local storage에 저장
@@ -49,6 +51,9 @@ const Login = () => {
               console.log("Retry plz!"); //백엔드에서 금지하는 사항은 프론트에서 핸들링해줘야 할 듯.
               console.log(response);
               console.log(response.data.success);
+              if (response.data.message == "sameEM") {
+                setIsCorrect("sameEM");
+              }
             }
           })
           .catch((error) => {
@@ -148,6 +153,8 @@ const Login = () => {
         <span className="authError">
           {isCorrect == "wrongPW" ? "비밀번호가 틀렸습니다" : ""}
           {isCorrect == "wrongEM" ? "등록되지 않은 이메일입니다" : ""}
+          {isCorrect == "shortPW" ? "비밀번호는 6자 이상이어야 합니다" : ""}
+          {isCorrect == "sameEM" ? "동일한 이메일이 이미 존재합니다" : ""}
         </span>
 
         <span onClick={toggleAccount} className="authSwitch">

@@ -9,7 +9,7 @@ function Novelview(props) {
   const [name, setName] = useState(scenario.intro[0].name);
   const [text, setText] = useState(scenario.intro[0].text);
 
-  function go_next() {
+  /*function go_next() {
     setCount(count + 1);
     setName(scenario.intro[count].name);
     setText(scenario.intro[count].text);
@@ -21,12 +21,17 @@ function Novelview(props) {
     }
     else {
       document.getElementById("script_name").style.visibility = "visible";
-    }
+    }*/
+
+  function go_next(){
+    setCount(count+1);
+    setName(scenario[count].name);
+    setText(scenario[count].text);
   }
   return (
     <div class="novel">
-      <div id="script_name">{name}</div>
-      <div id="script_text">
+      {name==null?<></>:<div id="script_name">{name}</div>}
+      <div id = "script_text">
         {text}
         {count === scenario.intro.length ? <button onClick={() => { props.final_next(); }} id="script_next">거래마치기</button> : <button onClick={() => { go_next(); }} id="script_next">넘어가기</button>}
 
