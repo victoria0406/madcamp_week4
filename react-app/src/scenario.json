@@ -1,23 +1,69 @@
 {
     "intro": [
         {
-            "name": "test",
-            "text": "test"
+            "name": "System",
+            "text": "회장님의 미움을 사 월급을 포인트로 받게 된 주인공.",
+            "type": "intro"
         },
         {
-            "name": "김만장",
-            "text": "안녕하세요.닉네임 만장일치 입니다."
+            "name": "System",
+            "text": "2주간 포인트로만 살아가던 그는 새로운 아이디어를 생각해낸다.",
+            "type": "intro"
         },
         {
-            "name": "김만정",
-            "text": "두번쨰 샘플 텍스트입니다."
+            "name": "System",
+            "text": "바로 당근마켓에 포인트로 산 물건을 팔아 돈을 마련하는 것!",
+            "type": "intro"
         },
         {
-            "text": "이름이 없는 경우에는 이름 창이 사라졌으면 좋겠어요."
+            "name": "System",
+            "text": "이름이 없는 경우에는 이름 창이 사라졌으면 좋겠어요.",
+            "type": "intro"
         },
         {
-            "name": "개",
-            "text": "왈왈"
+            "name": "System",
+            "text": "과연 그는 무사히 물건을 팔아서 포인트를 돈으로 전환할 수 있을까? (자세한 사연이 궁금하다면 ‘일의 기쁨과 슬픔’을 읽어보세요)",
+            "type": "intro"
+        }
+    ],
+
+    "event_wedding":[
+
+    ],
+    
+    "event_funeral": [
+
+    ],
+
+    "story_trade01": [
+        {
+            "name": "",
+            "text": "",
+            "type": ""
+        }
+    ],
+
+    "story_trade02": [
+        {
+            "name": "",
+            "text": "",
+            "type": ""
+        }
+    ],
+
+    "story_trade03": [
+        {
+            "name": "",
+            "text": "",
+            "type": ""
+        }
+    ],
+
+    "story_trade04": [
+        {
+            "name": "",
+            "text": "",
+            "type": ""
         }
     ]
 }
