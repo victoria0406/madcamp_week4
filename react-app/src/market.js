@@ -24,10 +24,11 @@ function Itemlist(props){
           <div class = "itemlist">
               <img src = {props.img} alt="item_image" width ="80px" height = "80px"/>
               <div>
-                <span className='horiz'><div class = "item_name">{props.name}</div>{props.state?<div className='register'>예약중</div>:<div></div>}</span>
+                <span className='horiz'><div class = "item_name">{props.name}</div>{props.state?<div className='register'>예약</div>:<div></div>}</span>
                 <div>{Math.round(props.cost*props.ratio)} ({Math.round(props.ratio*100)}%) </div>
-                <button onClick={()=>{props.setSt(!props.state)}}>{props.state?"거래 취소하기":"거래하기"}</button>
+                
               </div>
+              <button className='deal_button' onClick={()=>{props.setSt(!props.state)}}>{props.state?"거래취소":"거래하기"}</button>
               {props.have?<></>:<div className='gray'>소유하지 않은 물건입니다.</div>}
           </div>
       );
@@ -59,7 +60,7 @@ function Marketview(props){
                     <Itemlist state = {state2} setSt={setState2} name={list_of_items[props.items[1].item]} cost = {cost_of_items[props.items[1].item]} ratio = {props.items[1].ratio} img = {img_of_items[props.items[1].item]} have = {props.have_items[props.items[1].item]!=0}/>
                     <Itemlist state = {state3} setSt={setState3} name={list_of_items[props.items[2].item]} cost = {cost_of_items[props.items[2].item]} ratio = {props.items[2].ratio} img = {img_of_items[props.items[2].item]} have = {props.have_items[props.items[2].item]!=0}/>
                 </div>:
-                <div>아직 물건이 올라오지 않았습니다.</div>
+                <div className='simple_text'>아직 물건이 올라오지 않았습니다.</div>
                 }
             </div>
         );

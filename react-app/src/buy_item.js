@@ -48,9 +48,9 @@ function Buylist(props) {
                 <div>{cost_of_items[props.index]}원</div>
             </div>
             <div class = "buy_count">
-                <button onClick={reduce_item}>-</button>
+                <button className='buy_count_button' onClick={reduce_item}>-</button>
                 <p>{count}</p>
-                <button onClick={increase_item}>+</button>
+                <button className='buy_count_button' onClick={increase_item}>+</button>
             </div>
         </div> 
     )
@@ -96,7 +96,7 @@ function Buyview(props){
                 <Buylist index={3} cost = {total_cost} setCost = {setTotal_cost} item = {buyitem} setItem = {setBuyItem}/>
                 <Buylist index={4} cost = {total_cost} setCost = {setTotal_cost} item = {buyitem} setItem = {setBuyItem}/>
                 <button className = "buy_button" onClick={()=>{show_receipt()}}>구매하기</button>
-                {receipt_popup&&<Receiptview items ={buyitem} point = {total_cost} update = {update_list}/>}
+                {receipt_popup&&<Receiptview items ={buyitem} point = {total_cost} update = {update_list} setPopup={setReceipt_popup}/>}
                 {simplepopup&&<Simplepopup ment = "구매 가능한 금액을 초과했습니다" setPopup = {setSimplepopup}/>}
             </div>:
             <div className='simple_text'>지금은 구매가능 시간이 아닙니다.</div>

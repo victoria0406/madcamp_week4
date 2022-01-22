@@ -18,6 +18,7 @@ function Receiptview(props) {
         <div className='popup'>
             <div id="receipt">
                 <div className='popup_title'>영수증</div>
+                <button className="x_button" onClick={()=>{props.setPopup(false)}}>X</button>
                 <div>
                     <Havelist index="0" count = {props.items[0]}/>
                     <Havelist index="1" count = {props.items[1]}/>
