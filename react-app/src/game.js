@@ -2,12 +2,12 @@ import React, { Component, useEffect, useState } from "react";
 import ReactSwipe from "react-swipe";
 
 import "./Game.css";
+import axios from "axios";
 import Buyview from "./buy_item";
 import Marketview from "./market";
 import Novelview from "./novel";
 import Bankview from "./bank";
 import Chatview from "./chat";
-import { Modal } from "bootstrap";
 import Gamepopup from "./game_popup";
 
 const BASE_URL = "http://192.249.18.165";
@@ -72,17 +72,18 @@ function Gameview() {
   const [page, setPage] = useState(0);
   //const [market, setMarket] = useState(<Marketview/>);
   const [sell_items, setSellItems] = useState(choose_items());
-  const [day, setDay] = useState(start_day);
-  const [doing, setDoing] = useState(0);
-  const [have_items, setHaveItems] = useState(had_items);
-  const [money, setMoney] = useState(prev_money);
-  const [point, setPoint] = useState(prev_point);
   const [is_game_popup_open, setGameOpen] = useState(false);
   const [is_phone_popup_open, setPhoneOpen] = useState(false);
   const [prev_point, setPrevPoint] = useState(0);
   const [had_items, setHadItems] = useState([0, 0, 0, 0, 0]);
   const [prev_money, setPrevMoney] = useState(0);
   const [start_day, setStartDay] = useState(1);
+
+  const [day, setDay] = useState(start_day);
+  const [doing, setDoing] = useState(0);
+  const [have_items, setHaveItems] = useState(had_items);
+  const [money, setMoney] = useState(prev_money);
+  const [point, setPoint] = useState(prev_point);
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
@@ -198,11 +199,18 @@ function Gameview() {
           setDoing(0);
           go_toss();
           setDay(day + 1);
-          //로컬 스토리지 대신 서버로 넘겨주면 되겠다.
-          //localStorage.setItem("money",money);
-          //localStorage.setItem("day",day+1);
-          //localStorage.setItem("point",point);
-          //localStorage.setItem("item_list",have_items);
+          console.log(money, day, point, have_items);
+
+          axios
+            .patch(BASE_URL + `/save/${id}`, {
+              money: money,
+              day: day,
+              point: point,
+              item_list: JSON.stringify(have_items),
+            })
+            .then((response) => {
+              console.log(response.data);
+            });
           setSellItems(choose_items());
         }
       }
