@@ -147,7 +147,7 @@ app.patch('/save/:id', (req,res) => {
   }
   var o_id = new ObjectId(req.params.id);
 
-  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money : req.body.money, point:req.body.point, day:req.body.day, item_list:req.body.item_list} } , (err, user) => {
+  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:req.body.money, point:req.body.point, day:req.body.day, item_list:req.body.item_list} } , (err, user) => {
     if (err){
       return res.status(404).end()
     }
