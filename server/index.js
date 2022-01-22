@@ -135,25 +135,25 @@ app.get('/load/:id', (req,res) => {
   })
 })
 
-app.post('/save/:id', (req,res) => { 
-  console.log("I got POST requset : save");
-  const user = new UserNew(req.body);
+app.patch('/save/:id', (req,res) => { 
+  console.log("I got PATCH requset : save");
+  const { name } = req.body
+  console.log(req.body)
 
   const id = parseInt(req.params.id, 10) // 10 진수로 변환
 
-  // 정보 저장, 에러 시 json 형식으로 전달
-  user.save((err, userInfo) => {
-    if (err) {
-      console.log("save false!!");
-      console.log(req.body);
-      return res.json({ success: false, err });
+  if (Number.isNaN(id)){
+    return res.status(400).end()
+  }
+  var o_id = new ObjectId(req.params.id);
+
+  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money : req.body.money, point:req.body.point, day:req.body.day, item_list:req.body.item_list} } , (err, user) => {
+    if (err){
+      return res.status(404).end()
     }
-    console.log("Save Success!!");
-    return res.status(200).json({
-      success: true,
-      userId: user._id
-    });
+    res.json({ok: true, users: user});
   });
+
 })
 
 
