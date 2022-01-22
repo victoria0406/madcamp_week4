@@ -22,10 +22,27 @@ const userSchema = mongoose.Schema({
     type: String,
     maxlength: 50,
   },
+  money :{
+    type: Number,
+    defalut : 0,
+  },
+  day : {
+    type: Number,
+    default : 1,
+  },
+  point : {
+    type: Number,
+    defalut : 3000000,
+  },
+  item_list:{
+    type: Array,
+    defalut : [0,0,0,0,0],
+  },
   role: {
     type: Number,
     default: 0,
   },
+  
   image: String,
   token: { type: String },
   tokenExp: { type: Number },
