@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose"); //Mongo DB
 const { User } = require('./models/User'); //User 스키마 import
+var ObjectId = require('mongodb').ObjectId; 
+
 
 require("dotenv").config();
 
@@ -64,7 +66,7 @@ app.post("/register", (req, res) => {
 });
 
 app.post('/api/users/login', (req, res) => {
-  // 요청된 이메일을 데이터베이스에서 있는지 찾는다
+  // 요청된 이메일이 데이터베이스에 있는지 찾는다
   console.log("I got POST requset : login");
   User.findOne({email: req.body.email}, (err, user) => {
       if(!user) {
@@ -96,10 +98,14 @@ app.get('/users/:id', (req,res) => {
   console.log("I got GET requset : find");
   const id = parseInt(req.params.id, 10) // 10 진수로 변환
 
+   // 숫자가 아닌 값이 들어가면 400 에러 처리
   if (Number.isNaN(id)){
     return res.status(400).end()
   }
-  User.findOne({id: req.params.id} , (err, user) => {
+
+  var o_id = new ObjectId(req.params.id);
+
+  User.findOne({"_id": o_id} , (err, user) => {
     if (!user){
       return res.status(404).end()
     }
@@ -107,8 +113,11 @@ app.get('/users/:id', (req,res) => {
   })
 })
 
+
+
+
 app.get('/load/:id', (req,res) => { 
-  console.log("I got GET requset : find");
+  console.log("I got GET requset : load");
   const id = parseInt(req.params.id, 10) // 10 진수로 변환
 
   if (Number.isNaN(id)){
@@ -128,12 +137,10 @@ app.post('/save/:id', (req,res) => {
 
   const id = parseInt(req.params.id, 10) // 10 진수로 변환
 
-
   // 정보 저장, 에러 시 json 형식으로 전달
   user.save((err, userInfo) => {
     if (err) {
-      console.log("false!!");
-      //에러가 날 경우 에러 핸들링 해주기 -> 중복된 이메일인지!
+      console.log("save false!!");
       console.log(req.body);
       return res.json({ success: false, err });
     }
