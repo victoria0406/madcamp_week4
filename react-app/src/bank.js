@@ -12,9 +12,9 @@ const img_of_items = [img_fresh,img_clean,img_coffee,img_wind, img_healthy];
 
 function Havelist(props){
     return(
-            <div>
-                <div>{list_of_items[Number(props.index)]}</div>
-                <div>{props.count}</div>
+            <div className='have_list'>
+                <span>{list_of_items[Number(props.index)]}</span>
+                <span>{props.count}개 보유중</span>
             </div>
     );
 }
@@ -24,8 +24,9 @@ function Bankview(props) {
     return(
         <div>
             <div id="toss">TOSS</div>
-            <div>MONEY {props.money}</div>
-            <div>POINT {props.point}</div>
+            <div className='head_text'>MONEY <span className='blue' >{props.money}</span></div>
+            <div className='head_text'>POINT <span className='blue' >{props.point}</span></div>
+            <div className='head_text'>나의 자산 현황</div>
             <div>
                 <Havelist index="0" count = {props.have_items[0]}/>
                 <Havelist index="1" count = {props.have_items[1]}/>

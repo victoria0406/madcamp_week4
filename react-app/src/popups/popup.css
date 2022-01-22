@@ -1,0 +1,43 @@
+.popup{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.5);
+}
+#receipt{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 250px;
+    height: 400px;
+    border: 1px solid black;
+}
+#simplepopup{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 250px;
+    height: 150px;
+    border: 1px solid black;
+}
+.popup_title{
+    width: 250px;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.receipt_ending{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
