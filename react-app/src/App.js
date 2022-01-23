@@ -13,10 +13,6 @@ import {
   Routes,
 } from "react-router-dom";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 31a990ffb664e4da8ee7ec25d637c3ff674128ac
 function App() {
   return (
     <Routes>
