@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Game.css";
+import "./styles/Game.css";
 
 import img_fresh from "./images/items/공기청정기.png";
 import img_clean from "./images/items/청소기.png";
