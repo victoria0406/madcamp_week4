@@ -380,7 +380,12 @@ function Gameview() {
             }}
           >
             {day % 7 == 1 ? (
-              "P"
+              <img
+                src="button/card.png"
+                alt="당근"
+                height="40em"
+                width="40em"
+              />
             ) : (
               <img
                 src="button/당근.png"

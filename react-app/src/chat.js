@@ -3,19 +3,24 @@ import "./styles/Game.css";
 import React, { Component, useState } from "react";
 import Chatpopup from "./popups/chat_popup";
 
-import profile_img from "./images/profile.png"
+import profile_img from "./images/profile.png";
 
-function Chatroom(props){
-    return(
-        <div className='chat_room'>
-            <img className="chat_img" src = {profile_img} alt="프로필 사진" width="50px" height="50px"/>
-            <div className="chat_info">
-                <div className="chat_name">{props.name}</div>
-                <div className="chat_text">{props.chat}</div>
-            </div>
-            
-        </div>
-    )
+function Chatroom(props) {
+  return (
+    <div className="chat_room">
+      <img
+        className="chat_img"
+        src={profile_img}
+        alt="프로필 사진"
+        width="50px"
+        height="50px"
+      />
+      <div className="chat_info">
+        <div className="chat_name">{props.name}</div>
+        <div className="chat_text">{props.chat}</div>
+      </div>
+    </div>
+  );
 }
 
 //채팅 보내고 닫으면 그냥 퇴사 엔딩으로 가자
@@ -35,13 +40,19 @@ function RealChat(props) {
     <div className="real_chat">
       <div className="chat_header">
         <button
+          className="back_button"
           onClick={() => {
             props.setIsChat(false);
           }}
         >
-          close
+          <img
+            src="button/back-arrow.png"
+            alt="뒤로가기"
+            height="25em"
+            width="25em"
+          />
         </button>
-        <div>회장님</div>
+        <div className="chat_name">회장님</div>
       </div>
       <div className="chat_list">
         {chat_script.map((e) => {
@@ -56,12 +67,18 @@ function RealChat(props) {
       <div id="send_message">
         <div>{send_ment}</div>
         <button
+          className="send_button"
           onClick={() => {
             setSended(true);
             setSendment("");
           }}
         >
-          send
+          <img
+            src="button/send_icon.png"
+            alt="뒤로가기"
+            height="25em"
+            width="25em"
+          />
         </button>
       </div>
     </div>

@@ -25,14 +25,17 @@
 
 .hidden_button {
   background-color: white;
+  height: 60px;
   border: none;
+  width: 100%;
   text-align: left;
   padding: 0%;
 }
 
 /*Game.js에서 이용*/
 .main {
-  width: 1200px;
+  max-width: 1200px;
+  width: 100vw;
   height: 800px;
   background-color: beige;
   position: absolute;
@@ -182,12 +185,14 @@
 
 /*buy_item.js에서 사용*/
 .itemlist_buy {
-  width: 20em;
+  width: 18.5em;
   height: 80px;
   background-color: white;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  padding-left: 1em;
+  padding-right: 0.5em;
+  border-top: 1px solid black;
   justify-content: space-between;
   align-items: center;
 }
@@ -201,17 +206,15 @@
   justify-content: center;
 }
 .buy_button {
-  width: 25em;
-  height: 50px;
+  width: 24em;
+  height: 45px;
   background-color: gray;
   color: white;
 }
 
 .buy_count_button {
-  height: 20px;
-  width: 20px;
-  margin: 10px;
-  text-align: center;
+  background-color: white;
+  border: none;
 }
 
 /*novel.js에서 이용*/
@@ -236,7 +239,7 @@
   right: 20px;
 }
 
-/*bank.js에서 사용*/
+/*======bank.js에서 사용=========*/
 #toss {
   font-weight: bold;
   padding-top: 1em;
@@ -245,6 +248,36 @@
   line-height: 50px;
   text-align: center;
   color: white;
+}
+
+.bank_contents {
+  display: flex;
+  flex-direction: column;
+  height: 50em;
+  background-color: rgba(245, 241, 241, 0.808);
+}
+
+.bank_name {
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.bank_status {
+  margin-bottom: 0.4em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bank_component {
+  border-radius: 1em;
+  margin: 1em 1em 0 1em;
+}
+
+.my_wallet {
+  background-color: rgba(255, 255, 255);
+  padding: 2em;
 }
 
 .blue {
@@ -272,7 +305,7 @@
   font-weight: bold;
   padding-top: 1em;
   width: 20em;
-  background-color: yellow;
+  background-color: #fbe300;
   line-height: 50px;
   text-align: center;
   color: black;
@@ -287,6 +320,9 @@
   text-align: center;
   color: white;
 }
+
+/* ============chat room style==============*/
+
 .chat_room {
   height: 60px;
   width: 310px;
@@ -297,7 +333,26 @@
   justify-content: left;
 }
 
+.chat_header {
+  background-color: #a9bdce;
+  padding-top: 1.5em;
+  padding-bottom: 0.5em;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back_button {
+  border: none;
+  background-color: #a9bdce;
+}
+
+.send_button {
+  border: none;
+  padding: 1em;
+}
+
 .chat_info {
+  margin-left: 0.7em;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -309,6 +364,10 @@
   font-size: 18px;
 }
 
+.chat_text {
+  margin-bottom: 0.2em;
+  font-size: 14px;
+}
 .real_chat {
   width: 20em;
   height: 35em;
@@ -363,7 +422,7 @@
   justify-content: space-between;
 }
 
-.chat_img{
-    border-radius: 5px;
-    margin: 5px;
+.chat_img {
+  border-radius: 5px;
+  margin: 5px;
 }

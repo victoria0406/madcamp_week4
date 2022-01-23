@@ -71,7 +71,7 @@ function Marketview(props) {
     <div>
       <div id="carrot">삽니다! 당근마켓</div>
       <div>
-        <div className="head_text">{props.user_name}</div>
+        <div className="head_text">{props.user_name}님, 환영합니다</div>
       </div>
       {props.can_buy ? (
         <div>
