@@ -15,6 +15,8 @@ function Chatroom(props){
     )
 }
 
+//채팅 보내고 닫으면 그냥 퇴사 엔딩으로 가자
+
 const chat_script = [{text:"사람들이 그렇게 포인트를 좋아하나?", me:false}, {text:"네, 좋아합니다!", me:true},{text:"그렇게 좋은거면", me:false},{text:"일년동안 이차장은", me:false},{text:"월급, 포인트로 받게", me:false}]
 
 function RealChat(props){
@@ -22,7 +24,7 @@ function RealChat(props){
     const [sended, setSended] = useState(false);
     return(
         <div className="real_chat">
-            <button onClick={()=>{props.setIsChat(false)}}>close</button>
+            <button onClick={()=>{props.setIsChat(false)}}>close</button> 
             <div>회장님</div>
             <div className="chat_list">
                 {chat_script.map((e)=>{

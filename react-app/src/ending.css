@@ -1,0 +1,32 @@
+.ending{
+    width: 1200px;
+    height: 800px;
+    background-color: beige;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.ending_collect{
+    width: 1000px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
+}
+
+.card{
+    width: 250px;
+    height: 250px;
+    background-color: white; 
+}
+
+.ending_text{
+    width: 250px;
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+}

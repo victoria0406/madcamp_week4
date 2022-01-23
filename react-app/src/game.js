@@ -19,15 +19,15 @@ const doing_ment = [
   "거래하는 중",
   "집에서 쉬는 중...",
 ];
-const next_do_ment = ["출근하기", "퇴근하기", "", "다음날"];
+const next_do_ment = ["출근하기", "퇴근하기", "거래 마치기", "다음날"];
 
 const doing_ment_sat = [
   "외출 준비 중",
-  "거래하는 중",
+  "특별한 거래를 하는 중★",
   "거래하는 중",
   "친구 만나기",
 ];
-const next_do_ment_sat = ["외출하기", "다음 거래 하기"];
+const next_do_ment_sat = ["특별한 거래 하기", "일반 거래 하기", "거래 마치기","다음날"];
 
 const doing_ment_sun = ["휴식 중...", "물건 구매"];
 const next_do_ment_sun = ["물건 구매하기", "다음날"];
@@ -190,7 +190,8 @@ function Gameview() {
           });
         setSellItems(choose_items());
       }
-    } else {
+    }
+    else {
       if (doing === 0) {
         setDoing(1);
         go_carrot();
@@ -256,17 +257,18 @@ function Gameview() {
           day {day} ({days[(day - 1) % 7]})
         </div>
         <div className="doing">
-          {day % 7 == 1 ? doing_ment_sun[doing] : doing_ment[doing]}
+          {day % 7 == 1 ? doing_ment_sun[doing] : (day%7==0?doing_ment_sat[doing]:doing_ment[doing])}
         </div>
         {doing === 2 ? (
           <></>
         ) : (
           <button
+            id="game_button"
             onClick={() => {
               do_next_work();
             }}
           >
-            {day % 7 == 1 ? next_do_ment_sun[doing] : next_do_ment[doing]}
+            {day % 7 == 1 ? next_do_ment_sun[doing] : (day%7==0? next_do_ment_sat[doing]:next_do_ment[doing])}
           </button>
         )}
         {is_game_popup_open ? (
