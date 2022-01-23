@@ -24,6 +24,12 @@ img{
     font-size: 20px;
 }
 
+.hidden_button{
+    background-color:white;
+    border: none;
+    text-align: left;
+}
+
 
 /*Game.js에서 이용*/
 .main {
@@ -73,6 +79,13 @@ img{
     width: 302px;
     height: 600px;
     background-color: white;
+}
+.day{
+    font-size: 24px;
+    height: 48px;
+    line-height: 48px;
+    width: 148px;
+    text-align: center;
 }
 
 /*market.js에서 이용*/
@@ -238,3 +251,81 @@ img{
     text-align: center;
     color:white;
 }
+
+.chat_room{
+    height: 60px;
+    width: 302px;
+    border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+
+.chat_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.chat_name{
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.real_chat{
+    width: 302px;
+    height: 580px;
+    background-color: rgb(189, 211, 230);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.chat_list{
+    position: absolute;
+    bottom: 50px;
+    width: 302px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat_element{
+    width: 302px;
+}
+
+.my_chat{
+    background-color: yellow;
+    margin: 5px;
+    height: 20px;
+    line-height: 20px;
+    text-align: right;
+    width: max-content;
+    border: 5px solid yellow;
+    border-radius: 5px;
+    position: relative;
+    left:302px;
+    transform: translate(-110%,0%);
+
+}
+
+.op_chat{
+    background-color: white;
+    margin: 5px;
+    height: 20px;
+    line-height: 20px;
+    text-align: right;
+    width: max-content;
+    border: 5px solid white;
+    border-radius: 5px;
+
+}
+#send_message{
+    width: 100%;
+    background-color: white;
+    height: 50px;
+    line-height: 50px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+

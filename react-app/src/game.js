@@ -84,6 +84,7 @@ function Gameview() {
   const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0]);
   const [money, setMoney] = useState(0);
   const [point, setPoint] = useState(0);
+  const [user_name, setUsername] = useState("미정");
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
@@ -132,6 +133,7 @@ function Gameview() {
             }
             setHaveItems(temp_list);
         }
+        setUsername(response.data.name);
       })
       .catch((error) => {
         console.log(error);
@@ -248,9 +250,9 @@ function Gameview() {
   }
 
   return (
-    <div class="main">
-      <div class="game_image">
-        <div className="Day">
+    <div className="main">
+      <div className="game_image">
+        <div className="day">
           day {day} ({days[(day - 1) % 7]})
         </div>
         <div className="doing">
@@ -306,6 +308,7 @@ function Gameview() {
                   have_items={have_items}
                   setHaveItems={setHaveItems}
                   doing={doing}
+                  user_name = {user_name}
                 />
               )}
             </div>

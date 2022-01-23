@@ -54,6 +54,9 @@ function Marketview(props){
     return(
             <div>
                 <div id="carrot">삽니다! 당근마켓</div>
+                <div >
+                    <div className='head_text'>{props.user_name}</div>
+                </div>
                 {props.can_buy?
                 <div>
                     <Itemlist state = {state1} setSt={setState1} name={list_of_items[props.items[0].item]} cost = {cost_of_items[props.items[0].item]} ratio = {props.items[0].ratio} img = {img_of_items[props.items[0].item]} have = {props.have_items[props.items[0].item]!=0}/>
