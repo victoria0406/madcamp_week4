@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./Login.css";
+import "./styles/Login.css";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -44,7 +44,6 @@ const Login = () => {
               setIsCorrect("shortPW");
             } else if (response.data.success === true) {
               console.log(response);
-              // 유저의 레터 스페이스로 보내줘야 함.
               localStorage.setItem("user_id", response.data.userId); //유저 id를 local storage에 저장
               document.location.href = `/main`; // 게임 페이지로 이동
             } else {

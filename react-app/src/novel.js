@@ -25,7 +25,6 @@ function Novelview(props) {
   if (type == "select") {
 
   }
-
   /*function go_next() {
     setCount(count + 1);
     setName(scenario.intro[count].name);
@@ -85,12 +84,29 @@ function Novelview(props) {
       {name == null ? <></> : <div id="script_name">{name}</div>}
       <div id="script_text">
         {text}
-        {count === test.length ? <button onClick={() => { props.final_next(); }} id="script_next">거래마치기</button> : <button onClick={() => { go_next(); }} id="script_next">넘어가기</button>}
+        {count === scenario.length ? (
+          <button
+            onClick={() => {
+              props.final_next();
+            }}
+            id="script_next"
+          >
+            거래마치기
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              go_next();
+            }}
+            id="script_next"
+          >
+            넘어가기
+          </button>
+        )}
       </div>
-    </div >
+    </div>
+
   );
 }
-
-
 
 export default Novelview;
