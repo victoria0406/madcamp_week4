@@ -240,14 +240,14 @@ function Gameview() {
     }
     return ment;
   }
-  function checked_items(){
+  function checked_items() {
     var checked = false;
     sell_items.forEach((item) => {
-        if (item.sell) {
-            checked = true;
-        }
-      });
-      return checked;
+      if (item.sell) {
+        checked = true;
+      }
+    });
+    return checked;
   }
 
   return (
@@ -311,7 +311,7 @@ function Gameview() {
                   have_items={have_items}
                   setHaveItems={setHaveItems}
                   doing={doing}
-                  user_name = {user_name}
+                  user_name={user_name}
                 />
               )}
             </div>
@@ -327,7 +327,12 @@ function Gameview() {
               go_toss();
             }}
           >
-            토스
+            <img
+              src="button/토스.png"
+              alt="사진없슴"
+              height="30em"
+              width="30em"
+            />
           </button>
           <button
             class="applications"
@@ -335,7 +340,16 @@ function Gameview() {
               go_carrot();
             }}
           >
-            {day % 7 == 1 ? "P" : "당근"}
+            {day % 7 == 1 ? (
+              "P"
+            ) : (
+              <img
+                src="button/당근.png"
+                alt="사진없슴"
+                height="35em"
+                width="35em"
+              />
+            )}
           </button>
           <button
             class="applications"
@@ -343,7 +357,12 @@ function Gameview() {
               go_kakao();
             }}
           >
-            카톡
+            <img
+              src="button/카톡.png"
+              alt="사진없슴"
+              height="35em"
+              width="35em"
+            />
           </button>
         </div>
       </div>
