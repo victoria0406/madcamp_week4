@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import ReactSwipe from "react-swipe";
 
-import "./Game.css";
+import "./styles/Game.css";
 import axios from "axios";
 import Buyview from "./buy_item";
 import Marketview from "./market";
@@ -27,7 +27,12 @@ const doing_ment_sat = [
   "거래하는 중",
   "친구 만나기",
 ];
-const next_do_ment_sat = ["특별한 거래 하기", "일반 거래 하기", "거래 마치기","다음날"];
+const next_do_ment_sat = [
+  "특별한 거래 하기",
+  "일반 거래 하기",
+  "거래 마치기",
+  "다음날",
+];
 
 const doing_ment_sun = ["휴식 중...", "물건 구매"];
 const next_do_ment_sun = ["물건 구매하기", "다음날"];
@@ -190,8 +195,7 @@ function Gameview() {
           });
         setSellItems(choose_items());
       }
-    }
-    else {
+    } else {
       if (doing === 0) {
         setDoing(1);
         go_carrot();
@@ -257,7 +261,11 @@ function Gameview() {
           day {day} ({days[(day - 1) % 7]})
         </div>
         <div className="doing">
-          {day % 7 == 1 ? doing_ment_sun[doing] : (day%7==0?doing_ment_sat[doing]:doing_ment[doing])}
+          {day % 7 == 1
+            ? doing_ment_sun[doing]
+            : day % 7 == 0
+            ? doing_ment_sat[doing]
+            : doing_ment[doing]}
         </div>
         {doing === 2 ? (
           <></>
@@ -268,7 +276,11 @@ function Gameview() {
               do_next_work();
             }}
           >
-            {day % 7 == 1 ? next_do_ment_sun[doing] : (day%7==0? next_do_ment_sat[doing]:next_do_ment[doing])}
+            {day % 7 == 1
+              ? next_do_ment_sun[doing]
+              : day % 7 == 0
+              ? next_do_ment_sat[doing]
+              : next_do_ment[doing]}
           </button>
         )}
         {is_game_popup_open ? (
@@ -327,12 +339,7 @@ function Gameview() {
               go_toss();
             }}
           >
-            <img
-              src="button/토스.png"
-              alt="사진없슴"
-              height="30em"
-              width="30em"
-            />
+            <img src="button/토스.png" alt="토스" height="30em" width="30em" />
           </button>
           <button
             class="applications"
@@ -345,7 +352,7 @@ function Gameview() {
             ) : (
               <img
                 src="button/당근.png"
-                alt="사진없슴"
+                alt="당근"
                 height="35em"
                 width="35em"
               />
@@ -357,12 +364,7 @@ function Gameview() {
               go_kakao();
             }}
           >
-            <img
-              src="button/카톡.png"
-              alt="사진없슴"
-              height="35em"
-              width="35em"
-            />
+            <img src="button/카톡.png" alt="카톡" height="35em" width="35em" />
           </button>
         </div>
       </div>

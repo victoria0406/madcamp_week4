@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import "./Game.css";
+import "./styles/Game.css";
 
 //images of items
 import img_fresh from "./images/items/공기청정기.png";

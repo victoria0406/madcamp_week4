@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import "./ending.css";
+import React, { Component } from "react";
+import "./styles/ending.css";
 
 function Endingcollect(props){
     return(

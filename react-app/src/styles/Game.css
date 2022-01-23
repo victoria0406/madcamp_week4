@@ -4,11 +4,11 @@
 
 @font-face {
   font-family: "pf";
-  src: url("./font/PF스타더스트.ttf");
+  src: url("../font/PF스타더스트.ttf");
 }
 @font-face {
   font-family: "pf_bold";
-  src: url("./font/PF스타더스트+Bold.ttf");
+  src: url("../font/PF스타더스트+Bold.ttf");
 }
 
 .horiz {
@@ -20,12 +20,14 @@
   text-align: center;
   line-height: 500px;
   font-size: 20px;
+  color: rgb(224, 224, 224);
 }
 
 .hidden_button {
   background-color: white;
   border: none;
   text-align: left;
+  padding: 0%;
 }
 
 /*Game.js에서 이용*/
@@ -53,7 +55,7 @@
 }
 
 .phoneFrame {
-  background: url("./images/background_phone.png");
+  background: url("../images/background_phone.png");
   width: 22em;
   height: 47em;
   background-size: 100% 100%;
@@ -102,30 +104,29 @@
   text-align: center;
 }
 
-#game_button{
-    width: 120px;
-    height: 50px;
-    font-size: 16px;
-    position: absolute;
-    bottom: 40px;
-    left: 640px;
-
+#game_button {
+  width: 120px;
+  height: 50px;
+  font-size: 16px;
+  position: absolute;
+  bottom: 40px;
+  left: 640px;
 }
-.doing{
-    position: absolute;
-    top: 25px;
-    left:760px;
-    font-size: 24px;
-    transform: translate(-100%, 0%);
-    height: 50px;
-    line-height: 50px;
-    text-align: right;
+.doing {
+  position: absolute;
+  top: 25px;
+  left: 760px;
+  font-size: 24px;
+  transform: translate(-100%, 0%);
+  height: 50px;
+  line-height: 50px;
+  text-align: right;
 }
 
 /*market.js에서 이용*/
 #carrot {
   font-weight: bold;
-  height: 50px;
+  padding-top: 1em;
   width: 20em;
   background-color: orange;
   text-align: center;
@@ -232,7 +233,7 @@
 /*bank.js에서 사용*/
 #toss {
   font-weight: bold;
-  height: 50px;
+  padding-top: 1em;
   width: 20em;
   background-color: blue;
   line-height: 50px;
@@ -263,7 +264,7 @@
 /*chat.js에서 사용*/
 #kakao {
   font-weight: bold;
-  height: 50px;
+  padding-top: 1em;
   width: 20em;
   background-color: yellow;
   line-height: 50px;
@@ -273,7 +274,7 @@
 
 #hyendai {
   font-weight: bold;
-  height: 50px;
+  padding-top: 1em;
   width: 20em;
   background-color: gray;
   line-height: 50px;
@@ -282,7 +283,8 @@
 }
 .chat_room {
   height: 60px;
-  width: 302px;
+  width: 310px;
+  padding-left: 10px;
   border-bottom: 1px solid gray;
   display: flex;
   flex-direction: row;
@@ -296,13 +298,14 @@
 }
 
 .chat_name {
+  margin-top: 0.2em;
   font-weight: bolder;
   font-size: 18px;
 }
 
 .real_chat {
-  width: 302px;
-  height: 580px;
+  width: 20em;
+  height: 35em;
   background-color: rgb(189, 211, 230);
   position: absolute;
   top: 0;
@@ -312,13 +315,10 @@
 .chat_list {
   position: absolute;
   bottom: 50px;
-  width: 302px;
+  width: 300px;
   display: flex;
+  margin-left: 0.5em;
   flex-direction: column;
-}
-
-.chat_element {
-  width: 302px;
 }
 
 .my_chat {
@@ -331,8 +331,8 @@
   border: 5px solid yellow;
   border-radius: 5px;
   position: relative;
-  left: 302px;
-  transform: translate(-110%, 0%);
+  left: 97%;
+  transform: translate(-100%, 0%);
 }
 
 .op_chat {
@@ -346,13 +346,14 @@
   border-radius: 5px;
 }
 #send_message {
-  width: 100%;
+  width: 19em;
   background-color: white;
   height: 50px;
   line-height: 50px;
   position: absolute;
   bottom: 0;
   display: flex;
+  padding-left: 1em;
   justify-content: space-between;
 }
 
