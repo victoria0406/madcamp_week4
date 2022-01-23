@@ -57,11 +57,11 @@ function Buylist(props) {
       </div>
       <div class="buy_count">
         <button className="buy_count_button" onClick={reduce_item}>
-          -
+          <img src="button/minus.png" alt="토스" height="20em" width="20em" />
         </button>
         <p>{count}</p>
         <button className="buy_count_button" onClick={increase_item}>
-          +
+          <img src="button/plus.png" alt="토스" height="20em" width="20em" />
         </button>
       </div>
     </div>
