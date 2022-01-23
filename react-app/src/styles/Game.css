@@ -25,13 +25,16 @@
 
 .hidden_button {
   background-color: white;
+  height: 60px;
   border: none;
+  width: 100%;
   text-align: left;
 }
 
 /*Game.js에서 이용*/
 .main {
-  width: 1200px;
+  max-width: 1200px;
+  width: 100vw;
   height: 800px;
   background-color: beige;
   position: absolute;
