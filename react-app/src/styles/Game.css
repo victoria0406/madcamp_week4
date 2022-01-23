@@ -29,6 +29,7 @@
   border: none;
   width: 100%;
   text-align: left;
+  padding: 0%;
 }
 
 /*Game.js에서 이용*/
@@ -285,11 +286,12 @@
 }
 .chat_room {
   height: 60px;
-  width: 302px;
-  padding-left: 1em;
+  width: 310px;
+  padding-left: 10px;
   border-bottom: 1px solid gray;
   display: flex;
   flex-direction: row;
+  justify-content: left;
 }
 
 .chat_info {
@@ -316,14 +318,10 @@
 .chat_list {
   position: absolute;
   bottom: 50px;
-  width: 302px;
+  width: 300px;
   display: flex;
   margin-left: 0.5em;
   flex-direction: column;
-}
-
-.chat_element {
-  width: 302px;
 }
 
 .my_chat {
@@ -336,8 +334,8 @@
   border: 5px solid yellow;
   border-radius: 5px;
   position: relative;
-  left: 302px;
-  transform: translate(-110%, 0%);
+  left: 97%;
+  transform: translate(-100%, 0%);
 }
 
 .op_chat {
@@ -360,4 +358,9 @@
   display: flex;
   padding-left: 1em;
   justify-content: space-between;
+}
+
+.chat_img{
+    border-radius: 5px;
+    margin: 5px;
 }

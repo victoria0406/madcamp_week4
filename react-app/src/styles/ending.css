@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: row; 
     justify-content: space-around;
+    margin: 30px;
 }
 
 .card{
@@ -24,9 +25,16 @@
     background-color: white; 
 }
 
-.ending_text{
+.ending_head{
     width: 250px;
     text-align: center;
     height: 80px;
     line-height: 80px;
+    font-size: 20px;
+    
+}
+#head_text{
+    height: 100px;
+    line-height: 120px;
+    font-size: 48px;
 }

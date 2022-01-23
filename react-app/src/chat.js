@@ -3,15 +3,19 @@ import "./styles/Game.css";
 import React, { Component, useState } from "react";
 import Chatpopup from "./popups/chat_popup";
 
-function Chatroom(props) {
-  return (
-    <div className="chat_room">
-      <div className="chat_info">
-        <div className="chat_name">{props.name}</div>
-        <div className="chat_text">{props.chat}</div>
-      </div>
-    </div>
-  );
+import profile_img from "./images/profile.png"
+
+function Chatroom(props){
+    return(
+        <div className='chat_room'>
+            <img className="chat_img" src = {profile_img} alt="프로필 사진" width="50px" height="50px"/>
+            <div className="chat_info">
+                <div className="chat_name">{props.name}</div>
+                <div className="chat_text">{props.chat}</div>
+            </div>
+            
+        </div>
+    )
 }
 
 //채팅 보내고 닫으면 그냥 퇴사 엔딩으로 가자
