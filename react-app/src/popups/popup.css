@@ -54,3 +54,75 @@
     top: 10px;
     right: 5px;
 }
+
+.popup_game{
+    height: 750px;
+    width: 750px;
+    position: absolute;
+    top:25px;
+    left: 25px;
+    background-color:rgba(0, 0, 0, 0.5);
+    
+}
+
+#deal_popup{
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.buttons{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#chat_popup{
+    width: 250px;
+    height: 200px;
+    background-color: rgba(49, 38, 24, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    border-radius: 10px;
+}
+
+.p_chat_text{
+    margin:20px
+}
+
+.p_chat_name{
+    height: 40px;
+    line-height: 40px;
+    font-weight: bolder;
+}
+
+.p_chat_sub_text{
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    
+}
+
+.chat_popup_buttons{
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

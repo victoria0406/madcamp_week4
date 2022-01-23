@@ -8,7 +8,7 @@ import Marketview from "./market";
 import Novelview from "./novel";
 import Bankview from "./bank";
 import Chatview from "./chat";
-import Gamepopup from "./game_popup";
+import Gamepopup from "./popups/game_popup";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -84,6 +84,7 @@ function Gameview() {
   const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0]);
   const [money, setMoney] = useState(0);
   const [point, setPoint] = useState(0);
+  const [user_name, setUsername] = useState("미정");
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
@@ -132,6 +133,7 @@ function Gameview() {
           }
           setHaveItems(temp_list);
         }
+        setUsername(response.data.name);
       })
       .catch((error) => {
         console.log(error);
@@ -233,14 +235,24 @@ function Gameview() {
       ment = "거래를 생략하시겠습니까?";
     } else {
       ment = ment.slice(0, -2) + "를 판매하시겠습니까?";
+      //setCheckeditems(true);
     }
     return ment;
   }
+  function checked_items(){
+    var checked = false;
+    sell_items.forEach((item) => {
+        if (item.sell) {
+            checked = true;
+        }
+      });
+      return checked;
+  }
 
   return (
-    <div class="main">
-      <div class="game_image">
-        <div className="Day">
+    <div className="main">
+      <div className="game_image">
+        <div className="day">
           day {day} ({days[(day - 1) % 7]})
         </div>
         <div className="doing">
@@ -262,6 +274,7 @@ function Gameview() {
             ment={make_deal_ment()}
             setGameOpen={setGameOpen}
             setDeal={setDeal}
+            checked={checked_items()}
           />
         ) : (
           <></>
@@ -296,6 +309,7 @@ function Gameview() {
                   have_items={have_items}
                   setHaveItems={setHaveItems}
                   doing={doing}
+                  user_name = {user_name}
                 />
               )}
             </div>
