@@ -120,17 +120,17 @@ function Gameview() {
       .then((response) => {
         console.log("load data, put in variable");
         setDay(Number(response.data.day));
-        setMoney((Number(response.data.money)));
+        setMoney(Number(response.data.money));
         if (response.data.point != null) {
-          setPoint((Number(response.data.point)));
+          setPoint(Number(response.data.point));
         }
         if (response.data.itemList != null) {
-            var temp_list = [0,0,0,0,0];
-            var temp = response.data.itemList.slice(1,-1).split(",");
-            for(var i = 0;i<5;i++){
-                temp_list[i] = Number(temp[i]);
-            }
-            setHaveItems(temp_list);
+          var temp_list = [0, 0, 0, 0, 0];
+          var temp = response.data.itemList.slice(1, -1).split(",");
+          for (var i = 0; i < 5; i++) {
+            temp_list[i] = Number(temp[i]);
+          }
+          setHaveItems(temp_list);
         }
       })
       .catch((error) => {
@@ -179,7 +179,7 @@ function Gameview() {
         axios
           .patch(BASE_URL + `/save/${id}`, {
             money: money,
-            day: day+1,
+            day: day + 1,
             point: point,
             item_list: JSON.stringify(have_items),
           })
@@ -208,7 +208,7 @@ function Gameview() {
           axios
             .patch(BASE_URL + `/save/${id}`, {
               money: money,
-              day: day+1,
+              day: day + 1,
               point: point,
               item_list: JSON.stringify(have_items),
             })
@@ -269,6 +269,7 @@ function Gameview() {
         {doing === 2 ? <Novelview final_next={do_next_work} /> : <></>}
       </div>
       <div className="phone">
+        <div className="phoneFrame" />
         <div class="phone_element">
           <ReactSwipe
             className="page"
