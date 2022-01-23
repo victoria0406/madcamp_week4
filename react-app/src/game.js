@@ -8,7 +8,7 @@ import Marketview from "./market";
 import Novelview from "./novel";
 import Bankview from "./bank";
 import Chatview from "./chat";
-import Gamepopup from "./game_popup";
+import Gamepopup from "./popups/game_popup";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -233,8 +233,18 @@ function Gameview() {
       ment = "거래를 생략하시겠습니까?";
     } else {
       ment = ment.slice(0, -2) + "를 판매하시겠습니까?";
+      //setCheckeditems(true);
     }
     return ment;
+  }
+  function checked_items(){
+    var checked = false;
+    sell_items.forEach((item) => {
+        if (item.sell) {
+            checked = true;
+        }
+      });
+      return checked;
   }
 
   return (
@@ -262,6 +272,7 @@ function Gameview() {
             ment={make_deal_ment()}
             setGameOpen={setGameOpen}
             setDeal={setDeal}
+            checked={checked_items()}
           />
         ) : (
           <></>

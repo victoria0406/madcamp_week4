@@ -54,3 +54,35 @@
     top: 10px;
     right: 5px;
 }
+
+.popup_game{
+    height: 750px;
+    width: 750px;
+    position: absolute;
+    top:25px;
+    left: 25px;
+    background-color:rgba(0, 0, 0, 0.5);
+    
+}
+
+#deal_popup{
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.buttons{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
