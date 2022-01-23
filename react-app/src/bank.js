@@ -30,19 +30,30 @@ function Bankview(props) {
   return (
     <div>
       <div id="toss">TOSS</div>
-      <div className="head_text">
-        MONEY <span className="blue">{props.money}</span>
-      </div>
-      <div className="head_text">
-        POINT <span className="blue">{props.point}</span>
-      </div>
-      <div className="head_text">나의 자산 현황</div>
-      <div>
-        <Havelist index="0" count={props.have_items[0]} />
-        <Havelist index="1" count={props.have_items[1]} />
-        <Havelist index="2" count={props.have_items[2]} />
-        <Havelist index="3" count={props.have_items[3]} />
-        <Havelist index="4" count={props.have_items[4]} />
+      <div className="bank_contents">
+        <div className="my_wallet bank_component">
+          <div className="bank_name">지갑</div>
+          <div className="bank_status">
+            <span>MONEY</span>
+            <span className="blue">{props.money}</span>
+          </div>
+          <div className="bank_status">
+            <span>POINT</span>
+            <span className="blue">{props.point}</span>
+          </div>
+        </div>
+
+        <div className="my_storage my_wallet bank_component">
+          <div className="bank_name">자산 현황</div>
+
+          <div>
+            <Havelist index="0" count={props.have_items[0]} />
+            <Havelist index="1" count={props.have_items[1]} />
+            <Havelist index="2" count={props.have_items[2]} />
+            <Havelist index="3" count={props.have_items[3]} />
+            <Havelist index="4" count={props.have_items[4]} />
+          </div>
+        </div>
       </div>
     </div>
   );
