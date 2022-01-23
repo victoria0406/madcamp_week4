@@ -96,6 +96,8 @@
     bottom: 20px;
     right: 20px;
 }
+
+/* selector.js에서 이용 */
 #selecter_wrapper{
     width: 100%;
     height: 100%;
