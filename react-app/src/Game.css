@@ -10,9 +10,7 @@
   font-family: "pf_bold";
   src: url("./font/PF스타더스트+Bold.ttf");
 }
-img {
-  margin: 10px;
-}
+
 .horiz {
   display: flex;
   flex-direction: row;
@@ -74,18 +72,21 @@ img {
   width: 20em;
   display: flex;
 
-  background-color: white;
+  background-color: rgb(247, 247, 247);
   justify-content: space-around;
   position: relative;
   height: 7em;
+  padding-top: 1em;
   margin-left: 20px;
 }
 .applications {
   width: 50px;
   height: 50px;
-  border: 1px solid skyblue;
-  background-color: rgba(0, 0, 0, 0);
+  border: none;
   color: skyblue;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   padding: 5px;
 }
 .page {

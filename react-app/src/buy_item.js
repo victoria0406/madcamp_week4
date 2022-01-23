@@ -2,11 +2,11 @@ import React, { Component, useState } from "react";
 import "./Game.css";
 
 //images of items
-import img_fresh from "./images/공기청정기.png";
-import img_clean from "./images/청소기.png";
-import img_coffee from "./images/캡슐커피머신.png";
-import img_wind from "./images/바람막이.jpg";
-import img_healthy from "./images/홍삼.png";
+import img_fresh from "./images/items/공기청정기.png";
+import img_clean from "./images/items/청소기.png";
+import img_coffee from "./images/items/캡슐커피머신.png";
+import img_wind from "./images/items/바람막이.jpg";
+import img_healthy from "./images/items/홍삼.png";
 import Receiptview from "./popups/receipt";
 import Simplepopup from "./popups/simple_popup";
 //따로 선언해야 합니당
