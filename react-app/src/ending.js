@@ -4,7 +4,7 @@ import "./ending.css";
 function Endingcollect(props){
     return(
         <div className='card'>
-            <div className='ending_text'>{props.ending}</div>
+            <div className='ending_head'>{props.ending}</div>
             <div className='ending_text'>{props.text}</div>
         </div>
     )
@@ -13,7 +13,7 @@ function Endingcollect(props){
 function Endview(){
     return(
         <div className="ending">
-            <div >★ENDING★</div>
+            <div id = "head_text">★ENDING★</div>
             <div className='ending_collect'>
                 <Endingcollect ending = "Good Ending" text = "당근 마켓에 고용되셨습니다."/>
                 <Endingcollect ending = "Normal Ending" text = "무사히 2주를 견디셨습니다."/>
