@@ -4,7 +4,6 @@ import './popup.css';
 import React, { Component, useEffect, useState } from 'react';
 
 function Gamepopup(props){
-  console.log("game_popup:",props.checked);
 
   return(
     <div className='popup_game'>
@@ -24,4 +23,4 @@ function Gamepopup(props){
 
 
 
-export default Gamepopup;
+export default Gamepopup; 

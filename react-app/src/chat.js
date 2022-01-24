@@ -112,11 +112,14 @@ function Chatview(props) {
   const [is_newchat, setIsnewchat] = useState(false);
 
   useEffect(() => {
-    if (props.is_newchat == true) {
+    if (props.day == 4) {
       setIsPopup(true);
       setIsnewchat(true);
     }
-  }, [props.is_newchat]);
+    if(props.day>4){
+      setIsnewchat(true);
+    }
+  }, [props.day]);
   return (
     <div className="chat_view">
       <div id="kakao">카카오톡</div>
@@ -140,14 +143,13 @@ function Chatview(props) {
           return <Chatroom name={el.name} chat={el.text} />;
         })}
       </div>
-      {is_popup && (
-        <Chatpopup
-          name="지나"
-          chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?"
-          sub_text="-축의금 5만원-"
-          setIsPopup={setIsPopup}
-        />
-      )}
+      {is_popup&&<Chatpopup
+        name="지나"
+        chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?"
+        sub_text="-축의금 5만원-"
+        setIsPopup = {setIsPopup}
+        setGotoWedding = {props.setGotoWedding}
+      />}
       {is_chat && <RealChat setIsChat={setIsChat} />}
     </div>
   );
