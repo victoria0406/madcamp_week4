@@ -1,0 +1,41 @@
+[
+    {
+        "case": [
+            {
+                "name": "",
+                "text": "",
+                "type": ""
+            },
+            {
+                "name": "",
+                "text": "",
+                "type": ""
+            },
+            {
+                "name": "",
+                "text": "",
+                "type": ""
+            },
+            {
+                "name": "",
+                "text": "",
+                "type": ""
+            },
+            {
+                "name": "",
+                "text": "",
+                "type": ""
+            },
+            {
+                "name": "",
+                "text": "",
+                "type": ""
+            },
+            {
+                "name": "SYSTEM",
+                "text": "[Tip] 사기 치지 말자",
+                "type": "hidden_ending"
+            }
+        ]
+    }
+]

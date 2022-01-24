@@ -9,7 +9,8 @@ import Novelview from "./novel";
 import Bankview from "./bank";
 import Chatview from "./chat";
 import Gamepopup from "./popups/game_popup";
-import SelectorView from "./selector";
+import HiddenEndingview from "./hidden_ending";
+//import SelectorView from "./selector";
 
 import background_home from "./images/game_background/home.png";
 import background_company from "./images/game_background/company.png";
@@ -107,35 +108,35 @@ function Gameview() {
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
-  useEffect(()=>{
-      if(day%7==1){ //일요일은 집에만 있음
-      }else if(day%7==0){
-        if(doing==0){
-            setBackground(background_home);
-        }else if(doing==1){
-            setBackground(background_street);
-        }else if(doing==2){
-            setBackground(background_street);
-        }else{
-            setBackground(background_home);
-        } 
-      }else{
-        if(doing==0){
-            setBackground(background_home);
-            setClock(clock_home);
-        }else if(doing==1){
-            setBackground(background_company);
-            setClock(clock_company);
-        }else if(doing==2){
-            setBackground(background_street);
-            setClock(clock_home);
-        }else{
-            setBackground(background_home);
-            setClock(clock_rest);
-        } 
+  useEffect(() => {
+    if (day % 7 == 1) { //일요일은 집에만 있음
+    } else if (day % 7 == 0) {
+      if (doing == 0) {
+        setBackground(background_home);
+      } else if (doing == 1) {
+        setBackground(background_street);
+      } else if (doing == 2) {
+        setBackground(background_street);
+      } else {
+        setBackground(background_home);
       }
-      
-  },[doing])
+    } else {
+      if (doing == 0) {
+        setBackground(background_home);
+        setClock(clock_home);
+      } else if (doing == 1) {
+        setBackground(background_company);
+        setClock(clock_company);
+      } else if (doing == 2) {
+        setBackground(background_street);
+        setClock(clock_home);
+      } else {
+        setBackground(background_home);
+        setClock(clock_rest);
+      }
+    }
+
+  }, [doing])
 
   useEffect(() => {
     if (doing === 1 && day % 7 !== 1) {
@@ -161,9 +162,8 @@ function Gameview() {
     if (day % 7 == 1) {
       setPoint(point + 1000000);
     }
-    if (day == 9 && doing == 2){
-      console.log("이벤트 발생하는 날");
-      return 
+    if (day == 9) {
+        console.log("이벤트 발생하는 날");
     }
   }, [day]);
 
@@ -228,7 +228,6 @@ function Gameview() {
         setDoing(0);
         go_toss();
         setDay(day + 1);
-
         console.log(money, day, point, have_items);
 
         axios
@@ -301,24 +300,24 @@ function Gameview() {
     });
     return checked;
   }
-  
+
 
   return (
     <div className="main">
       <div className="game_image">
-        <img className="background_img" src = {background} alt = "no_background"/>
-        <img  id = "daily_info" src = {daily_info} alt = "daily_info"/>
+        <img className="background_img" src={background} alt="no_background" />
+        <img id="daily_info" src={daily_info} alt="daily_info" />
         <div className="day">
           day {day} ({days[(day - 1) % 7]})
         </div>
-        <img className="clock" src = {clock} alt = "clock" width="120px"/>
+        <img className="clock" src={clock} alt="clock" width="120px" />
         <div className="doing">
           {day % 7 == 1
             ? doing_ment_sun[doing]
             : day % 7 == 0
-            ? doing_ment_sat[doing]
-            : doing_ment[doing]}
-            
+              ? doing_ment_sat[doing]
+              : doing_ment[doing]}
+
         </div>
         {doing === 2 ? (
           <></>
@@ -346,6 +345,8 @@ function Gameview() {
         ) : (
           <></>
         )}
+        {/*{doing === 2 ? <HiddenEndingview user_name={user_name} final_next={do_next_work} /> : <></>}*/}
+
         {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} /> : <></>}
       </div>
       <div className="phone">
