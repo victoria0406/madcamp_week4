@@ -1,4 +1,4 @@
-import './Game.css';
+import './styles/Game.css';
 import scenario from './scenario.json'
 import trade_scenario from './trade_scenario.json'
 import test from './test.json'
@@ -8,7 +8,11 @@ import SelectorView from './selector';
 import React, { Component, useEffect, useState } from 'react';
 
 
-function Novelview(props) {
+/*function Novelview(props) {
+  const [count, setCount] = useState(0);
+  let [name, setName] = useState(randomText.case[0].name);
+  const [text, setText] = useState(randomText.case[0].text);
+  const [type, setType] = useState(randomText.case[0].type);
 
   const shuffle = () => (Math.random() - 0.5);
   const shuffled = [...trade_scenario].sort(shuffle);
@@ -21,7 +25,7 @@ function Novelview(props) {
   const [type, setType] = useState(shuffled[0].case.type);
   //const [user_name, setUsername] = useState(shuffled.case[0].name);
 
-  console.log("shuffled array[0]: ", shuffled[0].case[0])
+  console.log("shuffled array[0]: ", randomText.case[0])
 
   if (name == "Player") {
     name = props.user_name;
@@ -42,8 +46,6 @@ function Novelview(props) {
       <div>
         {type == "select" ? <SelectorView /> : console.log("non select area!")}
       </div>
-
-      {/* 이름, 텍스트 */}
       {name == null ? <></> : <div id="script_name"> {name} </div>}
       <div id="script_text">
         {text}
@@ -69,6 +71,70 @@ function Novelview(props) {
       </div>
     </div>
 
+  );
+}*/
+
+function randomValueFromArray(array) {
+  const random = Math.floor(Math.random() * array.length);
+  return array[random];
+}
+//const shuffle = () => (Math.random() - 0.5);
+//let shuffled = [...trade_scenario].sort(shuffle);
+let randomText = randomValueFromArray(trade_scenario)
+
+//console.log("random value from array: ", randomText.case[0]);
+//console.log("shuffle", shuffled);
+
+//console.log("test", test[0]);
+
+function Novelview(props) {
+  const [count, setCount] = useState(1);
+  let [name, setName] = useState(randomText.case[0].name);
+  const [text, setText] = useState(randomText.case[0].text);
+  const [type, setType] = useState(randomText.case[0].type);
+
+  if (name == "Player") {
+    name = props.user_name;
+    //console.log("이름 바꾸기" + name + "\n user name: " + user_name);
+  }
+
+  function go_next() {
+    setCount(count + 1);
+    setName(randomText.case[count].name);
+    setText(randomText.case[count].text);
+    setType(randomText.case[count].type);
+  }
+
+  //console.log("name: ", shuffled[0].case.name, "text: ", shuffled[0].case.text);
+
+  return (
+
+    <div class="novel">
+      {name == null ? <></> : <div id="script_name">{name}</div>}
+      <div id="script_text">
+        {text}
+        {count === randomText.case.length   ? (
+          <button
+            onClick={() => {
+              props.final_next();
+              randomText=randomValueFromArray(trade_scenario);
+            }}
+            id="script_next"
+          >
+            거래마치기
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              go_next();
+            }}
+            id="script_next"
+          >
+            넘어가기
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
 
