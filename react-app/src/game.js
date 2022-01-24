@@ -108,32 +108,53 @@ function Gameview() {
   const [script_end, setScriptEnd] = useState(false);
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
+
+  
   useEffect(() => {
     if (day % 7 == 1) {
       //일요일은 집에만 있음
+      if (doing === 0) {
+        go_toss();
+      } else if (doing === 1) {
+        go_carrot();
+
+      }
     } else if (day % 7 == 0) {
       if (doing == 0) {
+        go_toss();
         setBackground(background_home);
         setScriptEnd(false)
       } else if (doing == 1) {
+        go_carrot();
         setBackground(background_street);
       } else if (doing == 2) {
+        go_carrot();
         setBackground(background_street);
       } else {
+        go_toss();
         setBackground(background_home);
       }
     } else {
       if (doing == 0) {
+        if(day==4){
+          go_kakao();
+        }
+        else{
+          go_toss();
+        }
         setScriptEnd(false);
         setBackground(background_home);
         setClock(clock_home);
       } else if (doing == 1) {
+        go_carrot();
         setBackground(background_company);
         setClock(clock_company);
       } else if (doing == 2) {
+        go_carrot();
         setBackground(background_street);
         setClock(clock_home);
       } else {
+        go_toss();
         setBackground(background_home);
         setClock(clock_rest);
       }
@@ -164,6 +185,17 @@ function Gameview() {
     if (day % 7 == 1) {
       setPoint(point + 1000000);
     }
+    axios
+          .patch(BASE_URL + `/save/${id}`, {
+            money: money,
+            day: day + 1,
+            point: point,
+            item_list: JSON.stringify(have_items),
+          })
+          .then((response) => {
+            console.log(response.data);
+          });
+        setSellItems(choose_items());
   }, [day]);
 
   //DB로부터 로드
@@ -192,7 +224,6 @@ function Gameview() {
       });
   }, []);
 
-  console.log("day:", day, "money:", money, "point:", point);
 
   function go_toss() {
     for (var i = 0; i < page; i++) {
@@ -214,38 +245,22 @@ function Gameview() {
     }
     setPage(2);
   }
-  //출근, 일하고, 퇴근 거래 포멧
+
+  //doing 넘어가는 역할만함, 각각 넘어가는 거에 대한 변화는 useeffect에서 처리
   function do_next_work() {
     console.log(is_game_popup_open);
     //주말은 특수 케이스로 작동
     if (day % 7 == 1) {
-      //일요일일때
       if (doing === 0) {
         setDoing(1);
-        go_carrot();
       } else if (doing === 1) {
         setDoing(0);
-        go_toss();
         setDay(day + 1);
 
-        console.log(money, day, point, have_items);
-
-        axios
-          .patch(BASE_URL + `/save/${id}`, {
-            money: money,
-            day: day + 1,
-            point: point,
-            item_list: JSON.stringify(have_items),
-          })
-          .then((response) => {
-            console.log(response.data);
-          });
-        setSellItems(choose_items());
       }
     } else {
       if (doing === 0) {
         setDoing(1);
-        go_carrot();
       } else if (doing === 1) {
         //거래 성사 여부에 따라 달라진다.
         setGameOpen(true);
@@ -255,32 +270,12 @@ function Gameview() {
           document.location.href = "/ending"; //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
         } else {
           setDoing(0);
-          if(day==3){
-            go_kakao();
-          }else{
-            go_toss();
-          }
-          
           setDay(day + 1);
-          console.log(money, day, point, have_items);
-
-          axios
-            .patch(BASE_URL + `/save/${id}`, {
-              money: money,
-              day: day + 1,
-              point: point,
-              item_list: JSON.stringify(have_items),
-            })
-            .then((response) => {
-              console.log(response.data);
-            });
-          setSellItems(choose_items());
         }
       }
     }
   }
-  //토요일 할 일
-
+  //거래 관련 멘트 추가하는 역할
   function make_deal_ment() {
     var ment = "";
     sell_items.forEach((item) => {
@@ -305,6 +300,8 @@ function Gameview() {
     });
     return checked;
   }
+
+
 
   return (
     <div>
