@@ -26,6 +26,10 @@ var total_cost = 0;
 
 function Buylist(props) {
   const [count, setCount] = useState(0);
+
+  const [minusClicked, setMinusClicked] = useState(true);
+  const [plusClicked, setPlusClicked] = useState(true);
+
   function reduce_item() {
     if (count !== 0) {
       setCount(count - 1);
@@ -34,6 +38,8 @@ function Buylist(props) {
       reduce[props.index]--;
       props.setItem(reduce);
     }
+    setMinusClicked(false);
+    setPlusClicked(true);
   }
   function increase_item() {
     setCount(count + 1);
@@ -41,6 +47,9 @@ function Buylist(props) {
     var increase = props.item;
     increase[props.index]++;
     props.setItem(increase);
+
+    setPlusClicked(false);
+    setMinusClicked(true);
   }
 
   return (
@@ -57,11 +66,29 @@ function Buylist(props) {
       </div>
       <div class="buy_count">
         <button className="buy_count_button" onClick={reduce_item}>
-          <img src="button/minus.png" alt="토스" height="20em" width="20em" />
+          {minusClicked ? (
+            <img src="button/minus.png" alt="-" height="20em" width="20em" />
+          ) : (
+            <img
+              src="button/minus_clicked.png"
+              alt="-"
+              height="20em"
+              width="20em"
+            />
+          )}
         </button>
         <p>{count}</p>
         <button className="buy_count_button" onClick={increase_item}>
-          <img src="button/plus.png" alt="토스" height="20em" width="20em" />
+          {plusClicked ? (
+            <img src="button/plus.png" alt="+" height="20em" width="20em" />
+          ) : (
+            <img
+              src="button/plus_clicked.png"
+              alt="-"
+              height="20em"
+              width="20em"
+            />
+          )}
         </button>
       </div>
     </div>
