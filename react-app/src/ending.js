@@ -1,9 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import "./styles/ending.css";
+
+function restart(){
+    document.location.href = "/main";
+    //설영아 여기서 변경해줘
+}
+
 
 function Endview(){
     return(
-        <div>
-            <div>엔딩입니다!</div>
+        <div className="ending">
+            <button onClick = {restart}>RESTART</button>
         </div>
     );
 }

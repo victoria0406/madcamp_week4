@@ -1,14 +1,18 @@
 import React, { Component, useEffect, useState } from "react";
 import ReactSwipe from "react-swipe";
 
-import "./Game.css";
+import "./styles/Game.css";
 import axios from "axios";
 import Buyview from "./buy_item";
 import Marketview from "./market";
 import Novelview from "./novel";
 import Bankview from "./bank";
 import Chatview from "./chat";
-import Gamepopup from "./game_popup";
+import Gamepopup from "./popups/game_popup";
+
+import background_home from "./images/game_background/home.png";
+import background_company from "./images/game_background/company.png";
+import background_street from "./images/game_background/street.png"
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -19,15 +23,20 @@ const doing_ment = [
   "거래하는 중",
   "집에서 쉬는 중...",
 ];
-const next_do_ment = ["출근하기", "퇴근하기", "", "다음날"];
+const next_do_ment = ["출근하기", "퇴근하기", "거래 마치기", "다음날"];
 
 const doing_ment_sat = [
   "외출 준비 중",
-  "거래하는 중",
+  "특별한 거래를 하는 중★",
   "거래하는 중",
   "친구 만나기",
 ];
-const next_do_ment_sat = ["외출하기", "다음 거래 하기"];
+const next_do_ment_sat = [
+  "특별한 거래 하기",
+  "일반 거래 하기",
+  "거래 마치기",
+  "다음날",
+];
 
 const doing_ment_sun = ["휴식 중...", "물건 구매"];
 const next_do_ment_sun = ["물건 구매하기", "다음날"];
@@ -74,6 +83,7 @@ function Gameview() {
   const [sell_items, setSellItems] = useState(choose_items());
   const [is_game_popup_open, setGameOpen] = useState(false);
   const [is_phone_popup_open, setPhoneOpen] = useState(false);
+  const [background, setBackground] = useState(background_home);
   //const [prev_point, setPrevPoint] = useState(0);
   //const [had_items, setHadItems] = useState([0, 0, 0, 0, 0]);
   //const [prev_money, setPrevMoney] = useState(0);
@@ -84,8 +94,35 @@ function Gameview() {
   const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0]);
   const [money, setMoney] = useState(0);
   const [point, setPoint] = useState(0);
+  const [user_name, setUsername] = useState("미정");
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
+
+  useEffect(()=>{
+      if(day%7==1){ //일요일은 집에만 있음
+      }else if(day%7==0){
+        if(doing==0){
+            setBackground(background_home);
+        }else if(doing==1){
+            setBackground(background_street);
+        }else if(doing==2){
+            setBackground(background_street);
+        }else{
+            setBackground(background_home);
+        } 
+      }else{
+        if(doing==0){
+            setBackground(background_home);
+        }else if(doing==1){
+            setBackground(background_company);
+        }else if(doing==2){
+            setBackground(background_street);
+        }else{
+            setBackground(background_home);
+        } 
+      }
+      
+  },[doing])
 
   useEffect(() => {
     if (doing === 1 && day % 7 !== 1) {
@@ -120,18 +157,19 @@ function Gameview() {
       .then((response) => {
         console.log("load data, put in variable");
         setDay(Number(response.data.day));
-        setMoney((Number(response.data.money)));
+        setMoney(Number(response.data.money));
         if (response.data.point != null) {
-          setPoint((Number(response.data.point)));
+          setPoint(Number(response.data.point));
         }
         if (response.data.itemList != null) {
-            var temp_list = [0,0,0,0,0];
-            var temp = response.data.itemList.slice(1,-1).split(",");
-            for(var i = 0;i<5;i++){
-                temp_list[i] = Number(temp[i]);
-            }
-            setHaveItems(temp_list);
+          var temp_list = [0, 0, 0, 0, 0];
+          var temp = response.data.itemList.slice(1, -1).split(",");
+          for (var i = 0; i < 5; i++) {
+            temp_list[i] = Number(temp[i]);
+          }
+          setHaveItems(temp_list);
         }
+        setUsername(response.data.name);
       })
       .catch((error) => {
         console.log(error);
@@ -179,7 +217,7 @@ function Gameview() {
         axios
           .patch(BASE_URL + `/save/${id}`, {
             money: money,
-            day: day+1,
+            day: day + 1,
             point: point,
             item_list: JSON.stringify(have_items),
           })
@@ -208,7 +246,7 @@ function Gameview() {
           axios
             .patch(BASE_URL + `/save/${id}`, {
               money: money,
-              day: day+1,
+              day: day + 1,
               point: point,
               item_list: JSON.stringify(have_items),
             })
@@ -233,28 +271,48 @@ function Gameview() {
       ment = "거래를 생략하시겠습니까?";
     } else {
       ment = ment.slice(0, -2) + "를 판매하시겠습니까?";
+      //setCheckeditems(true);
     }
     return ment;
   }
+  function checked_items() {
+    var checked = false;
+    sell_items.forEach((item) => {
+      if (item.sell) {
+        checked = true;
+      }
+    });
+    return checked;
+  }
 
   return (
-    <div class="main">
-      <div class="game_image">
-        <div className="Day">
+    <div className="main">
+      <div className="game_image">
+          <img className="background_img" src = {background} alt = "no_background"/>
+        <div className="day">
           day {day} ({days[(day - 1) % 7]})
         </div>
         <div className="doing">
-          {day % 7 == 1 ? doing_ment_sun[doing] : doing_ment[doing]}
+          {day % 7 == 1
+            ? doing_ment_sun[doing]
+            : day % 7 == 0
+            ? doing_ment_sat[doing]
+            : doing_ment[doing]}
         </div>
         {doing === 2 ? (
           <></>
         ) : (
           <button
+            id="game_button"
             onClick={() => {
               do_next_work();
             }}
           >
-            {day % 7 == 1 ? next_do_ment_sun[doing] : next_do_ment[doing]}
+            {day % 7 == 1
+              ? next_do_ment_sun[doing]
+              : day % 7 == 0
+              ? next_do_ment_sat[doing]
+              : next_do_ment[doing]}
           </button>
         )}
         {is_game_popup_open ? (
@@ -262,6 +320,7 @@ function Gameview() {
             ment={make_deal_ment()}
             setGameOpen={setGameOpen}
             setDeal={setDeal}
+            checked={checked_items()}
           />
         ) : (
           <></>
@@ -269,6 +328,7 @@ function Gameview() {
         {doing === 2 ? <Novelview final_next={do_next_work} /> : <></>}
       </div>
       <div className="phone">
+        <div className="phoneFrame" />
         <div class="phone_element">
           <ReactSwipe
             className="page"
@@ -295,6 +355,7 @@ function Gameview() {
                   have_items={have_items}
                   setHaveItems={setHaveItems}
                   doing={doing}
+                  user_name={user_name}
                 />
               )}
             </div>
@@ -310,7 +371,7 @@ function Gameview() {
               go_toss();
             }}
           >
-            토스
+            <img src="button/토스.png" alt="토스" height="30em" width="30em" />
           </button>
           <button
             class="applications"
@@ -318,7 +379,21 @@ function Gameview() {
               go_carrot();
             }}
           >
-            {day % 7 == 1 ? "P" : "당근"}
+            {day % 7 == 1 ? (
+              <img
+                src="button/card.png"
+                alt="당근"
+                height="40em"
+                width="40em"
+              />
+            ) : (
+              <img
+                src="button/당근.png"
+                alt="당근"
+                height="35em"
+                width="35em"
+              />
+            )}
           </button>
           <button
             class="applications"
@@ -326,7 +401,7 @@ function Gameview() {
               go_kakao();
             }}
           >
-            카톡
+            <img src="button/카톡.png" alt="카톡" height="35em" width="35em" />
           </button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./Login.css";
+import "./styles/Login.css";
 
 const BASE_URL = "http://192.249.18.165";
 

@@ -1,0 +1,428 @@
+* {
+  font-family: "pf";
+}
+
+@font-face {
+  font-family: "pf";
+  src: url("../font/PF스타더스트.ttf");
+}
+@font-face {
+  font-family: "pf_bold";
+  src: url("../font/PF스타더스트+Bold.ttf");
+}
+
+.horiz {
+  display: flex;
+  flex-direction: row;
+}
+.simple_text {
+  height: 500px;
+  text-align: center;
+  line-height: 500px;
+  font-size: 20px;
+  color: rgb(224, 224, 224);
+}
+
+.hidden_button {
+  background-color: white;
+  height: 60px;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0%;
+}
+
+/*Game.js에서 이용*/
+.main {
+  max-width: 1200px;
+  width: 100vw;
+  height: 800px;
+  background-color: beige;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+}
+
+.game_image {
+  width: 750px;
+  margin: 25px;
+  height: 750px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.phone {
+  margin: 25px;
+}
+
+.phoneFrame {
+  background: url("../images/background_phone.png");
+  width: 22em;
+  height: 47em;
+  background-size: 100% 100%;
+  position: absolute;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.phone_element {
+  margin-left: 18px;
+  margin-top: 3.5em;
+  display: flex;
+  flex-direction: row;
+}
+.app_buttons {
+  width: 20em;
+  display: flex;
+
+  background-color: rgb(247, 247, 247);
+  justify-content: space-around;
+  position: relative;
+  height: 7em;
+  padding-top: 1em;
+  margin-left: 20px;
+}
+.applications {
+  width: 50px;
+  height: 50px;
+  border: none;
+  color: skyblue;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  padding: 5px;
+}
+.page {
+  width: 20em;
+  height: 35em;
+  background-color: white;
+}
+.day {
+  font-size: 24px;
+  height: 48px;
+  line-height: 48px;
+  width: 148px;
+  text-align: center;
+}
+
+#game_button {
+  width: 120px;
+  height: 50px;
+  font-size: 16px;
+  position: absolute;
+  bottom: 40px;
+  left: 640px;
+}
+.doing {
+  position: absolute;
+  top: 25px;
+  left: 760px;
+  font-size: 24px;
+  transform: translate(-100%, 0%);
+  height: 50px;
+  line-height: 50px;
+  text-align: right;
+}
+.background_img{
+  position: absolute;
+  width: 750px;
+  height: 750px;
+  z-index: -1;
+}
+
+/*market.js에서 이용*/
+#carrot {
+  font-weight: bold;
+  padding-top: 1em;
+  width: 20em;
+  background-color: orange;
+  text-align: center;
+  color: white;
+  line-height: 50px;
+}
+.itemlist {
+  width: 20em;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  justify-content: space-between;
+  align-items: center;
+}
+.item_name {
+  font-weight: bold;
+  font-size: large;
+  height: 30px;
+  line-height: 30px;
+}
+.deal_button {
+  height: 30px;
+  width: 70px;
+}
+
+.gray {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  line-height: 100px;
+  text-align: center;
+}
+.register {
+  margin-left: 10px;
+  background-color: rgb(19, 83, 43);
+  height: 25px;
+  width: 40px;
+  border-radius: 7px;
+  text-align: center;
+  line-height: 25px;
+  color: white;
+}
+
+/*buy_item.js에서 사용*/
+.itemlist_buy {
+  width: 18.5em;
+  height: 80px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  padding-left: 1em;
+  padding-right: 0.5em;
+  border-top: 1px solid black;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buy_count {
+  height: 30px;
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.buy_button {
+  width: 24em;
+  height: 45px;
+  background-color: gray;
+  color: white;
+}
+
+.buy_count_button {
+  background-color: white;
+  border: none;
+}
+
+/*novel.js에서 이용*/
+.novel {
+  position: absolute;
+  bottom: 25px;
+  margin: 10px;
+}
+#script_name {
+  width: 150px;
+  height: 40px;
+  background-color: aliceblue;
+}
+#script_text {
+  width: 730px;
+  height: 150px;
+  background-color: aliceblue;
+}
+#script_next {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+/*======bank.js에서 사용=========*/
+#toss {
+  font-weight: bold;
+  padding-top: 1em;
+  width: 20em;
+  background-color: blue;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+}
+
+.bank_contents {
+  display: flex;
+  flex-direction: column;
+  height: 50em;
+  background-color: rgba(245, 241, 241, 0.808);
+}
+
+.bank_name {
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.bank_status {
+  margin-bottom: 0.4em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bank_component {
+  border-radius: 1em;
+  margin: 1em 1em 0 1em;
+}
+
+.my_wallet {
+  background-color: rgba(255, 255, 255);
+  padding: 2em;
+}
+
+.blue {
+  color: blue;
+  font-weight: bolder;
+}
+.head_text {
+  line-height: 44px;
+  margin-left: 10px;
+  height: 44px;
+  font-size: 24px;
+}
+.have_list {
+  border-bottom: 1px solid gray;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 40px;
+}
+
+/*chat.js에서 사용*/
+#kakao {
+  font-weight: bold;
+  padding-top: 1em;
+  width: 20em;
+  background-color: #fbe300;
+  line-height: 50px;
+  text-align: center;
+  color: black;
+}
+
+#hyendai {
+  font-weight: bold;
+  padding-top: 1em;
+  width: 20em;
+  background-color: gray;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+}
+
+/* ============chat room style==============*/
+
+.chat_room {
+  height: 60px;
+  width: 310px;
+  padding-left: 10px;
+  border-bottom: 1px solid gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.chat_header {
+  background-color: #a9bdce;
+  padding-top: 1.5em;
+  padding-bottom: 0.5em;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back_button {
+  border: none;
+  background-color: #a9bdce;
+}
+
+.send_button {
+  border: none;
+  padding: 1em;
+}
+
+.chat_info {
+  margin-left: 0.7em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.chat_name {
+  margin-top: 0.2em;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.chat_text {
+  margin-bottom: 0.2em;
+  font-size: 14px;
+}
+.real_chat {
+  width: 20em;
+  height: 35em;
+  background-color: rgb(189, 211, 230);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.chat_list {
+  position: absolute;
+  bottom: 50px;
+  width: 300px;
+  display: flex;
+  margin-left: 0.5em;
+  flex-direction: column;
+}
+
+.my_chat {
+  background-color: yellow;
+  margin: 5px;
+  height: 20px;
+  line-height: 20px;
+  text-align: right;
+  width: max-content;
+  border: 5px solid yellow;
+  border-radius: 5px;
+  position: relative;
+  left: 97%;
+  transform: translate(-100%, 0%);
+}
+
+.op_chat {
+  background-color: white;
+  margin: 5px;
+  height: 20px;
+  line-height: 20px;
+  text-align: right;
+  width: max-content;
+  border: 5px solid white;
+  border-radius: 5px;
+}
+#send_message {
+  width: 19em;
+  background-color: white;
+  height: 50px;
+  line-height: 50px;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  padding-left: 1em;
+  justify-content: space-between;
+}
+
+.chat_img {
+  border-radius: 5px;
+  margin: 5px;
+}
