@@ -1,5 +1,6 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import "./styles/Game.css";
+import Toast from "./toast";
 
 //images of items
 import img_fresh from "./images/items/공기청정기.png";
@@ -26,6 +27,10 @@ var total_cost = 0;
 
 function Buylist(props) {
   const [count, setCount] = useState(0);
+
+  const [minusClicked, setMinusClicked] = useState(true);
+  const [plusClicked, setPlusClicked] = useState(true);
+
   function reduce_item() {
     if (count !== 0) {
       setCount(count - 1);
@@ -34,6 +39,12 @@ function Buylist(props) {
       reduce[props.index]--;
       props.setItem(reduce);
     }
+    setMinusClicked(false);
+    setPlusClicked(true);
+
+    setTimeout(function () {
+      setMinusClicked(true);
+    }, 300);
   }
   function increase_item() {
     setCount(count + 1);
@@ -41,6 +52,13 @@ function Buylist(props) {
     var increase = props.item;
     increase[props.index]++;
     props.setItem(increase);
+
+    setPlusClicked(false);
+    setMinusClicked(true);
+
+    setTimeout(function () {
+      setPlusClicked(true);
+    }, 300);
   }
 
   return (
@@ -48,8 +66,8 @@ function Buylist(props) {
       <img
         src={img_of_items[props.index]}
         alt="item_image"
-        width="60px"
-        height="60px"
+        width="42em"
+        height="42em"
       />
       <div>
         <div>{list_of_items[props.index]}</div>
@@ -57,11 +75,29 @@ function Buylist(props) {
       </div>
       <div class="buy_count">
         <button className="buy_count_button" onClick={reduce_item}>
-          -
+          {minusClicked ? (
+            <img src="button/minus.png" alt="-" height="20em" width="20em" />
+          ) : (
+            <img
+              src="button/minus_clicked.png"
+              alt="-"
+              height="20em"
+              width="20em"
+            />
+          )}
         </button>
         <p>{count}</p>
         <button className="buy_count_button" onClick={increase_item}>
-          +
+          {plusClicked ? (
+            <img src="button/plus.png" alt="+" height="20em" width="20em" />
+          ) : (
+            <img
+              src="button/plus_clicked.png"
+              alt="-"
+              height="20em"
+              width="20em"
+            />
+          )}
         </button>
       </div>
     </div>
@@ -73,6 +109,16 @@ function Buyview(props) {
   const [buyitem, setBuyItem] = useState([0, 0, 0, 0, 0]);
   const [receipt_popup, setReceipt_popup] = useState(false);
   const [simplepopup, setSimplepopup] = useState(false);
+
+  const [ToastStatus, setToastStatus] = useState(false);
+  const handleToast = () => {
+    setToastStatus(true);
+  };
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => setToastStatus(false), 1000);
+    }
+  }, [ToastStatus]);
 
   function show_receipt() {
     if (total_cost > props.point) {
@@ -99,7 +145,7 @@ function Buyview(props) {
       <div id="hyendai">현대카드 포인트</div>
       {props.can_buy ? (
         <div>
-          <div className="head_text">현재 총액: {total_cost}Point</div>
+          <div className="head_text buy_head">Total: {total_cost}Point</div>
           <Buylist
             index={0}
             cost={total_cost}
@@ -135,6 +181,7 @@ function Buyview(props) {
             item={buyitem}
             setItem={setBuyItem}
           />
+          {ToastStatus && <Toast msg="구매 완료" />}
           <button
             className="buy_button"
             onClick={() => {
@@ -148,6 +195,7 @@ function Buyview(props) {
               items={buyitem}
               point={total_cost}
               update={update_list}
+              toast={handleToast}
               setPopup={setReceipt_popup}
             />
           )}
