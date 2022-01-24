@@ -134,16 +134,3 @@
   justify-content: space-around;
 }
 
-.buttons.button{
-  width: 120px;
-  height: 50px;
-  font-size: 16px;
-  position: absolute;
-  top: 425px;
-  left: 350px;
-  background-image: url("../images/game_component/button.png");
-  padding: 0%;
-  border: 0px;
-  background-color: rgba(0, 0, 0, 0);
-  color: #eFd9c6;
-}
