@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import Menu from "./menu_bar";
 import "./styles/ending.css";
 
@@ -9,9 +9,9 @@ const id = localStorage.getItem("user_id");
 
 function Endview(props) {
   const { pathname } = useLocation();
-
-  const [endingList, setEndingList] = useState([0, 0, 0, 0, 0, 0]); //본 엔딩은 1, 그렇지 않은 엔딩은 0으로 처리
-
+  let history = useNavigate();
+  const [endingList, setEndingList] = useState([0, 0, 0, 0, 0, 0]);
+  //본 엔딩은 1, 그렇지 않은 엔딩은 0으로 처리
   //good, normal, bad, leave, hidden1, hidden2 순서
   let tempListNow = [0, 0, 0, 0, 0, 0];
 
@@ -66,7 +66,7 @@ function Endview(props) {
       .then((response) => {
         console.log(response.data);
       });
-    //document.location.href = "/main";
+    //만약 Router를 추가 생성해서 main 경로로 엔딩까지 보이게 -> 그렇다면 지금 방법은 필요없음. isEnding을 통한 삼항연산자로 보여줘야 할 듯
   }
 
   return (
@@ -74,7 +74,9 @@ function Endview(props) {
       <div className="ending">
         <div id="ending_ment">{ending_ment()}</div>
         <button id="restart_button" onClick={restart}>
-          RESTART
+          <Link to="/main" style={{ textDecoration: "none" }}>
+            RESTART
+          </Link>
         </button>
       </div>
       <Menu />
