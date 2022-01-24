@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import "./styles/Game.css";
-import Toast from "./toast";
+import Toast from "./popups/toast";
 
 //images of items
 import img_fresh from "./images/items/공기청정기.png";

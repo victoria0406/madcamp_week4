@@ -23,6 +23,10 @@ import clock_rest from "./images/game_component/clock_home.png";
 import daily_info from "./images/game_component/info.png";
 import Menu from "./menu_bar";
 import PoliceEventView from "./trade_special_novel";
+import Simplepopup from "./popups/simple_popup";
+import Weddingpopup from "./popups/wedding_popup";
+import { Link, Route } from "react-router-dom";
+import Endview from "./ending";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -101,7 +105,7 @@ function Gameview() {
 
   const [day, setDay] = useState(1);
   const [doing, setDoing] = useState(0);
-  const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0]);
+  const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0, 0]);
   const [money, setMoney] = useState(0);
   const [point, setPoint] = useState(0);
   const [user_name, setUsername] = useState("미정");
@@ -112,6 +116,8 @@ function Gameview() {
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
+  const [goto_wedding, setGotoWedding] = useState(false);
+  const [wedding_ment, setWeddingment] = useState("");
 
   useEffect(() => {
     if (day % 7 == 1) {
@@ -126,7 +132,7 @@ function Gameview() {
       if (doing == 0) {
         go_toss();
         setBackground(background_home);
-        setScriptEnd(false)
+        setScriptEnd(false);
       } else if (doing == 1) {
         go_carrot();
         setBackground(background_street);
@@ -185,10 +191,11 @@ function Gameview() {
   }, [deal]);
 
   useEffect(() => {
-    if (day % 7 == 1) {
+    if (day % 7 === 1) {
       setPoint(point + 1000000);
     }
-    axios
+    if(day!=1){
+      axios
       .patch(BASE_URL + `/save/${id}`, {
         money: money,
         day: day,
@@ -199,6 +206,8 @@ function Gameview() {
         console.log(response.data);
       });
     setSellItems(choose_items());
+    }
+    
   }, [day]);
 
   //DB로부터 로드
@@ -207,15 +216,16 @@ function Gameview() {
       .get(BASE_URL + `/load/${id}`)
       .then((response) => {
         console.log("load data, put in variable");
+        console.log("day ", response.data.day);
         setDay(Number(response.data.day));
         setMoney(Number(response.data.money));
         if (response.data.point != null) {
           setPoint(Number(response.data.point));
         }
         if (response.data.itemList != null) {
-          var temp_list = [0, 0, 0, 0, 0];
+          var temp_list = [0, 0, 0, 0, 0, 0];
           var temp = response.data.itemList.slice(1, -1).split(",");
-          for (var i = 0; i < 5; i++) {
+          for (var i = 0; i < 6; i++) {
             temp_list[i] = Number(temp[i]);
           }
           setHaveItems(temp_list);
@@ -226,6 +236,21 @@ function Gameview() {
         console.log(error);
       });
   }, []);
+
+
+  useEffect(()=>{
+    if(goto_wedding==true){
+      if(money<50000){
+        setWeddingment("돈이 부족해 결혼식에 가지 못하게 되었습니다.");
+      }
+      else{
+        setMoney(money-50000);
+        have_items[5]=1;
+        setHaveItems(have_items);
+        setWeddingment("당신의 계좌에서 축의금 5만원이 빠져나갔습니다. 그리고 당신은 친구에게 희귀 클래식 LP판을 얻었습니다.");
+      }
+    }
+  },[goto_wedding])
 
 
   function go_toss() {
@@ -275,7 +300,15 @@ function Gameview() {
       } else {
         //거래중인 시점과 퇴근인 시점 2개
         if (day === end_day) {
-          document.location.href = "/ending"; //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
+          if (money < 1000000) {
+            document.location.href = "/ending/bad";
+          } else if (money < 2000000) {
+            document.location.href = "/ending/normal";
+          } else {
+            document.location.href = "/ending/good";
+          }
+          //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
+          //개선점 : Link를 활용해보기.
         } else {
           setDoing(0);
           setDay(day + 1);
@@ -309,13 +342,15 @@ function Gameview() {
     return checked;
   }
 
-
-
   return (
     <div>
       <div className="main">
         <div className="game_image">
-          <img className="background_img" src={background} alt="no_background" />
+          <img
+            className="background_img"
+            src={background}
+            alt="no_background"
+          />
           <img id="daily_info" src={daily_info} alt="daily_info" />
           <div className="day">
             day {day} ({days[(day - 1) % 7]})
@@ -329,21 +364,21 @@ function Gameview() {
                 : doing_ment[doing]}
           </div>
           {doing === 2 ? (
-
             //여기 수정할꺼야
-            script_end &&
-            <button
-              id="game_button"
-              onClick={() => {
-                do_next_work();
-              }}
-            >
-              {day % 7 == 1
-                ? next_do_ment_sun[doing]
-                : day % 7 == 0
+            script_end && (
+              <button
+                id="game_button"
+                onClick={() => {
+                  do_next_work();
+                }}
+              >
+                {day % 7 == 1
+                  ? next_do_ment_sun[doing]
+                  : day % 7 == 0
                   ? next_do_ment_sat[doing]
                   : next_do_ment[doing]}
-            </button>
+              </button>
+            )
           ) : (
             <button
               id="game_button"
@@ -354,8 +389,8 @@ function Gameview() {
               {day % 7 == 1
                 ? next_do_ment_sun[doing]
                 : day % 7 == 0
-                  ? next_do_ment_sat[doing]
-                  : next_do_ment[doing]}
+                ? next_do_ment_sat[doing]
+                : next_do_ment[doing]}
             </button>
           )}
           {is_game_popup_open ? (
@@ -371,6 +406,11 @@ function Gameview() {
           {/*{doing === 2 ? <HiddenEndingview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd} /> : <></>}*/}
 
           { doing === 2 ? day == 9 ? <PoliceEventView user_name={user_name} final_next={do_next_work} police_ending={police_ending} /> : <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd}/> : <></> }
+          {goto_wedding&& (
+            <Weddingpopup
+            ment ={wedding_ment} setGotoWedding = {setGotoWedding}/>
+          )}
+          {/*{doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd = {setScriptEnd}/> : <></>}*/}
         </div>
         <div className="phone">
           <div className="phoneFrame" />
@@ -381,7 +421,7 @@ function Gameview() {
               ref={(el) => (reactSwipeEl = el)}
             >
               <div>
-                <Bankview money={money} point={point} have_items={have_items} />
+                <Bankview money={money} point={point} have_items={have_items}/>
               </div>
               <div>
                 {day % 7 == 1 ? (
@@ -405,7 +445,7 @@ function Gameview() {
                 )}
               </div>
               <div>
-                <Chatview is_newchat={day >= 4} />
+                <Chatview day = {day} setGotoWedding = {setGotoWedding}/>
               </div>
             </ReactSwipe>
           </div>
@@ -416,7 +456,12 @@ function Gameview() {
                 go_toss();
               }}
             >
-              <img src="button/토스.png" alt="토스" height="30em" width="30em" />
+              <img
+                src="button/토스.png"
+                alt="토스"
+                height="30em"
+                width="30em"
+              />
             </button>
             <button
               class="applications"
@@ -446,7 +491,12 @@ function Gameview() {
                 go_kakao();
               }}
             >
-              <img src="button/카톡.png" alt="카톡" height="35em" width="35em" />
+              <img
+                src="button/카톡.png"
+                alt="카톡"
+                height="35em"
+                width="35em"
+              />
             </button>
           </div>
         </div>

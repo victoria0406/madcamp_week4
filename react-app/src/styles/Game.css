@@ -33,6 +33,7 @@ body{
   width: 100%;
   text-align: left;
   padding: 0%;
+  margin-bottom: 0.5em;
 }
 
 /*Game.js에서 이용*/
@@ -114,12 +115,12 @@ body{
   text-align: center;
   position: absolute;
   top: 125px;
-  left:40px;
+  left: 40px;
 }
-.clock{
+.clock {
   position: absolute;
   top: 175px;
-  left:55px;
+  left: 55px;
 }
 
 #game_button {
@@ -133,8 +134,7 @@ body{
   padding: 0%;
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
-  color: #eFd9c6;
-
+  color: #efd9c6;
 }
 .doing {
   font-size: 24px;
@@ -144,8 +144,7 @@ body{
   text-align: center;
   position: absolute;
   top: 320px;
-  left:40px;
-
+  left: 40px;
 }
 .background_img {
   position: absolute;
@@ -154,10 +153,10 @@ body{
   z-index: -1;
 }
 
-#daily_info{
+#daily_info {
   position: absolute;
   left: 40px;
-  top:80px
+  top: 80px;
 }
 
 /*market.js에서 이용*/
@@ -244,7 +243,7 @@ body{
   padding-left: 1em;
 }
 .itemlist_buy {
-  width: 16.5em;
+  width: 16em;
   height: 80px;
   background-color: white;
   display: flex;
@@ -422,8 +421,8 @@ body{
 .chat_room {
   height: 60px;
   width: 310px;
+  margin-bottom: 0.5em;
   padding-left: 10px;
-  border-bottom: 1px solid gray;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -447,6 +446,11 @@ body{
   padding: 1em;
 }
 
+.chat_head {
+  margin-top: 1em;
+  margin-bottom: 0.7em;
+}
+
 .chat_info {
   margin-left: 0.7em;
   display: flex;
@@ -455,13 +459,13 @@ body{
 }
 
 .chat_name {
-  margin-top: 0.2em;
+  margin-top: 0.5em;
   font-weight: bolder;
   font-size: 18px;
 }
 
 .chat_text {
-  margin-bottom: 0.2em;
+  margin-bottom: 1em;
   font-size: 14px;
 }
 
@@ -520,6 +524,6 @@ body{
 }
 
 .chat_img {
-  border-radius: 5px;
+  border-radius: 15px;
   margin: 5px;
 }

@@ -1,0 +1,106 @@
+{
+    "story_trade01": [
+        {
+            "name": "Player",
+            "text": "안녕하세요. 물건 먼저 확인해보세요.",
+            "type": "trade"
+        },
+        {
+            "text": "......",
+            "type": "trade"
+        },
+        {
+            "name": "SYSTEM",
+            "text": "성공적인 거래였다.",
+            "type": "trade"
+        }
+    ],
+    "story_trade02": [
+        {
+            "name": "Player",
+            "text": "안녕하세요. 물건 먼저 확인해보세요.",
+            "type": "trade"
+        },
+        {
+            "name": "거래자A",
+            "text": "음, 흠집이 좀 있는 것 같은데요.",
+            "type": "trade"
+        },
+        {
+            "name": "Player",
+            "text": "비닐도 안 뜯은 새 제품인데요?",
+            "type": "trade"
+        },
+        {
+            "name": "거래자A",
+            "text": "아님 말구요~",
+            "type": "trade"
+        },
+        {
+            "text": "......",
+            "type": "trade"
+        },
+        {
+            "name": "SYSTEM",
+            "text": "성공적인 거래였다.",
+            "type": "trade"
+        }
+    ],
+    "story_trade03": [
+        {
+            "name": "Player",
+            "text": "안녕하세요. 물건 먼저 확인해보세요.",
+            "type": "trade"
+        },
+        {
+            "name": "거래자B",
+            "text": "저 멀리서 왔는데~ 만 원만 깎아주시면 안 되나요?",
+            "type": "trade"
+        },
+        {
+            "name": "Player",
+            "text": "네?",
+            "type": "trade"
+        },
+        {
+            "name": "거래자B",
+            "text": "싫음 말구요~",
+            "type": "trade"
+        },
+        {
+            "text": "......",
+            "type": "trade"
+        },
+        {
+            "name": "SYSTEM",
+            "text": "성공적인 거래였다.",
+            "type": "trade"
+        }
+    ],
+    "story_trade04": [
+        {
+            "name": "Player",
+            "text": "안녕하세요. 물건 먼저 확인해보세요.",
+            "type": "trade"
+        },
+        {
+            "name": "거래자C",
+            "text": "혹시 신을 믿으십니까?",
+            "type": "trade"
+        },
+        {
+            "name": "Player",
+            "text": "예?",
+            "type": "trade"
+        },
+        {
+            "text": "......",
+            "type": "trade"
+        },
+        {
+            "name": "SYSTEM",
+            "text": "성공적인 거래였다.",
+            "type": "trade"
+        }
+    ]
+}
