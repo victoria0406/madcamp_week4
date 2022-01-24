@@ -19,30 +19,26 @@ function Endview(props) {
     //유저 정보에서 봤던 엔딩 정보를 불러오는 과정
     axios.get(BASE_URL + `/load/${id}`).then((response) => {
       console.log("load ending data, put in variable");
-      console.log(response.data.endingList);
-      var tempListEnd = [0, 0, 0, 0, 0, 0];
+      let tempListEnd = [0, 0, 0, 0, 0, 0];
+      let saveList = [0, 0, 0, 0, 0, 0];
       if (response.data.endingList != null) {
         var temp = response.data.endingList.slice(1, -1).split(",");
 
         for (var i = 0; i < 6; i++) {
           tempListEnd[i] = Number(temp[i]);
         }
-        setEndingList(tempListEnd);
-        console.log("엔딩리스트", endingList);
+        // setEndingList(tempListEnd);
       }
-      console.log("지금리스트", tempListNow);
 
       for (var i = 0; i < 6; i++) {
-        tempListEnd[i] = tempListNow[i] || endingList[i];
+        saveList[i] = tempListNow[i] || tempListEnd[i];
       }
-      console.log("OR 한거", tempListEnd);
       //실행 순서 상 아래 switch 문이 먼저 돌아간다. 따라서 OR 연산을 해준다.(어차피 본 횟수는 안 셀거임)
-      setEndingList(tempListEnd);
+      setEndingList(saveList);
     });
   }, []);
 
   function ending_ment() {
-    console.log("누가먼저임?");
     switch (pathname.split("/")[2]) {
       case "bad":
         tempListNow[2] = 1;
