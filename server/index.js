@@ -131,7 +131,7 @@ app.get('/load/:id', (req,res) => {
     }
 
   console.log(user);
-    res.json({point: user.point, money: user.money, itemList : user.item_list, day:user.day})
+    res.json({point: user.point, money: user.money, itemList : user.item_list, day:user.day, name:user.name, endingList: user.endingList})
   })
 })
 
@@ -148,6 +148,26 @@ app.patch('/save/:id', (req,res) => {
   var o_id = new ObjectId(req.params.id);
 
   UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:req.body.money, point:req.body.point, day:req.body.day, item_list:req.body.item_list} } , (err, user) => {
+    if (err){
+      return res.status(404).end()
+    }
+    res.json({ok: true, users: user});
+  });
+
+})
+
+app.patch('/reset/:id', (req,res) => { 
+  console.log("I got PATCH requset : reset");
+  console.log(req.body)
+
+  const id = parseInt(req.params.id, 10) // 10 진수로 변환 
+  
+  if (Number.isNaN(id)){
+    return res.status(400).end()
+  }
+  var o_id = new ObjectId(req.params.id);
+
+  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:"0", point:"1000000", day:"1", item_list:"[0,0,0,0,0]", endingList:req.body.endingList} } , (err, user) => {
     if (err){
       return res.status(404).end()
     }
