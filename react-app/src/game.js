@@ -121,13 +121,12 @@ function Gameview() {
         go_toss();
       } else if (doing === 1) {
         go_carrot();
-
       }
     } else if (day % 7 == 0) {
       if (doing == 0) {
         go_toss();
         setBackground(background_home);
-        setScriptEnd(false)
+        setScriptEnd(false);
       } else if (doing == 1) {
         go_carrot();
         setBackground(background_street);
@@ -140,10 +139,9 @@ function Gameview() {
       }
     } else {
       if (doing == 0) {
-        if(day==4){
+        if (day == 4) {
           go_kakao();
-        }
-        else{
+        } else {
           go_toss();
         }
         setScriptEnd(false);
@@ -190,16 +188,16 @@ function Gameview() {
       setPoint(point + 1000000);
     }
     axios
-          .patch(BASE_URL + `/save/${id}`, {
-            money: money,
-            day: day,
-            point: point,
-            item_list: JSON.stringify(have_items),
-          })
-          .then((response) => {
-            console.log(response.data);
-          });
-        setSellItems(choose_items());
+      .patch(BASE_URL + `/save/${id}`, {
+        money: money,
+        day: day,
+        point: point,
+        item_list: JSON.stringify(have_items),
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+    setSellItems(choose_items());
   }, [day]);
 
   //DB로부터 로드
@@ -275,7 +273,6 @@ function Gameview() {
       } else if (doing === 1) {
         setDoing(0);
         setDay(day + 1);
-
       }
     } else {
       if (doing === 0) {
@@ -327,13 +324,15 @@ function Gameview() {
     return checked;
   }
 
-
-
   return (
     <div>
       <div className="main">
         <div className="game_image">
-          <img className="background_img" src={background} alt="no_background" />
+          <img
+            className="background_img"
+            src={background}
+            alt="no_background"
+          />
           <img id="daily_info" src={daily_info} alt="daily_info" />
           <div className="day">
             day {day} ({days[(day - 1) % 7]})
@@ -347,21 +346,21 @@ function Gameview() {
               : doing_ment[doing]}
           </div>
           {doing === 2 ? (
-
             //여기 수정할꺼야
-            script_end &&
+            script_end && (
               <button
-              id="game_button"
-              onClick={() => {
-                do_next_work();
-              }}
-            >
-              {day % 7 == 1
-                ? next_do_ment_sun[doing]
-                : day % 7 == 0
+                id="game_button"
+                onClick={() => {
+                  do_next_work();
+                }}
+              >
+                {day % 7 == 1
+                  ? next_do_ment_sun[doing]
+                  : day % 7 == 0
                   ? next_do_ment_sat[doing]
                   : next_do_ment[doing]}
-            </button>
+              </button>
+            )
           ) : (
             <button
               id="game_button"
@@ -372,8 +371,8 @@ function Gameview() {
               {day % 7 == 1
                 ? next_do_ment_sun[doing]
                 : day % 7 == 0
-                  ? next_do_ment_sat[doing]
-                  : next_do_ment[doing]}
+                ? next_do_ment_sat[doing]
+                : next_do_ment[doing]}
             </button>
           )}
           {is_game_popup_open ? (
@@ -436,7 +435,12 @@ function Gameview() {
                 go_toss();
               }}
             >
-              <img src="button/토스.png" alt="토스" height="30em" width="30em" />
+              <img
+                src="button/토스.png"
+                alt="토스"
+                height="30em"
+                width="30em"
+              />
             </button>
             <button
               class="applications"
@@ -466,13 +470,18 @@ function Gameview() {
                 go_kakao();
               }}
             >
-              <img src="button/카톡.png" alt="카톡" height="35em" width="35em" />
+              <img
+                src="button/카톡.png"
+                alt="카톡"
+                height="35em"
+                width="35em"
+              />
             </button>
           </div>
         </div>
       </div>
-      <Menu/>
-      </div>
+      <Menu />
+    </div>
   );
 }
 

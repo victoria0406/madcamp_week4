@@ -52,7 +52,7 @@ function Bankview(props) {
             <Havelist index="2" count={props.have_items[2]} />
             <Havelist index="3" count={props.have_items[3]} />
             <Havelist index="4" count={props.have_items[4]} />
-            {props.have_items[5]==1&& <Havelist index="5" count = {1}/>}
+            {props.have_items[5]===1&& <Havelist index="5" count = {1}/>}
           </div>
         </div>
       </div>
