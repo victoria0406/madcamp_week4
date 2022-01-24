@@ -1,5 +1,5 @@
 import './styles/Game.css';
-import trade_special from './trade_special.json'
+import trade_special from './scenario/trade_special.json'
 import innerText from 'react-innertext'
 import SelectorView from './selector';
 
