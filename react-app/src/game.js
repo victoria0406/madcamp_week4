@@ -12,7 +12,7 @@ import Gamepopup from "./popups/game_popup";
 
 import background_home from "./images/game_background/home.png";
 import background_company from "./images/game_background/company.png";
-import background_street from "./images/game_background/street.png"
+import background_street from "./images/game_background/street.png";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -98,31 +98,31 @@ function Gameview() {
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
-  useEffect(()=>{
-      if(day%7==1){ //일요일은 집에만 있음
-      }else if(day%7==0){
-        if(doing==0){
-            setBackground(background_home);
-        }else if(doing==1){
-            setBackground(background_street);
-        }else if(doing==2){
-            setBackground(background_street);
-        }else{
-            setBackground(background_home);
-        } 
-      }else{
-        if(doing==0){
-            setBackground(background_home);
-        }else if(doing==1){
-            setBackground(background_company);
-        }else if(doing==2){
-            setBackground(background_street);
-        }else{
-            setBackground(background_home);
-        } 
+  useEffect(() => {
+    if (day % 7 == 1) {
+      //일요일은 집에만 있음
+    } else if (day % 7 == 0) {
+      if (doing == 0) {
+        setBackground(background_home);
+      } else if (doing == 1) {
+        setBackground(background_street);
+      } else if (doing == 2) {
+        setBackground(background_street);
+      } else {
+        setBackground(background_home);
       }
-      
-  },[doing])
+    } else {
+      if (doing == 0) {
+        setBackground(background_home);
+      } else if (doing == 1) {
+        setBackground(background_company);
+      } else if (doing == 2) {
+        setBackground(background_street);
+      } else {
+        setBackground(background_home);
+      }
+    }
+  }, [doing]);
 
   useEffect(() => {
     if (doing === 1 && day % 7 !== 1) {
@@ -288,7 +288,7 @@ function Gameview() {
   return (
     <div className="main">
       <div className="game_image">
-          <img className="background_img" src = {background} alt = "no_background"/>
+        <img className="background_img" src={background} alt="no_background" />
         <div className="day">
           day {day} ({days[(day - 1) % 7]})
         </div>
@@ -382,7 +382,7 @@ function Gameview() {
             {day % 7 == 1 ? (
               <img
                 src="button/card.png"
-                alt="당근"
+                alt="카드"
                 height="40em"
                 width="40em"
               />
