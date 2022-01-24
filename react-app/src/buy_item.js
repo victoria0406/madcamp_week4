@@ -1,5 +1,6 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import "./styles/Game.css";
+import Toast from "./toast";
 
 //images of items
 import img_fresh from "./images/items/공기청정기.png";
@@ -40,6 +41,10 @@ function Buylist(props) {
     }
     setMinusClicked(false);
     setPlusClicked(true);
+
+    setTimeout(function () {
+      setMinusClicked(true);
+    }, 300);
   }
   function increase_item() {
     setCount(count + 1);
@@ -50,6 +55,10 @@ function Buylist(props) {
 
     setPlusClicked(false);
     setMinusClicked(true);
+
+    setTimeout(function () {
+      setPlusClicked(true);
+    }, 300);
   }
 
   return (
@@ -57,8 +66,8 @@ function Buylist(props) {
       <img
         src={img_of_items[props.index]}
         alt="item_image"
-        width="60px"
-        height="60px"
+        width="42em"
+        height="42em"
       />
       <div>
         <div>{list_of_items[props.index]}</div>
@@ -101,6 +110,16 @@ function Buyview(props) {
   const [receipt_popup, setReceipt_popup] = useState(false);
   const [simplepopup, setSimplepopup] = useState(false);
 
+  const [ToastStatus, setToastStatus] = useState(false);
+  const handleToast = () => {
+    setToastStatus(true);
+  };
+  useEffect(() => {
+    if (ToastStatus) {
+      setTimeout(() => setToastStatus(false), 1000);
+    }
+  }, [ToastStatus]);
+
   function show_receipt() {
     if (total_cost > props.point) {
       setSimplepopup(true);
@@ -126,7 +145,7 @@ function Buyview(props) {
       <div id="hyendai">현대카드 포인트</div>
       {props.can_buy ? (
         <div>
-          <div className="head_text">현재 총액: {total_cost}Point</div>
+          <div className="head_text buy_head">Total: {total_cost}Point</div>
           <Buylist
             index={0}
             cost={total_cost}
@@ -162,6 +181,7 @@ function Buyview(props) {
             item={buyitem}
             setItem={setBuyItem}
           />
+          {ToastStatus && <Toast msg="구매 완료" />}
           <button
             className="buy_button"
             onClick={() => {
@@ -175,6 +195,7 @@ function Buyview(props) {
               items={buyitem}
               point={total_cost}
               update={update_list}
+              toast={handleToast}
               setPopup={setReceipt_popup}
             />
           )}
