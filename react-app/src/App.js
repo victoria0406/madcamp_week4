@@ -5,6 +5,7 @@ import Novelview from "./novel";
 import Gameview from "./game";
 import Login from "./login";
 import Endview from "./ending";
+import Endcollectview from "./ending_collect";
 
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ function App() {
       <Route path="/main" element={<Gameview />} />
       <Route path="/login" element={<Login />} />
       <Route path="/ending" element={<Endview />} />
+      <Route path = "/ending_collect" element = {<Endcollectview/>}/>
     </Routes>
   );
 }
