@@ -1,4 +1,4 @@
-import './Game.css';
+import './styles/Game.css';
 import scenario from './scenario.json'
 import trade_scenario from './trade_scenario.json'
 import test from './test.json'
@@ -47,7 +47,7 @@ function Novelview(props) {
       {name == null ? <></> : <div id="script_name"> {name} </div>}
       <div id="script_text">
         {text}
-        {count === scenario.length ? (
+        {count === trade_scenario.length ? (
           <button
             onClick={() => {
               props.final_next();

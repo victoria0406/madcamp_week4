@@ -1,4 +1,4 @@
-import './Game.css';
+import './styles/Game.css';
 import scenario from './scenario.json'
 import test from './test.json'
 import innerText from 'react-innertext'

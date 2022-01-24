@@ -325,7 +325,7 @@ function Gameview() {
         ) : (
           <></>
         )}
-        {doing === 1 ? <Novelview user_name={user_name} final_next={do_next_work} /> : <></>}
+        {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} /> : <></>}
       </div>
       <div className="phone">
         <div className="phoneFrame" />

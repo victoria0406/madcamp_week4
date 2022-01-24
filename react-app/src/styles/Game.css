@@ -1,15 +1,16 @@
-* {
+/** {
   font-family: "pf";
 }
 
 @font-face {
   font-family: "pf";
+  
   src: url("../font/PF스타더스트.ttf");
 }
 @font-face {
   font-family: "pf_bold";
   src: url("../font/PF스타더스트+Bold.ttf");
-}
+}*/
 
 .horiz {
   display: flex;
