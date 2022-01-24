@@ -46,12 +46,15 @@ function RealChat(props) {
   const [sended, setSended] = useState(false);
   const [ceo_sended, setCEOSended] = useState(false);
 
-  function leave_company(){
+  function leave_company() {
     setSended(true);
     setSendment("");
-    setTimeout(function(){setCEOSended(true)},3000);
-    setTimeout(function(){ document.location.href = "/ending/leave"},4000);
-
+    setTimeout(function () {
+      setCEOSended(true);
+    }, 3000);
+    setTimeout(function () {
+      document.location.href = "/ending/leave";
+    }, 4000);
   }
 
   return (
