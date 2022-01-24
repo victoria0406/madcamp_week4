@@ -262,7 +262,14 @@ function Gameview() {
       } else {
         //거래중인 시점과 퇴근인 시점 2개
         if (day === end_day) {
-          document.location.href = "/ending"; //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
+          if(money<1000000){
+            document.location.href = "/ending/bad";
+          }else if(money<2000000){
+            document.location.href = "/ending/normal";
+          }else{
+            document.location.href = "/ending/good";
+          }
+           //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
         } else {
           setDoing(0);
           setDay(day + 1);
