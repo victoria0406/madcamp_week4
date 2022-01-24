@@ -109,11 +109,14 @@ function Chatview(props) {
   const [is_newchat, setIsnewchat] = useState(false);
 
   useEffect(() => {
-    if (props.is_newchat == true) {
+    if (props.day == 4) {
       setIsPopup(true);
       setIsnewchat(true);
     }
-  }, [props.is_newchat]);
+    if(props.day>4){
+      setIsnewchat(true);
+    }
+  }, [props.day]);
   return (
     <div className="chat_view">
       <div id="kakao">카카오톡</div>

@@ -14,8 +14,25 @@ import {
   Routes,
 } from "react-router-dom";
 import Credit from "./credit";
+import { useEffect } from "react";
+
+function resizeApply() { 
+  var minWidth = 1920; 
+  var body = document.getElementsByTagName('body')[0]; 
+  body.style.zoom = (window.innerWidth / minWidth);
+};
+
+
+
+window.addEventListener('resize', function() {
+  resizeApply();
+
+});
 
 function App() {
+  useEffect(()=>{
+    resizeApply();
+  },[]);
   return (
     <Routes>
       <Route path="/main" element={<Gameview />} />

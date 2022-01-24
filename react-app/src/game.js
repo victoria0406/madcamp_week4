@@ -22,6 +22,8 @@ import daily_info from "./images/game_component/info.png";
 import Menu from "./menu_bar";
 import Simplepopup from "./popups/simple_popup";
 import Weddingpopup from "./popups/wedding_popup";
+import { Link, Route } from "react-router-dom";
+import Endview from "./ending";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -184,10 +186,11 @@ function Gameview() {
   }, [deal]);
 
   useEffect(() => {
-    if (day % 7 == 1) {
+    if (day % 7 === 1) {
       setPoint(point + 1000000);
     }
-    axios
+    if(day!=1){
+      axios
       .patch(BASE_URL + `/save/${id}`, {
         money: money,
         day: day,
@@ -198,6 +201,8 @@ function Gameview() {
         console.log(response.data);
       });
     setSellItems(choose_items());
+    }
+    
   }, [day]);
 
   //DB로부터 로드
@@ -206,6 +211,7 @@ function Gameview() {
       .get(BASE_URL + `/load/${id}`)
       .then((response) => {
         console.log("load data, put in variable");
+        console.log("day ", response.data.day);
         setDay(Number(response.data.day));
         setMoney(Number(response.data.money));
         if (response.data.point != null) {
@@ -424,7 +430,7 @@ function Gameview() {
                 )}
               </div>
               <div>
-                <Chatview is_newchat = {day>=4} setGotoWedding = {setGotoWedding}/>
+                <Chatview day = {day} setGotoWedding = {setGotoWedding}/>
               </div>
             </ReactSwipe>
           </div>
