@@ -105,6 +105,8 @@ function Gameview() {
 
   const [clock, setClock] = useState(clock_home);
 
+  const [script_end, setScriptEnd] = useState(false);
+
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
   useEffect(() => {
     if (day % 7 == 1) {
@@ -112,6 +114,7 @@ function Gameview() {
     } else if (day % 7 == 0) {
       if (doing == 0) {
         setBackground(background_home);
+        setScriptEnd(false)
       } else if (doing == 1) {
         setBackground(background_street);
       } else if (doing == 2) {
@@ -121,6 +124,7 @@ function Gameview() {
       }
     } else {
       if (doing == 0) {
+        setScriptEnd(false);
         setBackground(background_home);
         setClock(clock_home);
       } else if (doing == 1) {
@@ -320,7 +324,21 @@ function Gameview() {
               : doing_ment[doing]}
           </div>
           {doing === 2 ? (
-            <></>
+
+            //여기 수정할꺼야
+            script_end &&
+              <button
+              id="game_button"
+              onClick={() => {
+                do_next_work();
+              }}
+            >
+              {day % 7 == 1
+                ? next_do_ment_sun[doing]
+                : day % 7 == 0
+                  ? next_do_ment_sat[doing]
+                  : next_do_ment[doing]}
+            </button>
           ) : (
             <button
               id="game_button"
@@ -345,7 +363,7 @@ function Gameview() {
           ) : (
             <></>
           )}
-          {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} /> : <></>}
+          {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd = {setScriptEnd}/> : <></>}
         </div>
         <div className="phone">
           <div className="phoneFrame" />

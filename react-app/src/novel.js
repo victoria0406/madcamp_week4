@@ -105,6 +105,12 @@ function Novelview(props) {
     setType(randomText.case[count].type);
   }
 
+  useEffect(()=>{
+    if(count === randomText.case.length  ){
+      props.setScriptEnd(true);
+    }
+  },[count])
+
   //console.log("name: ", shuffled[0].case.name, "text: ", shuffled[0].case.text);
 
   return (
@@ -114,15 +120,7 @@ function Novelview(props) {
       <div id="script_text">
         {text}
         {count === randomText.case.length   ? (
-          <button
-            onClick={() => {
-              props.final_next();
-              randomText=randomValueFromArray(trade_scenario);
-            }}
-            id="script_next"
-          >
-            거래마치기
-          </button>
+          <></>
         ) : (
           <button
             onClick={() => {
