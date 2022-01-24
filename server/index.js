@@ -167,7 +167,7 @@ app.patch('/reset/:id', (req,res) => {
   }
   var o_id = new ObjectId(req.params.id);
 
-  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:"0", point:"0", day:"1", item_list:"[0,0,0,0,0]", endingList:req.body.endingList} } , (err, user) => {
+  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:"0", point:"1000000", day:"1", item_list:"[0,0,0,0,0]", endingList:req.body.endingList} } , (err, user) => {
     if (err){
       return res.status(404).end()
     }
