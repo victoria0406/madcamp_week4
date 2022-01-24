@@ -1,6 +1,6 @@
 import "./styles/Game.css";
 
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Chatpopup from "./popups/chat_popup";
 
 import profile_img from "./images/profile.png";
@@ -24,6 +24,15 @@ function Chatroom(props) {
 }
 
 //채팅 보내고 닫으면 그냥 퇴사 엔딩으로 가자
+//여기서 채팅 목록 변경하면 됨
+const chat_list = [
+  {name: "설영", text: "몰캠 파이팅"},
+  {name: "설영", text: "몰캠 파이팅"},
+  {name: "설영", text: "몰캠 파이팅"},
+  {name: "설영", text: "몰캠 파이팅"},
+  {name: "설영", text: "몰캠 파이팅"},
+  {name: "설영", text: "몰캠 파이팅"},
+]
 
 const chat_script = [
   { text: "사람들이 그렇게 포인트를 좋아하나?", me: false },
@@ -85,12 +94,23 @@ function RealChat(props) {
   );
 }
 
-function Chatview() {
+function Chatview(props) {
   const [is_chat, setIsChat] = useState(false);
+  const [is_popup, setIsPopup] = useState(false);
+  const [is_newchat, setIsnewchat] = useState(false);
+
+  useEffect(()=>{
+    if(props.is_newchat==true){
+      setIsPopup(true);
+      setIsnewchat(true);
+    }
+    
+  },[props.is_newchat])
   return (
     <div className="chat_view">
       <div id="kakao">카카오톡</div>
       <div>
+        {is_newchat&&<Chatroom name="지나" chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?" />}
         <button
           className="hidden_button"
           onClick={() => {
@@ -99,19 +119,16 @@ function Chatview() {
         >
           <Chatroom name="회장...님" chat="월급 포인트로 받게!" />
         </button>
-        <Chatroom name="설영이" chat="몰캠 파이팅!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!!!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!!!!!" />
+        {chat_list.map((el)=>{
+          return(<Chatroom name = {el.name} chat ={el.text}/>)
+        })}
       </div>
-      <Chatpopup
-        name="겨울 타는 민"
+      {is_popup&&<Chatpopup
+        name="지나"
         chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?"
         sub_text="-축의금 5만원-"
-      />
+        setIsPopup = {setIsPopup}
+      />}
       {is_chat && <RealChat setIsChat={setIsChat} />}
     </div>
   );

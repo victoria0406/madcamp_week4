@@ -13,6 +13,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import Credit from "./credit";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/ending" element={<Endview />} />
       <Route path = "/ending_collect" element = {<Endcollectview/>}/>
+      <Route path = "/credit" element ={<Credit/>}/>
     </Routes>
   );
 }

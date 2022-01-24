@@ -312,7 +312,7 @@ body{
 .novel {
   position: absolute;
   bottom: 70px;
-  margin: 5px;
+  margin: 10px;
 }
 #script_name {
   width: 150px;
@@ -320,7 +320,7 @@ body{
   background-color: aliceblue;
 }
 #script_text {
-  width: 730px;
+  width: 720px;
   height: 150px;
   background-color: aliceblue;
 }

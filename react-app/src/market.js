@@ -80,7 +80,7 @@ function Marketview(props) {
       <div>
         <div className="market_location">
           <img src="button/map_pin.png" alt="토스" height="30em" width="30em" />
-          <div>유성동에서 거래 중입니다.</div>
+          <div>유성구에서 거래 중입니다.</div>
         </div>
         <div className="market_head">오늘의 거래</div>
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Menu from "./menu_bar";
 import "./styles/ending.css";
 
 function restart(){
@@ -9,9 +10,13 @@ function restart(){
 
 function Endview(){
     return(
+    <div>
         <div className="ending">
             <button onClick = {restart}>RESTART</button>
         </div>
+        <Menu/>
+    </div>
+        
     );
 }
 

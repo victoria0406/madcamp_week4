@@ -19,6 +19,7 @@ import clock_company from "./images/game_component/clock_company.png";
 import clock_rest from "./images/game_component/clock_home.png";
 
 import daily_info from "./images/game_component/info.png";
+import Menu from "./menu_bar";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -33,7 +34,7 @@ const next_do_ment = ["출근하기", "퇴근하기", "거래 마치기", "다�
 
 const doing_ment_sat = [
   "외출 준비 중",
-  "특별한 거래를 하는 중★",
+  "특별 거래 중",
   "거래하는 중",
   "친구 만나기",
 ];
@@ -250,7 +251,12 @@ function Gameview() {
           document.location.href = "/ending"; //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
         } else {
           setDoing(0);
-          go_toss();
+          if(day==3){
+            go_kakao();
+          }else{
+            go_toss();
+          }
+          
           setDay(day + 1);
           console.log(money, day, point, have_items);
 
@@ -297,128 +303,131 @@ function Gameview() {
   }
 
   return (
-    <div className="main">
-      <div className="game_image">
-        <img className="background_img" src={background} alt="no_background" />
-        <img id="daily_info" src={daily_info} alt="daily_info" />
-        <div className="day">
-          day {day} ({days[(day - 1) % 7]})
-        </div>
-        <img className="clock" src={clock} alt="clock" width="120px" />
-        <div className="doing">
-          {day % 7 == 1
-            ? doing_ment_sun[doing]
-            : day % 7 == 0
-            ? doing_ment_sat[doing]
-            : doing_ment[doing]}
-        </div>
-        {doing === 2 ? (
-          <></>
-        ) : (
-          <button
-            id="game_button"
-            onClick={() => {
-              do_next_work();
-            }}
-          >
+    <div>
+      <div className="main">
+        <div className="game_image">
+          <img className="background_img" src={background} alt="no_background" />
+          <img id="daily_info" src={daily_info} alt="daily_info" />
+          <div className="day">
+            day {day} ({days[(day - 1) % 7]})
+          </div>
+          <img className="clock" src={clock} alt="clock" width="120px" />
+          <div className="doing">
             {day % 7 == 1
-              ? next_do_ment_sun[doing]
+              ? doing_ment_sun[doing]
               : day % 7 == 0
-                ? next_do_ment_sat[doing]
-                : next_do_ment[doing]}
-          </button>
-        )}
-        {is_game_popup_open ? (
-          <Gamepopup
-            ment={make_deal_ment()}
-            setGameOpen={setGameOpen}
-            setDeal={setDeal}
-            checked={checked_items()}
-          />
-        ) : (
-          <></>
-        )}
-        {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} /> : <></>}
-      </div>
-      <div className="phone">
-        <div className="phoneFrame" />
-        <div class="phone_element">
-          <ReactSwipe
-            className="page"
-            swipeOptions={{ continuous: false }}
-            ref={(el) => (reactSwipeEl = el)}
-          >
-            <div>
-              <Bankview money={money} point={point} have_items={have_items} />
-            </div>
-            <div>
+              ? doing_ment_sat[doing]
+              : doing_ment[doing]}
+          </div>
+          {doing === 2 ? (
+            <></>
+          ) : (
+            <button
+              id="game_button"
+              onClick={() => {
+                do_next_work();
+              }}
+            >
+              {day % 7 == 1
+                ? next_do_ment_sun[doing]
+                : day % 7 == 0
+                  ? next_do_ment_sat[doing]
+                  : next_do_ment[doing]}
+            </button>
+          )}
+          {is_game_popup_open ? (
+            <Gamepopup
+              ment={make_deal_ment()}
+              setGameOpen={setGameOpen}
+              setDeal={setDeal}
+              checked={checked_items()}
+            />
+          ) : (
+            <></>
+          )}
+          {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} /> : <></>}
+        </div>
+        <div className="phone">
+          <div className="phoneFrame" />
+          <div class="phone_element">
+            <ReactSwipe
+              className="page"
+              swipeOptions={{ continuous: false }}
+              ref={(el) => (reactSwipeEl = el)}
+            >
+              <div>
+                <Bankview money={money} point={point} have_items={have_items} />
+              </div>
+              <div>
+                {day % 7 == 1 ? (
+                  <Buyview
+                    can_buy={doing == 1}
+                    items={have_items}
+                    setItems={setHaveItems}
+                    point={point}
+                    setPoint={setPoint}
+                  />
+                ) : (
+                  <Marketview
+                    can_buy={doing == 1}
+                    items={sell_items}
+                    setSellItems={setSellItems}
+                    have_items={have_items}
+                    setHaveItems={setHaveItems}
+                    doing={doing}
+                    user_name={user_name}
+                  />
+                )}
+              </div>
+              <div>
+                <Chatview is_newchat = {day>=4}/>
+              </div>
+            </ReactSwipe>
+          </div>
+          <div class="app_buttons">
+            <button
+              class="applications"
+              onClick={() => {
+                go_toss();
+              }}
+            >
+              <img src="button/토스.png" alt="토스" height="30em" width="30em" />
+            </button>
+            <button
+              class="applications"
+              onClick={() => {
+                go_carrot();
+              }}
+            >
               {day % 7 == 1 ? (
-                <Buyview
-                  can_buy={doing == 1}
-                  items={have_items}
-                  setItems={setHaveItems}
-                  point={point}
-                  setPoint={setPoint}
+                <img
+                  src="button/card.png"
+                  alt="카드"
+                  height="40em"
+                  width="40em"
                 />
               ) : (
-                <Marketview
-                  can_buy={doing == 1}
-                  items={sell_items}
-                  setSellItems={setSellItems}
-                  have_items={have_items}
-                  setHaveItems={setHaveItems}
-                  doing={doing}
-                  user_name={user_name}
+                <img
+                  src="button/당근.png"
+                  alt="당근"
+                  height="35em"
+                  width="35em"
                 />
               )}
-            </div>
-            <div>
-              <Chatview />
-            </div>
-          </ReactSwipe>
-        </div>
-        <div class="app_buttons">
-          <button
-            class="applications"
-            onClick={() => {
-              go_toss();
-            }}
-          >
-            <img src="button/토스.png" alt="토스" height="30em" width="30em" />
-          </button>
-          <button
-            class="applications"
-            onClick={() => {
-              go_carrot();
-            }}
-          >
-            {day % 7 == 1 ? (
-              <img
-                src="button/card.png"
-                alt="카드"
-                height="40em"
-                width="40em"
-              />
-            ) : (
-              <img
-                src="button/당근.png"
-                alt="당근"
-                height="35em"
-                width="35em"
-              />
-            )}
-          </button>
-          <button
-            class="applications"
-            onClick={() => {
-              go_kakao();
-            }}
-          >
-            <img src="button/카톡.png" alt="카톡" height="35em" width="35em" />
-          </button>
+            </button>
+            <button
+              class="applications"
+              onClick={() => {
+                go_kakao();
+              }}
+            >
+              <img src="button/카톡.png" alt="카톡" height="35em" width="35em" />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      <Menu/>
+      </div>
   );
 }
 
