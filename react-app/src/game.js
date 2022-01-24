@@ -14,6 +14,12 @@ import background_home from "./images/game_background/home.png";
 import background_company from "./images/game_background/company.png";
 import background_street from "./images/game_background/street.png"
 
+import clock_home from "./images/game_component/clock_night.png";
+import clock_company from "./images/game_component/clock_company.png";
+import clock_rest from "./images/game_component/clock_home.png";
+
+import daily_info from "./images/game_component/info.png";
+
 const BASE_URL = "http://192.249.18.165";
 
 const days = ["일", "월", "화", "수", "목", "금", "토"];
@@ -96,6 +102,8 @@ function Gameview() {
   const [point, setPoint] = useState(0);
   const [user_name, setUsername] = useState("미정");
 
+  const [clock, setClock] = useState(clock_home);
+
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
   useEffect(()=>{
@@ -113,12 +121,16 @@ function Gameview() {
       }else{
         if(doing==0){
             setBackground(background_home);
+            setClock(clock_home);
         }else if(doing==1){
             setBackground(background_company);
+            setClock(clock_company);
         }else if(doing==2){
             setBackground(background_street);
+            setClock(clock_home);
         }else{
             setBackground(background_home);
+            setClock(clock_rest);
         } 
       }
       
@@ -288,16 +300,19 @@ function Gameview() {
   return (
     <div className="main">
       <div className="game_image">
-          <img className="background_img" src = {background} alt = "no_background"/>
+        <img className="background_img" src = {background} alt = "no_background"/>
+        <img  id = "daily_info" src = {daily_info} alt = "daily_info"/>
         <div className="day">
           day {day} ({days[(day - 1) % 7]})
         </div>
+        <img className="clock" src = {clock} alt = "clock" width="120px"/>
         <div className="doing">
           {day % 7 == 1
             ? doing_ment_sun[doing]
             : day % 7 == 0
             ? doing_ment_sat[doing]
             : doing_ment[doing]}
+            
         </div>
         {doing === 2 ? (
           <></>
