@@ -1,4 +1,4 @@
-/** {
+*{
   font-family: "pf";
 }
 
@@ -9,8 +9,7 @@
 @font-face {
   font-family: "pf_bold";
   src: url("../font/PF스타더스트+Bold.ttf");
-}*/
-
+}
 body{
   background-color: #9fcfa8;
 }
@@ -52,11 +51,12 @@ body{
 }
 
 .game_image {
-  width: 750px;
+  width: 742px;
   margin: 25px;
   margin-top: 80px;
-  height: 750px;
+  height: 742px;
   background-color: rgba(255, 255, 255, 0.2);
+  border: 8px solid #574138;
 }
 
 .phone {
@@ -127,8 +127,8 @@ body{
   height: 50px;
   font-size: 16px;
   position: absolute;
-  bottom: 80px;
-  left: 640px;
+  top: 425px;
+  left: 350px;
   background-image: url("../images/game_component/button.png");
   padding: 0%;
   border: 0px;
@@ -157,6 +157,7 @@ body{
 #daily_info{
   position: absolute;
   left: 40px;
+  top:80px
 }
 
 /*market.js에서 이용*/
@@ -169,13 +170,34 @@ body{
   color: white;
   line-height: 50px;
 }
+
+.item_image {
+  margin-left: 1.5em;
+}
+
+.item_area {
+  margin-bottom: 0.3em;
+  color: rgba(151, 151, 151, 0.9);
+}
+.market_head {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.market_location {
+  padding: 0.5em 0 0.5em;
+  text-align: center;
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
 .itemlist {
   width: 20em;
-  height: 100px;
+  padding: 2em 0 2em 0;
   background-color: white;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  border-bottom: 1px solid rgb(223, 223, 223);
   justify-content: space-between;
   align-items: center;
 }
@@ -186,6 +208,11 @@ body{
   line-height: 30px;
 }
 .deal_button {
+  border: none;
+  margin-right: 1.5em;
+  border-radius: 0.3em;
+  color: rgb(247, 247, 247);
+  background-color: orange;
   height: 30px;
   width: 70px;
 }
@@ -193,16 +220,16 @@ body{
 .gray {
   position: absolute;
   width: 100%;
-  height: 100px;
+  height: 8.3em;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  line-height: 100px;
   text-align: center;
+  line-height: 8.3em;
 }
 .register {
-  margin-left: 10px;
+  margin-left: 5px;
   background-color: rgb(19, 83, 43);
-  height: 25px;
+  height: 22px;
   width: 40px;
   border-radius: 7px;
   text-align: center;
@@ -261,7 +288,7 @@ body{
   color: #fff;
   border-radius: 4px;
   border: 1px solid #000;
-  animation: fadeInUp 1s;
+  animation: fadeInUp 0.7s;
 }
 
 @keyframes fadeInUp {
@@ -284,7 +311,7 @@ body{
 /*novel.js에서 이용*/
 .novel {
   position: absolute;
-  bottom: 25px;
+  bottom: 70px;
   margin: 10px;
 }
 #script_name {
@@ -293,7 +320,7 @@ body{
   background-color: aliceblue;
 }
 #script_text {
-  width: 730px;
+  width: 720px;
   height: 150px;
   background-color: aliceblue;
 }

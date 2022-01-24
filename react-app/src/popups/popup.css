@@ -63,17 +63,17 @@
 }
 
 .popup_game {
-  height: 750px;
-  width: 750px;
+  height: 742px;
+  width: 742px;
   position: absolute;
-  top: 25px;
-  left: 25px;
+  top: 88px;
+  left: 33px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 #deal_popup {
-  width: 300px;
-  height: 200px;
+  width: 220px;
+  height: 120px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -83,15 +83,24 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-image: url("../images/game_component/game_popup.png");
+  padding: 40px;
 }
 
 .buttons {
-  height: 100px;
+  height: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  
 }
+
+.popup_button{
+  width: 100px;
+  height: 20px;
+}
+
 
 #chat_popup {
   width: 250px;
@@ -130,4 +139,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.chat_popup_button {
+  color:white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  width: 80px;
+  height: 30px;
 }

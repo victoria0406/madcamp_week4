@@ -1,0 +1,23 @@
+.menu{
+    position: absolute;
+    right:0px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.menu_button{
+    width: 180px;
+    height: 150px;
+    margin: 10px;
+    background-color: rgba(0,0,0,0);
+    background-image: url("../images/game_component/menu.png");
+    border: 0ch;
+    padding: none;
+    color:white;
+    font-size: 20px;
+}
+
+.menu_button:hover{
+    background-image: url("../images/game_component/menu_hover.png");
+}
