@@ -45,6 +45,16 @@ const chat_script = [
 function RealChat(props) {
   const [send_ment, setSendment] = useState("회장님 저 퇴사하겠습니다");
   const [sended, setSended] = useState(false);
+  const [ceo_sended, setCEOSended] = useState(false);
+
+  function leave_company(){
+    setSended(true);
+    setSendment("");
+    setTimeout(function(){setCEOSended(true)},3000);
+    setTimeout(function(){ document.location.href = "/ending/leave"},4000);
+
+  }
+
   return (
     <div className="real_chat">
       <div className="chat_header">
@@ -72,14 +82,14 @@ function RealChat(props) {
           }
         })}
         {sended && <div className="my_chat">회장님 저 퇴사하겠습니다.</div>}
+        {ceo_sended && <div className="op_chat">오케이 콜</div>}
       </div>
       <div id="send_message">
         <div>{send_ment}</div>
         <button
           className="send_button"
           onClick={() => {
-            setSended(true);
-            setSendment("");
+            leave_company();
           }}
         >
           <img

@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path="/main" element={<Gameview />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/ending" element={<Endview />} />
+      <Route path="/ending/:id" element={<Endview />} />
       <Route path = "/ending_collect" element = {<Endcollectview/>}/>
       <Route path = "/credit" element ={<Credit/>}/>
     </Routes>
