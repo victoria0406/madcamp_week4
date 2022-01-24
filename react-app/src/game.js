@@ -109,7 +109,7 @@ function Gameview() {
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
-  
+
   useEffect(() => {
     if (day % 7 == 1) {
       //일요일은 집에만 있음
@@ -188,7 +188,7 @@ function Gameview() {
     axios
           .patch(BASE_URL + `/save/${id}`, {
             money: money,
-            day: day + 1,
+            day: day,
             point: point,
             item_list: JSON.stringify(have_items),
           })
