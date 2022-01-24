@@ -12,7 +12,7 @@ import Gamepopup from "./popups/game_popup";
 
 import background_home from "./images/game_background/home.png";
 import background_company from "./images/game_background/company.png";
-import background_street from "./images/game_background/street.png"
+import background_street from "./images/game_background/street.png";
 
 import clock_home from "./images/game_component/clock_night.png";
 import clock_company from "./images/game_component/clock_company.png";
@@ -105,36 +105,35 @@ function Gameview() {
   const [clock, setClock] = useState(clock_home);
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
-
-  useEffect(()=>{
-      if(day%7==1){ //일요일은 집에만 있음
-      }else if(day%7==0){
-        if(doing==0){
-            setBackground(background_home);
-        }else if(doing==1){
-            setBackground(background_street);
-        }else if(doing==2){
-            setBackground(background_street);
-        }else{
-            setBackground(background_home);
-        } 
-      }else{
-        if(doing==0){
-            setBackground(background_home);
-            setClock(clock_home);
-        }else if(doing==1){
-            setBackground(background_company);
-            setClock(clock_company);
-        }else if(doing==2){
-            setBackground(background_street);
-            setClock(clock_home);
-        }else{
-            setBackground(background_home);
-            setClock(clock_rest);
-        } 
+  useEffect(() => {
+    if (day % 7 == 1) {
+      //일요일은 집에만 있음
+    } else if (day % 7 == 0) {
+      if (doing == 0) {
+        setBackground(background_home);
+      } else if (doing == 1) {
+        setBackground(background_street);
+      } else if (doing == 2) {
+        setBackground(background_street);
+      } else {
+        setBackground(background_home);
       }
-      
-  },[doing])
+    } else {
+      if (doing == 0) {
+        setBackground(background_home);
+        setClock(clock_home);
+      } else if (doing == 1) {
+        setBackground(background_company);
+        setClock(clock_company);
+      } else if (doing == 2) {
+        setBackground(background_street);
+        setClock(clock_home);
+      } else {
+        setBackground(background_home);
+        setClock(clock_rest);
+      }
+    }
+  }, [doing]);
 
   useEffect(() => {
     if (doing === 1 && day % 7 !== 1) {
@@ -300,19 +299,18 @@ function Gameview() {
   return (
     <div className="main">
       <div className="game_image">
-        <img className="background_img" src = {background} alt = "no_background"/>
-        <img  id = "daily_info" src = {daily_info} alt = "daily_info"/>
+        <img className="background_img" src={background} alt="no_background" />
+        <img id="daily_info" src={daily_info} alt="daily_info" />
         <div className="day">
           day {day} ({days[(day - 1) % 7]})
         </div>
-        <img className="clock" src = {clock} alt = "clock" width="120px"/>
+        <img className="clock" src={clock} alt="clock" width="120px" />
         <div className="doing">
           {day % 7 == 1
             ? doing_ment_sun[doing]
             : day % 7 == 0
             ? doing_ment_sat[doing]
             : doing_ment[doing]}
-            
         </div>
         {doing === 2 ? (
           <></>
@@ -397,7 +395,7 @@ function Gameview() {
             {day % 7 == 1 ? (
               <img
                 src="button/card.png"
-                alt="당근"
+                alt="카드"
                 height="40em"
                 width="40em"
               />

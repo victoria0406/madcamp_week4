@@ -23,15 +23,22 @@ const img_of_items = [img_fresh, img_clean, img_coffee, img_wind, img_healthy];
 
 function Itemlist(props) {
   return (
-    <div class="itemlist">
-      <img src={props.img} alt="item_image" width="80px" height="80px" />
+    <div className="itemlist">
+      <img
+        src={props.img}
+        alt="item_image"
+        width="45em"
+        height="45em"
+        className="item_image"
+      />
       <div>
         <span className="horiz">
-          <div class="item_name">{props.name}</div>
+          <div className="item_name">{props.name}</div>
           {props.state ? <div className="register">예약</div> : <div></div>}
         </span>
+        <div className="item_area">유성구</div>
         <div>
-          {Math.round(props.cost * props.ratio)} (
+          {Math.round(props.cost * props.ratio)}원 (
           {Math.round(props.ratio * 100)}%){" "}
         </div>
       </div>
@@ -71,7 +78,11 @@ function Marketview(props) {
     <div>
       <div id="carrot">삽니다! 당근마켓</div>
       <div>
-        <div className="head_text">{props.user_name}님, 환영합니다</div>
+        <div className="market_location">
+          <img src="button/map_pin.png" alt="토스" height="30em" width="30em" />
+          <div>유성동에서 거래 중입니다.</div>
+        </div>
+        <div className="market_head">오늘의 거래</div>
       </div>
       {props.can_buy ? (
         <div>

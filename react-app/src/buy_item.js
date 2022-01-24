@@ -44,7 +44,7 @@ function Buylist(props) {
 
     setTimeout(function () {
       setMinusClicked(true);
-    }, 300);
+    }, 200);
   }
   function increase_item() {
     setCount(count + 1);
@@ -58,7 +58,7 @@ function Buylist(props) {
 
     setTimeout(function () {
       setPlusClicked(true);
-    }, 300);
+    }, 200);
   }
 
   return (
