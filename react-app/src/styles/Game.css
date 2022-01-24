@@ -1,4 +1,4 @@
-*{
+/**{
   font-family: "pf";
 }
 
@@ -9,7 +9,7 @@
 @font-face {
   font-family: "pf_bold";
   src: url("../font/PF스타더스트+Bold.ttf");
-}
+}*/
 body{
   background-color: #9fcfa8;
 }
@@ -327,6 +327,11 @@ body{
 #script_next {
   position: absolute;
   bottom: 20px;
+  right: 20px;
+}
+#script_next_up {
+  position: absolute;
+  bottom: 50px;
   right: 20px;
 }
 

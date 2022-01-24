@@ -22,6 +22,7 @@ import clock_rest from "./images/game_component/clock_home.png";
 
 import daily_info from "./images/game_component/info.png";
 import Menu from "./menu_bar";
+import PoliceEventView from "./trade_special_novel";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -117,9 +118,9 @@ function Gameview() {
       //일요일은 집에만 있음
       if (doing === 0) {
         go_toss();
-      } else if (doing === 1) {
+      }
+      else if (doing === 1) {
         go_carrot();
-
       }
     } else if (day % 7 == 0) {
       if (doing == 0) {
@@ -137,11 +138,11 @@ function Gameview() {
         setBackground(background_home);
       }
     } else {
-      if (doing == 0) {
-        if(day==4){
+      if (doing == 0) { 
+        if (day == 4) {
           go_kakao();
         }
-        else{
+        else {
           go_toss();
         }
         setScriptEnd(false);
@@ -187,20 +188,17 @@ function Gameview() {
     if (day % 7 == 1) {
       setPoint(point + 1000000);
     }
-    if (day == 9) {
-        console.log("이벤트 발생하는 날");
-    }
     axios
-          .patch(BASE_URL + `/save/${id}`, {
-            money: money,
-            day: day,
-            point: point,
-            item_list: JSON.stringify(have_items),
-          })
-          .then((response) => {
-            console.log(response.data);
-          });
-        setSellItems(choose_items());
+      .patch(BASE_URL + `/save/${id}`, {
+        money: money,
+        day: day,
+        point: point,
+        item_list: JSON.stringify(have_items),
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+    setSellItems(choose_items());
   }, [day]);
 
   //DB로부터 로드
@@ -249,6 +247,12 @@ function Gameview() {
       reactSwipeEl.next();
     }
     setPage(2);
+  }
+
+  //경찰 특수 엔딩 분기점
+  function police_ending(){
+      console.log("hidden ending working?")
+      return <HiddenEndingview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd} />  
   }
 
   //doing 넘어가는 역할만함, 각각 넘어가는 거에 대한 변화는 useeffect에서 처리
@@ -321,14 +325,14 @@ function Gameview() {
             {day % 7 == 1
               ? doing_ment_sun[doing]
               : day % 7 == 0
-              ? doing_ment_sat[doing]
-              : doing_ment[doing]}
+                ? doing_ment_sat[doing]
+                : doing_ment[doing]}
           </div>
           {doing === 2 ? (
 
             //여기 수정할꺼야
             script_end &&
-              <button
+            <button
               id="game_button"
               onClick={() => {
                 do_next_work();
@@ -364,7 +368,9 @@ function Gameview() {
           ) : (
             <></>
           )}
-          {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd = {setScriptEnd}/> : <></>}
+          {/*{doing === 2 ? <HiddenEndingview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd} /> : <></>}*/}
+
+          { doing === 2 ? day == 9 ? <PoliceEventView user_name={user_name} final_next={do_next_work} police_ending={police_ending} /> : <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd}/> : <></> }
         </div>
         <div className="phone">
           <div className="phoneFrame" />
@@ -399,7 +405,7 @@ function Gameview() {
                 )}
               </div>
               <div>
-                <Chatview is_newchat = {day>=4}/>
+                <Chatview is_newchat={day >= 4} />
               </div>
             </ReactSwipe>
           </div>
@@ -445,8 +451,8 @@ function Gameview() {
           </div>
         </div>
       </div>
-      <Menu/>
-      </div>
+      <Menu />
+    </div>
   );
 }
 
