@@ -1,7 +1,5 @@
 import './styles/Game.css';
 import trade_scenario from './trade_scenario.json'
-import innerText from 'react-innertext'
-import SelectorView from './selector';
 
 import React, { Component, useEffect, useState } from 'react';
 
@@ -10,14 +8,10 @@ function randomValueFromArray(array) {
   const random = Math.floor(Math.random() * array.length);
   return array[random];
 }
-//const shuffle = () => (Math.random() - 0.5);
-//let shuffled = [...trade_scenario].sort(shuffle);
+
 let randomText = randomValueFromArray(trade_scenario)
 
-//console.log("random value from array: ", randomText.case[0]);
-//console.log("shuffle", shuffled);
 
-//console.log("test", test[0]);
 
 function Novelview(props) {
   const [count, setCount] = useState(1);
@@ -27,7 +21,6 @@ function Novelview(props) {
 
   if (name == "Player") {
     name = props.user_name;
-    //console.log("이름 바꾸기" + name + "\n user name: " + user_name);
   }
 
   function go_next() {
@@ -37,7 +30,6 @@ function Novelview(props) {
     setType(randomText.case[count].type);
   }
 
-  //console.log("name: ", shuffled[0].case.name, "text: ", shuffled[0].case.text);
 
   return (
 
@@ -70,4 +62,4 @@ function Novelview(props) {
   );
 }
 
-export default Novelview;
+export default HiddenEndingview;

@@ -9,6 +9,7 @@ import Novelview from "./novel";
 import Bankview from "./bank";
 import Chatview from "./chat";
 import Gamepopup from "./popups/game_popup";
+import SelectorView from "./selector";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -116,6 +117,10 @@ function Gameview() {
   useEffect(() => {
     if (day % 7 == 1) {
       setPoint(point + 1000000);
+    }
+    if (day == 9 && doing == 2){
+      console.log("이벤트 발생하는 날");
+      return 
     }
   }, [day]);
 
@@ -253,6 +258,7 @@ function Gameview() {
     });
     return checked;
   }
+  
 
   return (
     <div className="main">
