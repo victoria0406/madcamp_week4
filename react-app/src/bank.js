@@ -13,8 +13,8 @@ const list_of_items = [
   "캡슐커피머신",
   "바람막이",
   "홍삼",
+  "희귀 LP판"
 ];
-const img_of_items = [img_fresh, img_clean, img_coffee, img_wind, img_healthy];
 
 function Havelist(props) {
   return (
@@ -52,6 +52,7 @@ function Bankview(props) {
             <Havelist index="2" count={props.have_items[2]} />
             <Havelist index="3" count={props.have_items[3]} />
             <Havelist index="4" count={props.have_items[4]} />
+            {props.have_items[5]==1&& <Havelist index="5" count = {1}/>}
           </div>
         </div>
       </div>

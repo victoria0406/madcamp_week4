@@ -138,6 +138,7 @@ function Chatview(props) {
         chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?"
         sub_text="-축의금 5만원-"
         setIsPopup = {setIsPopup}
+        setGotoWedding = {props.setGotoWedding}
       />}
       {is_chat && <RealChat setIsChat={setIsChat} />}
     </div>

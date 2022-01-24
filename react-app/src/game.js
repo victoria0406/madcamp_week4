@@ -20,6 +20,8 @@ import clock_rest from "./images/game_component/clock_home.png";
 
 import daily_info from "./images/game_component/info.png";
 import Menu from "./menu_bar";
+import Simplepopup from "./popups/simple_popup";
+import Weddingpopup from "./popups/wedding_popup";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -98,7 +100,7 @@ function Gameview() {
 
   const [day, setDay] = useState(1);
   const [doing, setDoing] = useState(0);
-  const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0]);
+  const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0, 0]);
   const [money, setMoney] = useState(0);
   const [point, setPoint] = useState(0);
   const [user_name, setUsername] = useState("미정");
@@ -109,6 +111,8 @@ function Gameview() {
 
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
+  const [goto_wedding, setGotoWedding] = useState(false);
+  const [wedding_ment, setWeddingment] = useState("");
 
   useEffect(() => {
     if (day % 7 == 1) {
@@ -210,9 +214,9 @@ function Gameview() {
           setPoint(Number(response.data.point));
         }
         if (response.data.itemList != null) {
-          var temp_list = [0, 0, 0, 0, 0];
+          var temp_list = [0, 0, 0, 0, 0, 0];
           var temp = response.data.itemList.slice(1, -1).split(",");
-          for (var i = 0; i < 5; i++) {
+          for (var i = 0; i < 6; i++) {
             temp_list[i] = Number(temp[i]);
           }
           setHaveItems(temp_list);
@@ -223,6 +227,21 @@ function Gameview() {
         console.log(error);
       });
   }, []);
+
+
+  useEffect(()=>{
+    if(goto_wedding==true){
+      if(money<50000){
+        setWeddingment("돈이 부족해 결혼식에 가지 못하게 되었습니다.");
+      }
+      else{
+        setMoney(money-50000);
+        have_items[5]=1;
+        setHaveItems(have_items);
+        setWeddingment("당신의 계좌에서 축의금 5만원이 빠져나갔습니다. 그리고 당신은 친구에게 희귀 클래식 LP판을 얻었습니다.");
+      }
+    }
+  },[goto_wedding])
 
 
   function go_toss() {
@@ -367,6 +386,10 @@ function Gameview() {
           ) : (
             <></>
           )}
+          {goto_wedding&& (
+            <Weddingpopup
+            ment ={wedding_ment} setGotoWedding = {setGotoWedding}/>
+          )}
           {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd = {setScriptEnd}/> : <></>}
         </div>
         <div className="phone">
@@ -378,7 +401,7 @@ function Gameview() {
               ref={(el) => (reactSwipeEl = el)}
             >
               <div>
-                <Bankview money={money} point={point} have_items={have_items} />
+                <Bankview money={money} point={point} have_items={have_items}/>
               </div>
               <div>
                 {day % 7 == 1 ? (
@@ -402,7 +425,7 @@ function Gameview() {
                 )}
               </div>
               <div>
-                <Chatview is_newchat = {day>=4}/>
+                <Chatview is_newchat = {day>=4} setGotoWedding = {setGotoWedding}/>
               </div>
             </ReactSwipe>
           </div>
