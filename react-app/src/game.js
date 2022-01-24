@@ -296,8 +296,8 @@ function Gameview() {
           {day % 7 == 1
             ? doing_ment_sun[doing]
             : day % 7 == 0
-            ? doing_ment_sat[doing]
-            : doing_ment[doing]}
+              ? doing_ment_sat[doing]
+              : doing_ment[doing]}
         </div>
         {doing === 2 ? (
           <></>
@@ -311,8 +311,8 @@ function Gameview() {
             {day % 7 == 1
               ? next_do_ment_sun[doing]
               : day % 7 == 0
-              ? next_do_ment_sat[doing]
-              : next_do_ment[doing]}
+                ? next_do_ment_sat[doing]
+                : next_do_ment[doing]}
           </button>
         )}
         {is_game_popup_open ? (
@@ -325,7 +325,7 @@ function Gameview() {
         ) : (
           <></>
         )}
-        {doing === 2 ? <Novelview final_next={do_next_work} /> : <></>}
+        {doing === 1 ? <Novelview user_name={user_name} final_next={do_next_work} /> : <></>}
       </div>
       <div className="phone">
         <div className="phoneFrame" />
