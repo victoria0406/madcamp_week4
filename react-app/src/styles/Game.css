@@ -1,16 +1,17 @@
-* {
+*{
   font-family: "pf";
 }
 
 @font-face {
   font-family: "pf";
+  
   src: url("../font/PF스타더스트.ttf");
 }
 @font-face {
   font-family: "pf_bold";
   src: url("../font/PF스타더스트+Bold.ttf");
 }
-body {
+body{
   background-color: #9fcfa8;
 }
 
@@ -317,16 +318,56 @@ body {
   width: 150px;
   height: 40px;
   background-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../images/background_name.png");
+  margin-bottom: 10px;
+  margin-left: 7px;
+  color: #efe0c3;
+  text-align: center;
+  box-sizing: border-box;
+  padding:10px;
 }
 #script_text {
   width: 720px;
   height: 150px;
   background-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  padding-top:20px;
+  padding: left 20px;
+  background-image: url("../images/background_text.png");
 }
 #script_next {
   position: absolute;
   bottom: 20px;
   right: 20px;
+}
+#select_A {
+  position: absolute;
+  bottom: 370px;
+  font-size: 16px;
+  width: 120px;
+  height: 50px;
+  padding: 0%;
+  border: 0px;
+  font-weight: bold;
+  color: #efd9c6;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../images/game_component/button.png");
+}
+
+#select_B{
+  position: absolute;
+  bottom: 300px;
+  font-size: 16px;
+  width: 120px;
+  height: 50px;
+  padding: 0%;
+  border: 0px;
+  font-weight: bold;
+  color: #efd9c6;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../images/game_component/button.png");
 }
 
 /*======bank.js에서 사용=========*/

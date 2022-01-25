@@ -34,6 +34,10 @@ const userSchema = mongoose.Schema({
     type: String,
     defalut : "[0,0,0,0,0]",
   },
+  endingList:{
+      type: String,
+      defalut : "[0,0,0,0,0,0]",
+  },
   money: {
     type: String,
     default: "0",

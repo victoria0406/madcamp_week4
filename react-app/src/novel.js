@@ -3,75 +3,8 @@ import scenario from "./scenario/scenario.json";
 import trade_scenario from "./scenario/trade_scenario.json";
 import test from "./scenario/test.json";
 import innerText from "react-innertext";
-import SelectorView from "./selector";
 
 import React, { Component, useEffect, useState } from "react";
-
-/*function Novelview(props) {
-  const [count, setCount] = useState(0);
-  let [name, setName] = useState(randomText.case[0].name);
-  const [text, setText] = useState(randomText.case[0].text);
-  const [type, setType] = useState(randomText.case[0].type);
-
-  const shuffle = () => (Math.random() - 0.5);
-  const shuffled = [...trade_scenario].sort(shuffle);
-  //console.log("shuffled case", shuffled);
-
-
-  const [count, setCount] = useState(0);
-  let [name, setName] = useState(shuffled[0].case.name);
-  const [text, setText] = useState(shuffled[0].case.text);
-  const [type, setType] = useState(shuffled[0].case.type);
-  //const [user_name, setUsername] = useState(shuffled.case[0].name);
-
-  console.log("shuffled array[0]: ", randomText.case[0])
-
-  if (name == "Player") {
-    name = props.user_name;
-    //console.log("이름 바꾸기" + name + "\n user name: " + user_name);
-  }
-
-
-  function go_next() {
-    setCount(count + 1);
-    setName(shuffled[0].case[count].name);
-    setText(shuffled[0].case[count].text);
-    setType(shuffled[0].case[count].type);
-  }
-
-  return (
-
-    < div class="novel" >
-      <div>
-        {type == "select" ? <SelectorView /> : console.log("non select area!")}
-      </div>
-      {name == null ? <></> : <div id="script_name"> {name} </div>}
-      <div id="script_text">
-        {text}
-        {count === scenario.length ? (
-          <button
-            onClick={() => {
-              props.final_next();
-            }}
-            id="script_next"
-          >
-            거래마치기
-          </button>
-        ) : (
-          <button
-            onClick={() => {
-              go_next();
-            }}
-            id="script_next"
-          >
-            넘어가기
-          </button>
-        )}
-      </div>
-    </div>
-
-  );
-}*/
 
 function randomValueFromArray(array) {
   const random = Math.floor(Math.random() * array.length);
