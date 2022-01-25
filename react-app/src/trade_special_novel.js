@@ -39,17 +39,17 @@ function PoliceEventView(props) {
               onClick={() => {
                 props.final_next();
               }}
-              id="script_next_up"
+              id="select_A"
             >
-              거래에 간다
+              간다
             </button>
             <button
               onClick={() => {
                 props.police_ending();
               }}
-              id="script_next"
+              id="select_B"
             >
-              거래에 가지 않는다
+              가지 않는다
             </button>
           </>
         ) : (
