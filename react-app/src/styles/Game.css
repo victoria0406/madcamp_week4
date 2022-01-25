@@ -561,3 +561,31 @@ body{
   border-radius: 15px;
   margin: 5px;
 }
+
+/* 애니메이션 */
+@keyframes slide {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-2492.12px); /* The image width */
+  }
+}
+
+@keyframes slide2 {
+    0% {
+      transform: translate(0);
+    }
+    100% {
+      transform: translate(-3176px); /* The image width */
+    }
+  }
+
+  @keyframes slide3 {
+    0% {
+        transform: translate(-5005.12px); /* The image width */
+    }
+    100% {
+      transform: translate(0px); /* The image width */
+    }
+  }

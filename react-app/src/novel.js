@@ -1,24 +1,15 @@
-import "./styles/Game.css";
-import scenario from "./scenario/scenario.json";
-import trade_scenario from "./scenario/trade_scenario.json";
-import test from "./scenario/test.json";
-import innerText from "react-innertext";
-import SelectorView from "./selector";
-
-import React, { Component, useEffect, useState } from "react";
+import './styles/Game.css';
+import scenario from './scenario/scenario.json'
+import trade_scenario from './scenario/trade_scenario.json'
+import test from './scenario/test.json'
+import React, { Component, useEffect, useState } from 'react';
 
 function randomValueFromArray(array) {
   const random = Math.floor(Math.random() * array.length);
   return array[random];
 }
-//const shuffle = () => (Math.random() - 0.5);
-//let shuffled = [...trade_scenario].sort(shuffle);
-let randomText = randomValueFromArray(trade_scenario);
 
-//console.log("random value from array: ", randomText.case[0]);
-//console.log("shuffle", shuffled);
-
-//console.log("test", test[0]);
+let randomText = randomValueFromArray(trade_scenario)
 
 function Novelview(props) {
   const [count, setCount] = useState(1);
@@ -38,21 +29,22 @@ function Novelview(props) {
     setType(randomText.case[count].type);
   }
 
-  useEffect(() => {
-    if (count === randomText.case.length) {
-      props.setScriptEnd(true);
-    }
-  }, [count]);
-
-  //console.log("name: ", shuffled[0].case.name, "text: ", shuffled[0].case.text);
-
   return (
+
     <div class="novel">
       {name == null ? <></> : <div id="script_name">{name}</div>}
       <div id="script_text">
         {text}
         {count === randomText.case.length ? (
-          <></>
+          <button
+            onClick={() => {
+              props.final_next();
+              randomText = randomValueFromArray(trade_scenario);
+            }}
+            id="script_next"
+          >
+            거래마치기
+          </button>
         ) : (
           <button
             onClick={() => {

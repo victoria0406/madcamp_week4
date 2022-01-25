@@ -70,7 +70,7 @@ function Endview(props) {
   }
 
   return (
-    <div>
+    <div id="bg_img">
       <div className="ending">
         <div id="ending_ment">{ending_ment()}</div>
         <button id="restart_button" onClick={restart}>
