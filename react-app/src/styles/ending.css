@@ -14,6 +14,50 @@
   background-image: url("../images/background.png");
 }
 
+.cradit_maker {
+  padding: 1em;
+  width: 20em;
+  display: flex;
+  margin-top: 2em;
+  justify-content: space-between;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+}
+
+.buy_book {
+  margin-top: 3em;
+}
+
+.github {
+  margin-top: 0.5em;
+  background-image: url("../images/github.png");
+  width: 2em;
+  height: 2em;
+  background-size: 100% 100%;
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+  border-radius: 20em;
+}
+
+.credit_text {
+  max-width: 1200px;
+  width: 100vw;
+  height: 900px;
+  background-color: beige;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  font-size: 2em;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/background.png");
+}
+
 .ending_collect {
   width: 1000px;
   display: flex;
