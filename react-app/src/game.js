@@ -157,7 +157,7 @@ function Gameview(props) {
       } else if (doing == 2) {
         go_carrot();
         setBackground(background_street);
-        setClock(clock_home);
+        setClock(clock_rest);
       } else {
         go_toss();
         setBackground(background_home);
@@ -378,7 +378,7 @@ function Gameview(props) {
           </div>
           <div className="phone">
             <div className="phoneFrame" />
-            <div class="phone_element">
+            <div className="phone_element">
               <ReactSwipe
                 className="page"
                 swipeOptions={{ continuous: false }}
@@ -413,9 +413,9 @@ function Gameview(props) {
                 </div>
               </ReactSwipe>
             </div>
-            <div class="app_buttons">
+            <div className="app_buttons">
               <button
-                class="applications"
+                className="applications"
                 onClick={() => {
                   go_toss();
                 }}
@@ -428,7 +428,7 @@ function Gameview(props) {
                 />
               </button>
               <button
-                class="applications"
+                className="applications"
                 onClick={() => {
                   go_carrot();
                 }}
@@ -450,7 +450,7 @@ function Gameview(props) {
                 )}
               </button>
               <button
-                class="applications"
+                className="applications"
                 onClick={() => {
                   go_kakao();
                 }}

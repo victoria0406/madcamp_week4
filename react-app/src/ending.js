@@ -14,11 +14,13 @@ function Endview(props) {
   useEffect(() => {
     //유저 정보에서 봤던 엔딩 정보를 불러오는 과정
     setEndingList(props.ending_info);
+    console.log("1");
   }, []);
 
   useEffect(()=>{
     props.setEndingInfo(endingList);
-  },[endingList])
+    console.log("3");
+  },[endingList, props.init])
 
   
 
