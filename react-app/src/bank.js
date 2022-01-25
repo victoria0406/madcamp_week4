@@ -26,7 +26,6 @@ function Havelist(props) {
 }
 
 function Bankview(props) {
-  console.log("have_items:", props.have_items);
   return (
     <div>
       <div id="toss">TOSS</div>

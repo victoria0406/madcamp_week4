@@ -27,10 +27,10 @@ function Chatroom(props) {
 //여기서 채팅 목록 변경하면 됨
 //코드가 귀여워졌어요.
 const chat_list = [
-  { name: "설영", text: "몰캠 파이팅" },
-  { name: "설영", text: "몰캠 파이팅" },
-  { name: "설영", text: "몰캠 파이팅" },
-  { name: "설영", text: "몰캠 파이팅" },
+  { key:0, name: "설영", text: "몰캠 파이팅" },
+  { key:1, name: "설영", text: "몰캠 파이팅" },
+  { key:2, name: "설영", text: "몰캠 파이팅" },
+  { key:3, name: "설영", text: "몰캠 파이팅" },
 ];
 
 const chat_script = [
@@ -140,7 +140,7 @@ function Chatview(props) {
           <Chatroom name="회장...님" chat="월급 포인트로 받게!" />
         </button>
         {chat_list.map((el) => {
-          return <Chatroom name={el.name} chat={el.text} />;
+          return <Chatroom key = {el.key} name={el.name} chat={el.text} />;
         })}
       </div>
       {is_popup&&<Chatpopup

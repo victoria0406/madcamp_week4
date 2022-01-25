@@ -1,7 +1,6 @@
 import './styles/Game.css';
 import trade_special from './scenario/trade_special.json'
 import innerText from 'react-innertext'
-import SelectorView from './selector';
 
 import React, { Component, useEffect, useState } from 'react';
 
@@ -45,7 +44,7 @@ function PoliceEventView(props) {
             </button>
             <button
               onClick={() => {
-                props.police_ending();
+                document.location.href = "/ending/accused";
               }}
               id="select_B"
             >
