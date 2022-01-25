@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 import Credit from "./credit";
 import { useEffect } from "react";
+import GameRouter from "./GameRouter";
 
 function resizeApply() { 
   var minWidth = 1920; 
@@ -35,11 +36,8 @@ function App() {
   },[]);
   return (
     <Routes>
-      <Route path="/main" element={<Gameview />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/ending/:id" element={<Endview />} />
-      <Route path = "/ending_collect" element = {<Endcollectview/>}/>
-      <Route path = "/credit" element ={<Credit/>}/>
+      <Route path="/*" element = {<GameRouter/>}/>
     </Routes>
   );
 }
