@@ -17,23 +17,20 @@ import Credit from "./credit";
 import { useEffect } from "react";
 import GameRouter from "./GameRouter";
 
-function resizeApply() { 
-  var minWidth = 1920; 
-  var body = document.getElementsByTagName('body')[0]; 
-  body.style.zoom = (window.innerWidth / minWidth);
-};
+function resizeApply() {
+  var minWidth = 1920;
+  var body = document.getElementsByTagName("body")[0];
+  body.style.zoom = window.innerWidth / minWidth;
+}
 
-
-
-window.addEventListener('resize', function() {
+window.addEventListener("resize", function () {
   resizeApply();
-
 });
 
 function App() {
-  useEffect(()=>{
+  useEffect(() => { 
     resizeApply();
-  },[]);
+  }, []);
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
