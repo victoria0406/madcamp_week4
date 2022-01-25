@@ -44,7 +44,7 @@ function PoliceEventView(props) {
             </button>
             <button
               onClick={() => {
-                props.police_ending();
+                document.location.href = "/ending/accused";
               }}
               id="select_B"
             >
