@@ -9,10 +9,24 @@ import Novelview from "./novel";
 import Bankview from "./bank";
 import Chatview from "./chat";
 import Gamepopup from "./popups/game_popup";
+import HiddenEndingview from "./hidden_ending";
+//import SelectorView from "./selector";
 
 import background_home from "./images/game_background/home.png";
 import background_company from "./images/game_background/company.png";
-import background_street from "./images/game_background/street.png"
+import background_street from "./images/game_background/street.png";
+
+import clock_home from "./images/game_component/clock_night.png";
+import clock_company from "./images/game_component/clock_company.png";
+import clock_rest from "./images/game_component/clock_home.png";
+
+import daily_info from "./images/game_component/info.png";
+import Menu from "./menu_bar";
+import PoliceEventView from "./trade_special_novel";
+import Simplepopup from "./popups/simple_popup";
+import Weddingpopup from "./popups/wedding_popup";
+import { Link, Route } from "react-router-dom";
+import Endview from "./ending";
 
 const BASE_URL = "http://192.249.18.165";
 
@@ -27,7 +41,7 @@ const next_do_ment = ["출근하기", "퇴근하기", "거래 마치기", "다�
 
 const doing_ment_sat = [
   "외출 준비 중",
-  "특별한 거래를 하는 중★",
+  "특별 거래 중",
   "거래하는 중",
   "친구 만나기",
 ];
@@ -91,38 +105,70 @@ function Gameview() {
 
   const [day, setDay] = useState(1);
   const [doing, setDoing] = useState(0);
-  const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0]);
+  const [have_items, setHaveItems] = useState([0, 0, 0, 0, 0, 0]);
   const [money, setMoney] = useState(0);
   const [point, setPoint] = useState(0);
   const [user_name, setUsername] = useState("미정");
 
+  const [clock, setClock] = useState(clock_home);
+
+  const [script_end, setScriptEnd] = useState(false);
+
   const [deal, setDeal] = useState(0); //거래 채결 미정: 0, 거래 채결 됨: 1, 거래 채결 안됨:2
 
-  useEffect(()=>{
-      if(day%7==1){ //일요일은 집에만 있음
-      }else if(day%7==0){
-        if(doing==0){
-            setBackground(background_home);
-        }else if(doing==1){
-            setBackground(background_street);
-        }else if(doing==2){
-            setBackground(background_street);
-        }else{
-            setBackground(background_home);
-        } 
-      }else{
-        if(doing==0){
-            setBackground(background_home);
-        }else if(doing==1){
-            setBackground(background_company);
-        }else if(doing==2){
-            setBackground(background_street);
-        }else{
-            setBackground(background_home);
-        } 
+  const [goto_wedding, setGotoWedding] = useState(false);
+  const [wedding_ment, setWeddingment] = useState("");
+
+  useEffect(() => {
+    if (day % 7 == 1) {
+      //일요일은 집에만 있음
+      if (doing === 0) {
+        go_toss();
       }
-      
-  },[doing])
+      else if (doing === 1) {
+        go_carrot();
+      }
+    } else if (day % 7 == 0) {
+      if (doing == 0) {
+        go_toss();
+        setBackground(background_home);
+        setScriptEnd(false);
+      } else if (doing == 1) {
+        go_carrot();
+        setBackground(background_street);
+      } else if (doing == 2) {
+        go_carrot();
+        setBackground(background_street);
+      } else {
+        go_toss();
+        setBackground(background_home);
+      }
+    } else {
+      if (doing == 0) { 
+        if (day == 4) {
+          go_kakao();
+        }
+        else {
+          go_toss();
+        }
+        setScriptEnd(false);
+        setBackground(background_home);
+        setClock(clock_home);
+      } else if (doing == 1) {
+        go_carrot();
+        setBackground(background_company);
+        setClock(clock_company);
+      } else if (doing == 2) {
+        go_carrot();
+        setBackground(background_street);
+        setClock(clock_home);
+      } else {
+        go_toss();
+        setBackground(background_home);
+        setClock(clock_rest);
+      }
+    }
+  }, [doing]);
 
   useEffect(() => {
     if (doing === 1 && day % 7 !== 1) {
@@ -145,9 +191,23 @@ function Gameview() {
   }, [deal]);
 
   useEffect(() => {
-    if (day % 7 == 1) {
+    if (day % 7 === 1) {
       setPoint(point + 1000000);
     }
+    if(day!=1){
+      axios
+      .patch(BASE_URL + `/save/${id}`, {
+        money: money,
+        day: day,
+        point: point,
+        item_list: JSON.stringify(have_items),
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+    setSellItems(choose_items());
+    }
+    
   }, [day]);
 
   //DB로부터 로드
@@ -156,15 +216,16 @@ function Gameview() {
       .get(BASE_URL + `/load/${id}`)
       .then((response) => {
         console.log("load data, put in variable");
+        console.log("day ", response.data.day);
         setDay(Number(response.data.day));
         setMoney(Number(response.data.money));
         if (response.data.point != null) {
           setPoint(Number(response.data.point));
         }
         if (response.data.itemList != null) {
-          var temp_list = [0, 0, 0, 0, 0];
+          var temp_list = [0, 0, 0, 0, 0, 0];
           var temp = response.data.itemList.slice(1, -1).split(",");
-          for (var i = 0; i < 5; i++) {
+          for (var i = 0; i < 6; i++) {
             temp_list[i] = Number(temp[i]);
           }
           setHaveItems(temp_list);
@@ -176,7 +237,21 @@ function Gameview() {
       });
   }, []);
 
-  console.log("day:", day, "money:", money, "point:", point);
+
+  useEffect(()=>{
+    if(goto_wedding==true){
+      if(money<50000){
+        setWeddingment("돈이 부족해 결혼식에 가지 못하게 되었습니다.");
+      }
+      else{
+        setMoney(money-50000);
+        have_items[5]=1;
+        setHaveItems(have_items);
+        setWeddingment("당신의 계좌에서 축의금 5만원이 빠져나갔습니다. 그리고 당신은 친구에게 희귀 클래식 LP판을 얻었습니다.");
+      }
+    }
+  },[goto_wedding])
+
 
   function go_toss() {
     for (var i = 0; i < page; i++) {
@@ -198,68 +273,50 @@ function Gameview() {
     }
     setPage(2);
   }
-  //출근, 일하고, 퇴근 거래 포멧
+
+  //경찰 특수 엔딩 분기점
+  function police_ending(){
+      console.log("hidden ending working?")
+      return <HiddenEndingview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd} />  
+  }
+
+  //doing 넘어가는 역할만함, 각각 넘어가는 거에 대한 변화는 useeffect에서 처리
   function do_next_work() {
     console.log(is_game_popup_open);
     //주말은 특수 케이스로 작동
     if (day % 7 == 1) {
-      //일요일일때
       if (doing === 0) {
         setDoing(1);
-        go_carrot();
       } else if (doing === 1) {
         setDoing(0);
-        go_toss();
         setDay(day + 1);
-
-        console.log(money, day, point, have_items);
-
-        axios
-          .patch(BASE_URL + `/save/${id}`, {
-            money: money,
-            day: day + 1,
-            point: point,
-            item_list: JSON.stringify(have_items),
-          })
-          .then((response) => {
-            console.log(response.data);
-          });
-        setSellItems(choose_items());
       }
     } else {
       if (doing === 0) {
         setDoing(1);
-        go_carrot();
       } else if (doing === 1) {
         //거래 성사 여부에 따라 달라진다.
         setGameOpen(true);
       } else {
         //거래중인 시점과 퇴근인 시점 2개
         if (day === end_day) {
-          document.location.href = "/ending"; //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
+          if (money < 1000000) {
+            document.location.href = "/ending/bad";
+          } else if (money < 2000000) {
+            document.location.href = "/ending/normal";
+          } else {
+            document.location.href = "/ending/good";
+          }
+          //각각 분기점에 대해 data로 다른 엔딩 페이지 넘겨주기
+          //개선점 : Link를 활용해보기.
         } else {
           setDoing(0);
-          go_toss();
           setDay(day + 1);
-          console.log(money, day, point, have_items);
-
-          axios
-            .patch(BASE_URL + `/save/${id}`, {
-              money: money,
-              day: day + 1,
-              point: point,
-              item_list: JSON.stringify(have_items),
-            })
-            .then((response) => {
-              console.log(response.data);
-            });
-          setSellItems(choose_items());
         }
       }
     }
   }
-  //토요일 할 일
-
+  //거래 관련 멘트 추가하는 역할
   function make_deal_ment() {
     var ment = "";
     sell_items.forEach((item) => {
@@ -286,125 +343,165 @@ function Gameview() {
   }
 
   return (
-    <div className="main">
-      <div className="game_image">
-          <img className="background_img" src = {background} alt = "no_background"/>
-        <div className="day">
-          day {day} ({days[(day - 1) % 7]})
-        </div>
-        <div className="doing">
-          {day % 7 == 1
-            ? doing_ment_sun[doing]
-            : day % 7 == 0
-              ? doing_ment_sat[doing]
-              : doing_ment[doing]}
-        </div>
-        {doing === 2 ? (
-          <></>
-        ) : (
-          <button
-            id="game_button"
-            onClick={() => {
-              do_next_work();
-            }}
-          >
+    <div>
+      <div className="main">
+        <div className="game_image">
+          <img
+            className="background_img"
+            src={background}
+            alt="no_background"
+          />
+          <img id="daily_info" src={daily_info} alt="daily_info" />
+          <div className="day">
+            day {day} ({days[(day - 1) % 7]})
+          </div>
+          <img className="clock" src={clock} alt="clock" width="120px" />
+          <div className="doing">
             {day % 7 == 1
-              ? next_do_ment_sun[doing]
+              ? doing_ment_sun[doing]
               : day % 7 == 0
+                ? doing_ment_sat[doing]
+                : doing_ment[doing]}
+          </div>
+          {doing === 2 ? (
+            //여기 수정할꺼야
+            script_end && (
+              <button
+                id="game_button"
+                onClick={() => {
+                  do_next_work();
+                }}
+              >
+                {day % 7 == 1
+                  ? next_do_ment_sun[doing]
+                  : day % 7 == 0
+                  ? next_do_ment_sat[doing]
+                  : next_do_ment[doing]}
+              </button>
+            )
+          ) : (
+            <button
+              id="game_button"
+              onClick={() => {
+                do_next_work();
+              }}
+            >
+              {day % 7 == 1
+                ? next_do_ment_sun[doing]
+                : day % 7 == 0
                 ? next_do_ment_sat[doing]
                 : next_do_ment[doing]}
-          </button>
-        )}
-        {is_game_popup_open ? (
-          <Gamepopup
-            ment={make_deal_ment()}
-            setGameOpen={setGameOpen}
-            setDeal={setDeal}
-            checked={checked_items()}
-          />
-        ) : (
-          <></>
-        )}
-        {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} /> : <></>}
-      </div>
-      <div className="phone">
-        <div className="phoneFrame" />
-        <div class="phone_element">
-          <ReactSwipe
-            className="page"
-            swipeOptions={{ continuous: false }}
-            ref={(el) => (reactSwipeEl = el)}
-          >
-            <div>
-              <Bankview money={money} point={point} have_items={have_items} />
-            </div>
-            <div>
+            </button>
+          )}
+          {is_game_popup_open ? (
+            <Gamepopup
+              ment={make_deal_ment()}
+              setGameOpen={setGameOpen}
+              setDeal={setDeal}
+              checked={checked_items()}
+            />
+          ) : (
+            <></>
+          )}
+          {/*{doing === 2 ? <HiddenEndingview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd} /> : <></>}*/}
+
+          { doing === 2 ? day == 9 ? <PoliceEventView user_name={user_name} final_next={do_next_work} police_ending={police_ending} /> : <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd}/> : <></> }
+          {goto_wedding&& (
+            <Weddingpopup
+            ment ={wedding_ment} setGotoWedding = {setGotoWedding}/>
+          )}
+          {/*{doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd = {setScriptEnd}/> : <></>}*/}
+        </div>
+        <div className="phone">
+          <div className="phoneFrame" />
+          <div class="phone_element">
+            <ReactSwipe
+              className="page"
+              swipeOptions={{ continuous: false }}
+              ref={(el) => (reactSwipeEl = el)}
+            >
+              <div>
+                <Bankview money={money} point={point} have_items={have_items}/>
+              </div>
+              <div>
+                {day % 7 == 1 ? (
+                  <Buyview
+                    can_buy={doing == 1}
+                    items={have_items}
+                    setItems={setHaveItems}
+                    point={point}
+                    setPoint={setPoint}
+                  />
+                ) : (
+                  <Marketview
+                    can_buy={doing == 1}
+                    items={sell_items}
+                    setSellItems={setSellItems}
+                    have_items={have_items}
+                    setHaveItems={setHaveItems}
+                    doing={doing}
+                    user_name={user_name}
+                  />
+                )}
+              </div>
+              <div>
+                <Chatview day = {day} setGotoWedding = {setGotoWedding}/>
+              </div>
+            </ReactSwipe>
+          </div>
+          <div class="app_buttons">
+            <button
+              class="applications"
+              onClick={() => {
+                go_toss();
+              }}
+            >
+              <img
+                src="button/토스.png"
+                alt="토스"
+                height="30em"
+                width="30em"
+              />
+            </button>
+            <button
+              class="applications"
+              onClick={() => {
+                go_carrot();
+              }}
+            >
               {day % 7 == 1 ? (
-                <Buyview
-                  can_buy={doing == 1}
-                  items={have_items}
-                  setItems={setHaveItems}
-                  point={point}
-                  setPoint={setPoint}
+                <img
+                  src="button/card.png"
+                  alt="카드"
+                  height="40em"
+                  width="40em"
                 />
               ) : (
-                <Marketview
-                  can_buy={doing == 1}
-                  items={sell_items}
-                  setSellItems={setSellItems}
-                  have_items={have_items}
-                  setHaveItems={setHaveItems}
-                  doing={doing}
-                  user_name={user_name}
+                <img
+                  src="button/당근.png"
+                  alt="당근"
+                  height="35em"
+                  width="35em"
                 />
               )}
-            </div>
-            <div>
-              <Chatview />
-            </div>
-          </ReactSwipe>
-        </div>
-        <div class="app_buttons">
-          <button
-            class="applications"
-            onClick={() => {
-              go_toss();
-            }}
-          >
-            <img src="button/토스.png" alt="토스" height="30em" width="30em" />
-          </button>
-          <button
-            class="applications"
-            onClick={() => {
-              go_carrot();
-            }}
-          >
-            {day % 7 == 1 ? (
+            </button>
+            <button
+              class="applications"
+              onClick={() => {
+                go_kakao();
+              }}
+            >
               <img
-                src="button/card.png"
-                alt="당근"
-                height="40em"
-                width="40em"
-              />
-            ) : (
-              <img
-                src="button/당근.png"
-                alt="당근"
+                src="button/카톡.png"
+                alt="카톡"
                 height="35em"
                 width="35em"
               />
-            )}
-          </button>
-          <button
-            class="applications"
-            onClick={() => {
-              go_kakao();
-            }}
-          >
-            <img src="button/카톡.png" alt="카톡" height="35em" width="35em" />
-          </button>
+            </button>
+          </div>
         </div>
       </div>
+      <Menu />
     </div>
   );
 }

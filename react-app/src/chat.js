@@ -1,6 +1,6 @@
 import "./styles/Game.css";
 
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Chatpopup from "./popups/chat_popup";
 
 import profile_img from "./images/profile.png";
@@ -24,6 +24,14 @@ function Chatroom(props) {
 }
 
 //채팅 보내고 닫으면 그냥 퇴사 엔딩으로 가자
+//여기서 채팅 목록 변경하면 됨
+//코드가 귀여워졌어요.
+const chat_list = [
+  { name: "설영", text: "몰캠 파이팅" },
+  { name: "설영", text: "몰캠 파이팅" },
+  { name: "설영", text: "몰캠 파이팅" },
+  { name: "설영", text: "몰캠 파이팅" },
+];
 
 const chat_script = [
   { text: "사람들이 그렇게 포인트를 좋아하나?", me: false },
@@ -36,6 +44,19 @@ const chat_script = [
 function RealChat(props) {
   const [send_ment, setSendment] = useState("회장님 저 퇴사하겠습니다");
   const [sended, setSended] = useState(false);
+  const [ceo_sended, setCEOSended] = useState(false);
+
+  function leave_company() {
+    setSended(true);
+    setSendment("");
+    setTimeout(function () {
+      setCEOSended(true);
+    }, 3000);
+    setTimeout(function () {
+      document.location.href = "/ending/leave";
+    }, 4000);
+  }
+
   return (
     <div className="real_chat">
       <div className="chat_header">
@@ -63,14 +84,14 @@ function RealChat(props) {
           }
         })}
         {sended && <div className="my_chat">회장님 저 퇴사하겠습니다.</div>}
+        {ceo_sended && <div className="op_chat">오케이 콜</div>}
       </div>
       <div id="send_message">
         <div>{send_ment}</div>
         <button
           className="send_button"
           onClick={() => {
-            setSended(true);
-            setSendment("");
+            leave_company();
           }}
         >
           <img
@@ -85,12 +106,31 @@ function RealChat(props) {
   );
 }
 
-function Chatview() {
+function Chatview(props) {
   const [is_chat, setIsChat] = useState(false);
+  const [is_popup, setIsPopup] = useState(false);
+  const [is_newchat, setIsnewchat] = useState(false);
+
+  useEffect(() => {
+    if (props.day == 4) {
+      setIsPopup(true);
+      setIsnewchat(true);
+    }
+    if(props.day>4){
+      setIsnewchat(true);
+    }
+  }, [props.day]);
   return (
     <div className="chat_view">
       <div id="kakao">카카오톡</div>
+      <div className="market_head chat_head">내 채팅</div>
       <div>
+        {is_newchat && (
+          <Chatroom
+            name="지나"
+            chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?"
+          />
+        )}
         <button
           className="hidden_button"
           onClick={() => {
@@ -99,19 +139,17 @@ function Chatview() {
         >
           <Chatroom name="회장...님" chat="월급 포인트로 받게!" />
         </button>
-        <Chatroom name="설영이" chat="몰캠 파이팅!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!!!!" />
-        <Chatroom name="설영이" chat="몰캠 파이팅!!!!!!!" />
+        {chat_list.map((el) => {
+          return <Chatroom name={el.name} chat={el.text} />;
+        })}
       </div>
-      <Chatpopup
-        name="겨울 타는 민"
+      {is_popup&&<Chatpopup
+        name="지나"
         chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?"
         sub_text="-축의금 5만원-"
-      />
+        setIsPopup = {setIsPopup}
+        setGotoWedding = {props.setGotoWedding}
+      />}
       {is_chat && <RealChat setIsChat={setIsChat} />}
     </div>
   );

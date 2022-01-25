@@ -44,6 +44,7 @@ function Receiptview(props) {
             className="receipt_buy"
             onClick={() => {
               props.update();
+              props.toast();
             }}
           >
             구매 확인

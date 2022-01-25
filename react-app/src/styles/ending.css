@@ -1,14 +1,17 @@
 .ending{
-    width: 1200px;
-    height: 800px;
+    max-width: 1200px;
+    width: 100vw;
+    height: 900px;
     background-color: beige;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background-image: url("../images/background.png");
 }
 
 .ending_collect{
@@ -19,22 +22,65 @@
     margin: 30px;
 }
 
-.card{
+.card_unlock{
     width: 250px;
     height: 250px;
-    background-color: white; 
+    background-image: url("../images/game_component/ending.png");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.card_lock{
+    width: 250px;
+    height: 250px;
+    background-image: url("../images/game_component/ending_block.png");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
 }
 
 .ending_head{
     width: 250px;
     text-align: center;
-    height: 80px;
-    line-height: 80px;
-    font-size: 20px;
+    font-size: 16px;
+    color: white;
+    position: relative;
+    height: 32px;
+}
+.ending_text{
+    margin: 10px;
+    width: 200px;
+    height: 100px;
     
 }
+
 #head_text{
-    height: 100px;
-    line-height: 120px;
+    height: 150px;
+    line-height: 240px;
     font-size: 48px;
+    color:white;
+}
+
+#ending_ment{
+    color:white;
+    font-size: 24px;
+
+}
+
+#restart_button{
+    width: 120px;
+    height: 50px;
+    font-size: 16px;
+    position: absolute;
+    bottom: 300px;
+    background-image: url("../images/game_component/button.png");
+    padding: 0%;
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #eFd9c6;
 }

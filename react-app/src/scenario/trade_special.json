@@ -1,0 +1,31 @@
+[
+    {
+        "case": [
+            {
+                "name": "Player",
+                "text": "오늘은 일이 많았어서 너무 피곤하다.",
+                "type": "hidden_ending"
+            },
+            {
+                "name": "Player",
+                "text": "당장이라도 쓰러질 것 같은데 오늘은 퇴근 후 거래가 잡혀있다.",
+                "type": "hidden_ending"
+            },
+            {
+                "name": "Player",
+                "text": "어차피 돈은 미리 받았는데, 거래에 나가지 말까?",
+                "type": "hidden_ending"
+            }
+        ]
+    },
+    {
+        "select": [
+            {
+                "text": "거래에 나간다"
+            },
+            {
+                "": "거래에 가지 않는다"
+            }
+        ]
+    }
+]
