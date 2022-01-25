@@ -27,7 +27,7 @@ window.addEventListener("resize", function () {
 });
 
 function App() {
-  useEffect(() => {
+  useEffect(() => { 
     resizeApply();
   }, []);
   return (
