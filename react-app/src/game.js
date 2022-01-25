@@ -43,7 +43,7 @@ const doing_ment_sat = [
   "친구 만나기",
 ];
 const next_do_ment_sat = [
-  "특별한 거래 하기",
+  "외출하기",
   "일반 거래 하기",
   "거래 마치기",
   "다음날",
@@ -395,16 +395,7 @@ function Gameview(props) {
               />
             )}
             {doing === 2 ? (
-              <Novelview
-                user_name={user_name}
-                final_next={do_next_work}
-                setScriptEnd={setScriptEnd}
-              />
-            ) : (
-              <></>
-            )}
-            {doing === 2 ? (
-              day == 9 ? (
+              day === 9 ? (
                 <PoliceEventView
                   user_name={user_name}
                   final_next={do_next_work}
