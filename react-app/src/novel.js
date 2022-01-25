@@ -1,61 +1,57 @@
-import './Game.css';
-import scenario from './scenario.json'
-import trade_scenario from './trade_scenario.json'
-import test from './test.json'
-import innerText from 'react-innertext'
-import SelectorView from './selector';
+import "./styles/Game.css";
+import scenario from "./scenario/scenario.json";
+import trade_scenario from "./scenario/trade_scenario.json";
+import test from "./scenario/test.json";
+import innerText from "react-innertext";
 
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState } from "react";
 
+function randomValueFromArray(array) {
+  const random = Math.floor(Math.random() * array.length);
+  return array[random];
+}
+//const shuffle = () => (Math.random() - 0.5);
+//let shuffled = [...trade_scenario].sort(shuffle);
+let randomText = randomValueFromArray(trade_scenario);
+
+//console.log("random value from array: ", randomText.case[0]);
+//console.log("shuffle", shuffled);
+
+//console.log("test", test[0]);
 
 function Novelview(props) {
-
-  const shuffle = () => (Math.random() - 0.5);
-  const shuffled = [...trade_scenario].sort(shuffle);
-  //console.log("shuffled case", shuffled);
-
-
-  const [count, setCount] = useState(0);
-  let [name, setName] = useState(shuffled[0].case.name);
-  const [text, setText] = useState(shuffled[0].case.text);
-  const [type, setType] = useState(shuffled[0].case.type);
-  //const [user_name, setUsername] = useState(shuffled.case[0].name);
-
-  console.log("shuffled array[0]: ", shuffled[0].case[0])
+  const [count, setCount] = useState(1);
+  let [name, setName] = useState(randomText.case[0].name);
+  const [text, setText] = useState(randomText.case[0].text);
+  const [type, setType] = useState(randomText.case[0].type);
 
   if (name == "Player") {
     name = props.user_name;
     //console.log("이름 바꾸기" + name + "\n user name: " + user_name);
   }
 
-
   function go_next() {
     setCount(count + 1);
-    setName(shuffled[0].case[count].name);
-    setText(shuffled[0].case[count].text);
-    setType(shuffled[0].case[count].type);
+    setName(randomText.case[count].name);
+    setText(randomText.case[count].text);
+    setType(randomText.case[count].type);
   }
 
+  useEffect(() => {
+    if (count === randomText.case.length) {
+      props.setScriptEnd(true);
+    }
+  }, [count]);
+
+  //console.log("name: ", shuffled[0].case.name, "text: ", shuffled[0].case.text);
+
   return (
-
-    < div class="novel" >
-      <div>
-        {type == "select" ? <SelectorView /> : console.log("non select area!")}
-      </div>
-
-      {/* 이름, 텍스트 */}
-      {name == null ? <></> : <div id="script_name"> {name} </div>}
+    <div class="novel">
+      {name == null ? <></> : <div id="script_name">{name}</div>}
       <div id="script_text">
         {text}
-        {count === scenario.length ? (
-          <button
-            onClick={() => {
-              props.final_next();
-            }}
-            id="script_next"
-          >
-            거래마치기
-          </button>
+        {count === randomText.case.length ? (
+          <></>
         ) : (
           <button
             onClick={() => {
@@ -68,7 +64,6 @@ function Novelview(props) {
         )}
       </div>
     </div>
-
   );
 }
 

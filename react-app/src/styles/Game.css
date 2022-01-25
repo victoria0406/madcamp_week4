@@ -1,14 +1,18 @@
-* {
+*{
   font-family: "pf";
 }
 
 @font-face {
   font-family: "pf";
+  
   src: url("../font/PF스타더스트.ttf");
 }
 @font-face {
   font-family: "pf_bold";
   src: url("../font/PF스타더스트+Bold.ttf");
+}
+body{
+  background-color: #9fcfa8;
 }
 
 .horiz {
@@ -30,13 +34,14 @@
   width: 100%;
   text-align: left;
   padding: 0%;
+  margin-bottom: 0.5em;
 }
 
 /*Game.js에서 이용*/
 .main {
   max-width: 1200px;
   width: 100vw;
-  height: 800px;
+  height: 900px;
   background-color: beige;
   position: absolute;
   left: 50%;
@@ -44,17 +49,21 @@
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: row;
+  background-image: url("../images/background.png");
 }
 
 .game_image {
-  width: 750px;
+  width: 742px;
   margin: 25px;
-  height: 750px;
+  margin-top: 80px;
+  height: 742px;
   background-color: rgba(255, 255, 255, 0.2);
+  border: 8px solid #574138;
 }
 
 .phone {
   margin: 25px;
+  margin-top: 80px;
 }
 
 .phoneFrame {
@@ -101,10 +110,18 @@
 }
 .day {
   font-size: 24px;
-  height: 48px;
-  line-height: 48px;
-  width: 148px;
+  height: 40px;
+  line-height: 40x;
+  width: 150px;
   text-align: center;
+  position: absolute;
+  top: 125px;
+  left: 40px;
+}
+.clock {
+  position: absolute;
+  top: 175px;
+  left: 55px;
 }
 
 #game_button {
@@ -112,24 +129,35 @@
   height: 50px;
   font-size: 16px;
   position: absolute;
-  bottom: 40px;
-  left: 640px;
+  top: 425px;
+  left: 350px;
+  background-image: url("../images/game_component/button.png");
+  padding: 0%;
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #efd9c6;
 }
 .doing {
-  position: absolute;
-  top: 25px;
-  left: 760px;
   font-size: 24px;
-  transform: translate(-100%, 0%);
-  height: 50px;
-  line-height: 50px;
-  text-align: right;
+  height: 40px;
+  line-height: 40x;
+  width: 150px;
+  text-align: center;
+  position: absolute;
+  top: 320px;
+  left: 40px;
 }
-.background_img{
+.background_img {
   position: absolute;
   width: 750px;
   height: 750px;
   z-index: -1;
+}
+
+#daily_info {
+  position: absolute;
+  left: 40px;
+  top: 80px;
 }
 
 /*market.js에서 이용*/
@@ -137,18 +165,39 @@
   font-weight: bold;
   padding-top: 1em;
   width: 20em;
-  background-color: orange;
+  background-color: #f1988d;
   text-align: center;
   color: white;
   line-height: 50px;
 }
+
+.item_image {
+  margin-left: 1.5em;
+}
+
+.item_area {
+  margin-bottom: 0.3em;
+  color: rgba(151, 151, 151, 0.9);
+}
+.market_head {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.market_location {
+  padding: 0.5em 0 0.5em;
+  text-align: center;
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
 .itemlist {
   width: 20em;
-  height: 100px;
+  padding: 2em 0 2em 0;
   background-color: white;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  border-bottom: 1px solid rgb(223, 223, 223);
   justify-content: space-between;
   align-items: center;
 }
@@ -159,6 +208,11 @@
   line-height: 30px;
 }
 .deal_button {
+  border: none;
+  margin-right: 1.5em;
+  border-radius: 0.3em;
+  color: rgb(247, 247, 247);
+  background-color: orange;
   height: 30px;
   width: 70px;
 }
@@ -166,16 +220,16 @@
 .gray {
   position: absolute;
   width: 100%;
-  height: 100px;
+  height: 8.3em;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  line-height: 100px;
   text-align: center;
+  line-height: 8.3em;
 }
 .register {
-  margin-left: 10px;
+  margin-left: 5px;
   background-color: rgb(19, 83, 43);
-  height: 25px;
+  height: 22px;
   width: 40px;
   border-radius: 7px;
   text-align: center;
@@ -184,14 +238,19 @@
 }
 
 /*buy_item.js에서 사용*/
+
+.buy_head {
+  padding-top: 0.1m;
+  padding-left: 1em;
+}
 .itemlist_buy {
-  width: 18.5em;
+  width: 16em;
   height: 80px;
   background-color: white;
   display: flex;
   flex-direction: row;
-  padding-left: 1em;
-  padding-right: 0.5em;
+  padding-left: 2em;
+  padding-right: 2em;
   border-top: 1px solid black;
   justify-content: space-between;
   align-items: center;
@@ -208,7 +267,7 @@
 .buy_button {
   width: 24em;
   height: 45px;
-  background-color: gray;
+  background-color: #574138;
   color: white;
 }
 
@@ -217,26 +276,98 @@
   border: none;
 }
 
+.toast {
+  position: absolute;
+  top: 80%;
+  left: 35%;
+  padding: 11px;
+  text-align: center;
+  min-width: 5em;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid #000;
+  animation: fadeInUp 0.7s;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 20%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+#toast.reveal {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
 /*novel.js에서 이용*/
 .novel {
   position: absolute;
-  bottom: 25px;
+  bottom: 70px;
   margin: 10px;
 }
 #script_name {
   width: 150px;
   height: 40px;
   background-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../images/background_name.png");
+  margin-bottom: 10px;
+  margin-left: 7px;
+  color: #efe0c3;
+  text-align: center;
+  box-sizing: border-box;
+  padding:10px;
 }
 #script_text {
-  width: 730px;
+  width: 720px;
   height: 150px;
   background-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  padding-top:20px;
+  padding: left 20px;
+  background-image: url("../images/background_text.png");
 }
 #script_next {
   position: absolute;
   bottom: 20px;
   right: 20px;
+}
+#select_A {
+  position: absolute;
+  bottom: 370px;
+  font-size: 16px;
+  width: 120px;
+  height: 50px;
+  padding: 0%;
+  border: 0px;
+  font-weight: bold;
+  color: #efd9c6;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../images/game_component/button.png");
+}
+
+#select_B{
+  position: absolute;
+  bottom: 300px;
+  font-size: 16px;
+  width: 120px;
+  height: 50px;
+  padding: 0%;
+  border: 0px;
+  font-weight: bold;
+  color: #efd9c6;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../images/game_component/button.png");
 }
 
 /*======bank.js에서 사용=========*/
@@ -244,7 +375,7 @@
   font-weight: bold;
   padding-top: 1em;
   width: 20em;
-  background-color: blue;
+  background-color: #615b95;
   line-height: 50px;
   text-align: center;
   color: white;
@@ -281,7 +412,7 @@
 }
 
 .blue {
-  color: blue;
+  color: #615b95;
   font-weight: bolder;
 }
 .head_text {
@@ -305,7 +436,7 @@
   font-weight: bold;
   padding-top: 1em;
   width: 20em;
-  background-color: #fbe300;
+  background-color: #e3dd68;
   line-height: 50px;
   text-align: center;
   color: black;
@@ -315,7 +446,7 @@
   font-weight: bold;
   padding-top: 1em;
   width: 20em;
-  background-color: gray;
+  background-color: #574138;
   line-height: 50px;
   text-align: center;
   color: white;
@@ -326,8 +457,8 @@
 .chat_room {
   height: 60px;
   width: 310px;
+  margin-bottom: 0.5em;
   padding-left: 10px;
-  border-bottom: 1px solid gray;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -351,6 +482,11 @@
   padding: 1em;
 }
 
+.chat_head {
+  margin-top: 1em;
+  margin-bottom: 0.7em;
+}
+
 .chat_info {
   margin-left: 0.7em;
   display: flex;
@@ -359,15 +495,16 @@
 }
 
 .chat_name {
-  margin-top: 0.2em;
+  margin-top: 0.5em;
   font-weight: bolder;
   font-size: 18px;
 }
 
 .chat_text {
-  margin-bottom: 0.2em;
+  margin-bottom: 1em;
   font-size: 14px;
 }
+
 .real_chat {
   width: 20em;
   height: 35em;
@@ -387,13 +524,13 @@
 }
 
 .my_chat {
-  background-color: yellow;
+  background-color: #e3dd68;
   margin: 5px;
   height: 20px;
   line-height: 20px;
   text-align: right;
   width: max-content;
-  border: 5px solid yellow;
+  border: 5px solid #e3dd68;
   border-radius: 5px;
   position: relative;
   left: 97%;
@@ -423,6 +560,6 @@
 }
 
 .chat_img {
-  border-radius: 5px;
+  border-radius: 15px;
   margin: 5px;
 }
