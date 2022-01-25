@@ -4,6 +4,7 @@
 
 @font-face {
   font-family: "pf";
+  
   src: url("../font/PF스타더스트.ttf");
 }
 @font-face {
@@ -39,7 +40,7 @@ body{
 /*Game.js에서 이용*/
 .main {
   max-width: 1200px;
-  width: 100vw;
+  width: 100%;
   height: 900px;
   background-color: beige;
   position: absolute;
@@ -67,7 +68,7 @@ body{
 
 .phoneFrame {
   background: url("../images/background_phone.png");
-  width: 22em;
+  width: 21em;
   height: 47em;
   background-size: 100% 100%;
   position: absolute;
@@ -76,13 +77,13 @@ body{
 }
 
 .phone_element {
-  margin-left: 18px;
+  margin-left: 14px;
   margin-top: 3.5em;
   display: flex;
   flex-direction: row;
 }
 .app_buttons {
-  width: 20em;
+  width: 18.8em;
   display: flex;
 
   background-color: rgb(247, 247, 247);
@@ -90,7 +91,7 @@ body{
   position: relative;
   height: 7em;
   padding-top: 1em;
-  margin-left: 20px;
+  margin-left: 18px;
 }
 .applications {
   width: 50px;
@@ -103,7 +104,7 @@ body{
   padding: 5px;
 }
 .page {
-  width: 20em;
+  width: 19.1em;
   height: 35em;
   background-color: white;
 }
@@ -181,7 +182,7 @@ body{
 .market_head {
   font-size: 1.3em;
   font-weight: bold;
-  margin-left: 1em;
+  margin-left: 1.5em;
   margin-top: 0.5em;
 }
 
@@ -249,7 +250,7 @@ body{
   display: flex;
   flex-direction: row;
   padding-left: 2em;
-  padding-right: 2em;
+  padding-right: 1em;
   border-top: 1px solid black;
   justify-content: space-between;
   align-items: center;
@@ -264,7 +265,7 @@ body{
   justify-content: center;
 }
 .buy_button {
-  width: 24em;
+  width: 23em;
   height: 45px;
   background-color: #574138;
   color: white;
@@ -332,8 +333,8 @@ body{
   background-color: aliceblue;
   background-color: rgba(0, 0, 0, 0);
   box-sizing: border-box;
-  padding-top:20px;
-  padding: left 20px;
+  padding-top: 20px;
+  padding-left: 20px;
   background-image: url("../images/background_text.png");
 }
 #script_next {
@@ -347,7 +348,6 @@ body{
   font-size: 16px;
   width: 120px;
   height: 50px;
-  padding: 0%;
   border: 0px;
   font-weight: bold;
   color: #efd9c6;
@@ -361,7 +361,6 @@ body{
   font-size: 16px;
   width: 120px;
   height: 50px;
-  padding: 0%;
   border: 0px;
   font-weight: bold;
   color: #efd9c6;
@@ -402,7 +401,7 @@ body{
 
 .bank_component {
   border-radius: 1em;
-  margin: 1em 1em 0 1em;
+  margin: 1em 1.5em 0 1.5em;
 }
 
 .my_wallet {
@@ -457,7 +456,7 @@ body{
   height: 60px;
   width: 310px;
   margin-bottom: 0.5em;
-  padding-left: 10px;
+  padding-left: 20px;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -516,9 +515,9 @@ body{
 .chat_list {
   position: absolute;
   bottom: 50px;
-  width: 300px;
+  width: 17em;
   display: flex;
-  margin-left: 0.5em;
+  margin-left: 1em;
   flex-direction: column;
 }
 
@@ -547,14 +546,14 @@ body{
   border-radius: 5px;
 }
 #send_message {
-  width: 19em;
+  width: 17em;
   background-color: white;
   height: 50px;
   line-height: 50px;
   position: absolute;
   bottom: 0;
   display: flex;
-  padding-left: 1em;
+  padding-left: 2em;
   justify-content: space-between;
 }
 
