@@ -34,7 +34,7 @@ function GameRouter() {
       .get(BASE_URL + `/load/${id}`)
       .then((response) => {
         console.log("load data, put in variable");
-        console.log(response.data.day.tey);
+        console.log(response.data);
         t_game_info.day = Number(response.data.day);
         t_game_info.money = Number(response.data.money);
         t_game_info.name = response.data.name;
@@ -92,19 +92,22 @@ function GameRouter() {
         console.log(response.data);
         });
     }
-    
 
   },[ingame_info]);
 
   useEffect(()=>{
       console.log(ending_info)
     axios
-    .patch(BASE_URL + `/reset/${id}`, {
-      endingList: JSON.stringify(ending_info),
-    })
-    .then((response) => {
-      console.log(response.data);
-    });
+    .patch(BASE_URL + `/save/${id}`, {
+        money: 0,
+        day: 1,
+        point: 0,
+        item_list: JSON.stringify([0,0,0,0,0,0]),
+        endingList: ending_info
+        })
+        .then((response) => {
+        console.log(response.data);
+        });
   },[ending_info])
 
 
