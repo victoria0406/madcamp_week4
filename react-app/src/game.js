@@ -190,12 +190,17 @@ function Gameview(props) {
     if (day % 7 === 1) {
       setPoint(point + 1000000);
     }
-    if(day>1){
-      const game_info = {day:day, money:money, name: user_name, point:point, have_item:have_items};
+    if (day > 1) {
+      const game_info = {
+        day: day,
+        money: money,
+        name: user_name,
+        point: point,
+        have_item: have_items,
+      };
       props.setIngameInfo(game_info);
       setSellItems(choose_items());
     }
-    
   }, [day]);
 
   //DB로부터 로드
@@ -210,21 +215,20 @@ function Gameview(props) {
     setInit(true);
   }, []);
 
-
-  useEffect(()=>{
-    if(goto_wedding==true){
-      if(money<50000){
-        setWeddingment("돈이 부족해 결혼식에 가지 못하게 되었습니다.");
-      }
-      else{
-        setMoney(money-50000);
-        have_items[5]=1;
+  useEffect(() => {
+    if (goto_wedding == true) {
+      if (money < 50000) {
+        setWeddingment("돈이 부족해 결혼식에 가지 못했습니다.");
+      } else {
+        setMoney(money - 50000);
+        have_items[5] = 1;
         setHaveItems(have_items);
-        setWeddingment("당신의 계좌에서 축의금 5만원이 빠져나갔습니다. 그리고 당신은 친구에게 희귀 클래식 LP판을 얻었습니다.");
+        setWeddingment(
+          "당신의 계좌에서 축의금 5만원이 빠져나갔습니다. 그리고 당신은 친구에게 희귀 클래식 LP판을 얻었습니다."
+        );
       }
     }
-  },[goto_wedding])
-
+  }, [goto_wedding]);
 
   function go_toss() {
     for (var i = 0; i < page; i++) {
@@ -308,7 +312,7 @@ function Gameview(props) {
     });
     return checked;
   }
-  if(init){
+  if (init) {
     return (
       <div>
         <div className="main">
@@ -370,11 +374,21 @@ function Gameview(props) {
             ) : (
               <></>
             )}
-            {goto_wedding&& (
+            {goto_wedding && (
               <Weddingpopup
-              ment ={wedding_ment} setGotoWedding = {setGotoWedding}/>
+                ment={wedding_ment}
+                setGotoWedding={setGotoWedding}
+              />
             )}
-            {doing === 2 ? <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd = {setScriptEnd}/> : <></>}
+            {doing === 2 ? (
+              <Novelview
+                user_name={user_name}
+                final_next={do_next_work}
+                setScriptEnd={setScriptEnd}
+              />
+            ) : (
+              <></>
+            )}
           </div>
           <div className="phone">
             <div className="phoneFrame" />
@@ -385,7 +399,11 @@ function Gameview(props) {
                 ref={(el) => (reactSwipeEl = el)}
               >
                 <div>
-                  <Bankview money={money} point={point} have_items={have_items}/>
+                  <Bankview
+                    money={money}
+                    point={point}
+                    have_items={have_items}
+                  />
                 </div>
                 <div>
                   {day % 7 == 1 ? (
@@ -409,7 +427,7 @@ function Gameview(props) {
                   )}
                 </div>
                 <div>
-                  <Chatview day = {day} setGotoWedding = {setGotoWedding}/>
+                  <Chatview day={day} setGotoWedding={setGotoWedding} />
                 </div>
               </ReactSwipe>
             </div>
@@ -468,8 +486,8 @@ function Gameview(props) {
         <Menu />
       </div>
     );
-  }else{
-    return <></>
+  } else {
+    return <></>;
   }
 }
 

@@ -27,9 +27,9 @@ function Chatroom(props) {
 //여기서 채팅 목록 변경하면 됨
 //코드가 귀여워졌어요.
 const chat_list = [
-  { name: "설영", text: "몰캠 파이팅" },
-  { name: "설영", text: "몰캠 파이팅" },
-  { name: "설영", text: "몰캠 파이팅" },
+  { name: "LFY", text: "나에게 편지를 써줘!" },
+  { name: "캣허브", text: "섯다 한판 고?" },
+  { name: "고스트 오목왕", text: "오목눈이 아님" },
   { name: "설영", text: "몰캠 파이팅" },
 ];
 
@@ -116,7 +116,7 @@ function Chatview(props) {
       setIsPopup(true);
       setIsnewchat(true);
     }
-    if(props.day>4){
+    if (props.day > 4) {
       setIsnewchat(true);
     }
   }, [props.day]);
@@ -143,13 +143,15 @@ function Chatview(props) {
           return <Chatroom name={el.name} chat={el.text} />;
         })}
       </div>
-      {is_popup&&<Chatpopup
-        name="지나"
-        chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?"
-        sub_text="-축의금 5만원-"
-        setIsPopup = {setIsPopup}
-        setGotoWedding = {props.setGotoWedding}
-      />}
+      {is_popup && (
+        <Chatpopup
+          name="지나"
+          chat="나 이번주 토요일에 결혼식인데 혹시 올 수 있어?"
+          sub_text="-축의금 5만원-"
+          setIsPopup={setIsPopup}
+          setGotoWedding={props.setGotoWedding}
+        />
+      )}
       {is_chat && <RealChat setIsChat={setIsChat} />}
     </div>
   );

@@ -1,17 +1,17 @@
-*{
+* {
   font-family: "pf";
 }
 
 @font-face {
   font-family: "pf";
-  
+
   src: url("../font/PF스타더스트.ttf");
 }
 @font-face {
   font-family: "pf_bold";
   src: url("../font/PF스타더스트+Bold.ttf");
 }
-body{
+body {
   background-color: #9fcfa8;
 }
 
@@ -325,7 +325,7 @@ body{
   color: #efe0c3;
   text-align: center;
   box-sizing: border-box;
-  padding:10px;
+  padding: 10px;
 }
 #script_text {
   width: 720px;
@@ -333,7 +333,7 @@ body{
   background-color: aliceblue;
   background-color: rgba(0, 0, 0, 0);
   box-sizing: border-box;
-  padding-top:20px;
+  padding-top: 20px;
   padding: left 20px;
   background-image: url("../images/background_text.png");
 }
@@ -356,7 +356,7 @@ body{
   background-image: url("../images/game_component/button.png");
 }
 
-#select_B{
+#select_B {
   position: absolute;
   bottom: 300px;
   font-size: 16px;
@@ -502,6 +502,7 @@ body{
 
 .chat_text {
   margin-bottom: 1em;
+  width: 13em;
   font-size: 14px;
 }
 
