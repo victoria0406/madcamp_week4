@@ -16,30 +16,27 @@ import {
 import Credit from "./credit";
 import { useEffect } from "react";
 
-function resizeApply() { 
-  var minWidth = 1920; 
-  var body = document.getElementsByTagName('body')[0]; 
-  body.style.zoom = (window.innerWidth / minWidth);
-};
+function resizeApply() {
+  var minWidth = 1920;
+  var body = document.getElementsByTagName("body")[0];
+  body.style.zoom = window.innerWidth / minWidth;
+}
 
-
-
-window.addEventListener('resize', function() {
+window.addEventListener("resize", function () {
   resizeApply();
-
 });
 
 function App() {
-  useEffect(()=>{
+  useEffect(() => { 
     resizeApply();
-  },[]);
+  }, []);
   return (
     <Routes>
       <Route path="/main" element={<Gameview />} />
       <Route path="/login" element={<Login />} />
       <Route path="/ending/:id" element={<Endview />} />
-      <Route path = "/ending_collect" element = {<Endcollectview/>}/>
-      <Route path = "/credit" element ={<Credit/>}/>
+      <Route path="/ending_collect" element={<Endcollectview />} />
+      <Route path="/credit" element={<Credit />} />
     </Routes>
   );
 }
