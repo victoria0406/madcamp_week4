@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./Login.css";
+import "./styles/Login.css";
 
-const BASE_URL = "http://192.249.18.165:443";
+const BASE_URL = "http://192.249.18.165";
 
-const Login= () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
@@ -32,17 +32,28 @@ const Login= () => {
     event.preventDefault();
     try {
       if (newAccount) {
+        //Sign up
         axios
-          .post(BASE_URL + "/account/signup", {
+          .post(BASE_URL + "/register", {
+            name: nickname,
             email: email,
-            nickname: nickname,
             password: password,
           })
           .then((response) => {
-            console.log(response);
-            // 유저의 레터 스페이스로 보내줘야 함.
-            sessionStorage.setItem("user_id", response.data); //유저 id를 session storage에 저장
-            document.location.href = `mypage/${response.data}`; // 내 페이지로 이동! -> 아이디 나중에 넣기
+            if (password.length <= 5) {
+              setIsCorrect("shortPW");
+            } else if (response.data.success === true) {
+              console.log(response);
+              localStorage.setItem("user_id", response.data.userId); //유저 id를 local storage에 저장
+              document.location.href = `/main`; // 게임 페이지로 이동
+            } else {
+              console.log("Retry plz!"); //백엔드에서 금지하는 사항은 프론트에서 핸들링해줘야 할 듯.
+              console.log(response);
+              console.log(response.data.success);
+              if (response.data.message == "sameEM") {
+                setIsCorrect("sameEM");
+              }
+            }
           })
           .catch((error) => {
             console.log("signup errror!" + error);
@@ -51,13 +62,13 @@ const Login= () => {
         console.log(email, password);
         //log in
         axios
-          .post(BASE_URL + "/account/login", {
+          .post(BASE_URL + "/api/users/login", {
             email: email,
             password: password,
           })
           .then((response) => {
             console.log(response);
-            switch (response.data) {
+            switch (response.data.message) {
               case "wrong passwd":
                 console.log("wrong passwd");
                 setIsCorrect("wrongPW"); //하단에 비번 틀렸다고 표시
@@ -68,11 +79,11 @@ const Login= () => {
                 break;
               default:
                 //response.data에 user의 id가 넘겨져 옴.
-                console.log(response.data);
+                console.log(response.data.userId);
                 //localStorage??
-                sessionStorage.setItem("user_id", response.data); //유저 id를 session storage에 저장
+                localStorage.setItem("user_id", response.data.userId); //유저 id를 session storage에 저장
                 setIsCorrect("correct");
-                document.location.href = `mypage/${response.data}`; // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
+                document.location.href = `/main`; // 게임 페이지로 이동
                 break;
             }
           })
@@ -89,53 +100,60 @@ const Login= () => {
 
   return (
     <>
-    <div className="wrapWelcome">
-    <div>
-      <p className="welcomeTxt"> {newAccount ? "회원가입" : "로그인"} </p>
-    </div>
-    <form onSubmit={onSubmit} className="welcomeContainer">
-    {newAccount ? (    
-    <input
-        name="nickname"
-        type="nickname"
-        placeholder="nickname"
-        required
-        value={nickname}
-        onChange={onChange}
-        className="authInput"
-        autoComplete="off"
-      />): <div className="login_subment">{newAccount? "": "로그인을 안하면 소중한 돈이 사라져요!!"}</div>}
-      <input
-        name="email"
-        type="email"
-        placeholder="Email"
-        required
-        value={email}
-        className="authInput"
-        onChange={onChange}
-        autoComplete="off"
-      />
-      <input
-        name="password"
-        type="password"
-        placeholder="Password"
-        required
-        value={password}
-        className="authInput"
-        onChange={onChange}
-        autoComplete="off"
-      />
-      <input
-        type="submit"
-        className="authInput authSubmit"
-        value={newAccount ? "Create Account" : "Sign In"}
-      />
-       {error && <span className="authError">{error}</span>}
-    </form>
+      <div className="wrapWelcome">
+        <div>
+          <p className="welcomeTxt"> {newAccount ? "회원가입" : "로그인"} </p>
+        </div>
+        <form onSubmit={onSubmit} className="welcomeContainer">
+          {newAccount ? (
+            <input
+              name="nickname"
+              type="nickname"
+              placeholder="nickname"
+              required
+              value={nickname}
+              onChange={onChange}
+              className="authInput"
+              autoComplete="off"
+            />
+          ) : (
+            <div className="login_subment">
+              {newAccount ? "" : "로그인을 안하면 소중한 돈이 사라져요!!"}
+            </div>
+          )}
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            required
+            value={email}
+            className="authInput"
+            onChange={onChange}
+            autoComplete="off"
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            required
+            value={password}
+            className="authInput"
+            onChange={onChange}
+            autoComplete="off"
+          />
+          <input
+            type="submit"
+            className="authInput authSubmit"
+            value={newAccount ? "Create Account" : "Sign In"}
+          />
+          {error && <span className="authError">{error}</span>}
+        </form>
 
         <span className="authError">
           {isCorrect == "wrongPW" ? "비밀번호가 틀렸습니다" : ""}
           {isCorrect == "wrongEM" ? "등록되지 않은 이메일입니다" : ""}
+          {isCorrect == "shortPW" ? "비밀번호는 6자 이상이어야 합니다" : ""}
+          {isCorrect == "sameEM" ? "동일한 이메일이 이미 존재합니다" : ""}
         </span>
 
         <span onClick={toggleAccount} className="authSwitch">
