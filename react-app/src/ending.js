@@ -54,6 +54,13 @@ function Endview(props) {
           setEndingList(tempListNow);
         }
         return "결국 당신은 부당한 회장의 대응에 사표를 던지고 나왔습니다. 이제 회사를 상대로 소송을 하러 가실까요?";
+        case "accused":
+          tempListNow = Object.assign([], endingList);
+          tempListNow[3] = 1;
+          if(endingList[3]===0){
+            setEndingList(tempListNow);
+          }
+          return "중고거래 사기로 고소당했습니다. 검찰청에서 고소장이 도착했습니다. 당신의 눈앞이 깜깜해집니다.";
       default:
         return "";
     };
