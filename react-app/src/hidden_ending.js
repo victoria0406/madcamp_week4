@@ -1,7 +1,6 @@
 import './styles/Game.css';
 import police_ending from './scenario/hidden_ending.json'
 import innerText from 'react-innertext'
-import SelectorView from './selector';
 
 import React, { Component, useEffect, useState } from 'react';
 
