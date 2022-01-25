@@ -24,6 +24,8 @@ import Simplepopup from "./popups/simple_popup";
 import Weddingpopup from "./popups/wedding_popup";
 import { Link, Route } from "react-router-dom";
 import Endview from "./ending";
+import HiddenEndingview from "./hidden_ending";
+import PoliceEventView from "./trade_special_novel";
 
 const days = ["일", "월", "화", "수", "목", "금", "토"];
 const doing_ment = [
@@ -157,7 +159,7 @@ function Gameview(props) {
       } else if (doing == 2) {
         go_carrot();
         setBackground(background_street);
-        setClock(clock_home);
+        setClock(clock_rest);
       } else {
         go_toss();
         setBackground(background_home);
@@ -249,6 +251,18 @@ function Gameview(props) {
       reactSwipeEl.next();
     }
     setPage(2);
+  }
+
+  //경찰 특수 엔딩 분기점
+  function police_ending() {
+    console.log("hidden ending working?");
+    return (
+      <HiddenEndingview
+        user_name={user_name}
+        final_next={do_next_work}
+        setScriptEnd={setScriptEnd}
+      />
+    );
   }
 
   //doing 넘어가는 역할만함, 각각 넘어가는 거에 대한 변화는 useeffect에서 처리
@@ -389,10 +403,27 @@ function Gameview(props) {
             ) : (
               <></>
             )}
+            {doing === 2 ? (
+              day == 9 ? (
+                <PoliceEventView
+                  user_name={user_name}
+                  final_next={do_next_work}
+                  police_ending={police_ending}
+                />
+              ) : (
+                <Novelview
+                  user_name={user_name}
+                  final_next={do_next_work}
+                  setScriptEnd={setScriptEnd}
+                />
+              )
+            ) : (
+              <></>
+            )}
           </div>
           <div className="phone">
             <div className="phoneFrame" />
-            <div class="phone_element">
+            <div className="phone_element">
               <ReactSwipe
                 className="page"
                 swipeOptions={{ continuous: false }}
@@ -431,9 +462,9 @@ function Gameview(props) {
                 </div>
               </ReactSwipe>
             </div>
-            <div class="app_buttons">
+            <div className="app_buttons">
               <button
-                class="applications"
+                className="applications"
                 onClick={() => {
                   go_toss();
                 }}
@@ -446,7 +477,7 @@ function Gameview(props) {
                 />
               </button>
               <button
-                class="applications"
+                className="applications"
                 onClick={() => {
                   go_carrot();
                 }}
@@ -468,7 +499,7 @@ function Gameview(props) {
                 )}
               </button>
               <button
-                class="applications"
+                className="applications"
                 onClick={() => {
                   go_kakao();
                 }}

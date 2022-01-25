@@ -59,7 +59,7 @@ function Novelview(props) {
             }}
             id="script_next"
           >
-            넘어가기
+            >>>>
           </button>
         )}
       </div>

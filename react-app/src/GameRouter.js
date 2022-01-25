@@ -23,6 +23,7 @@ const id = localStorage.getItem("user_id");
 
 function GameRouter() {
     const [init, setInit] = useState(false);
+    
     const [ingame_info, setIngameInfo] = useState({day:1, money:0, name:"미정", point:0, have_item:[0,0,0,0,0,0]});
     const [ending_info, setEndingInfo] = useState([0,0,0,0,0,0]);
 
@@ -34,7 +35,7 @@ function GameRouter() {
       .get(BASE_URL + `/load/${id}`)
       .then((response) => {
         console.log("load data, put in variable");
-        console.log(response.data.day.tey);
+        console.log(response.data);
         t_game_info.day = Number(response.data.day);
         t_game_info.money = Number(response.data.money);
         t_game_info.name = response.data.name;
@@ -64,47 +65,41 @@ function GameRouter() {
             saveList[i] = tempListNow[i] || tempListEnd[i];
         }
         //실행 순서 상 아래 switch 문이 먼저 돌아간다. 따라서 OR 연산을 해준다.(어차피 본 횟수는 안 셀거임)
-        setEndingInfo(saveList);
+        setEndingInfo(saveList); 
         setIngameInfo(t_game_info);
-        console.log(t_game_info);
-        setInit(true);
+        setInit(true); //초기 세팅에서 useEffect 막기 위한 용도
       } )
       .catch((error) => {
         console.log(error);
       });
-    
-
-    
-
-
   },[]);
 
   useEffect(()=>{
-    if(ingame_info.day>1){
+      console.log("patch_before",init);
+    if(ingame_info.day>0&&init){
         axios
         .patch(BASE_URL + `/save/${id}`, {
         money: ingame_info.money,
         day: ingame_info.day===0?1:ingame_info.day,
         point: ingame_info.point,
         item_list: JSON.stringify(ingame_info.have_item),
+        endingList: JSON.stringify(ending_info)
         })
         .then((response) => {
         console.log(response.data);
+        console.log("patch",init);
         });
     }
-    
 
   },[ingame_info]);
 
   useEffect(()=>{
-      console.log(ending_info)
-    axios
-    .patch(BASE_URL + `/reset/${id}`, {
-      endingList: JSON.stringify(ending_info),
-    })
-    .then((response) => {
-      console.log(response.data);
-    });
+      if(init){
+           console.log("ending",init);
+        var t_game_info = {day:1, money:0, name:ingame_info.name, point:0, have_item:[0,0,0,0,0,0]};
+        setIngameInfo(t_game_info);
+      }
+     
   },[ending_info])
 
 
@@ -113,7 +108,7 @@ function GameRouter() {
         <Routes>
         <Route path="/main" element={<Gameview infos = {ingame_info} setIngameInfo = {setIngameInfo}/>} />
         <Route path="/ending/:id" element={<Endview  ending_info = {ending_info} setEndingInfo = {setEndingInfo}/>} />
-        <Route path = "/ending_collect" element = {<Endcollectview ending_info = {ending_info}/>}/>
+        <Route path = "/ending_collect" element = {<Endcollectview ending_info = {ending_info} init = {init}/>}/>
         <Route path = "/credit" element ={<Credit/>}/>
         </Routes>
     );

@@ -140,7 +140,7 @@ function Chatview(props) {
           <Chatroom name="회장...님" chat="월급 포인트로 받게!" />
         </button>
         {chat_list.map((el) => {
-          return <Chatroom name={el.name} chat={el.text} />;
+          return <Chatroom key={el.key} name={el.name} chat={el.text} />;
         })}
       </div>
       {is_popup && (
