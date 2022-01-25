@@ -4,7 +4,6 @@ import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Menu(props) {
-  console.log("game_popup:", props.checked);
 
   return (
     <div className="menu">
