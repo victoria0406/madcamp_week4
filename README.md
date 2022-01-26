@@ -19,7 +19,9 @@
 </div>
 </details>   
   ## 구성
-  
+  ![슬라이드1](https://user-images.githubusercontent.com/81007362/151125796-a5ebb4fe-09ed-4478-9437-45e7bb304a70.PNG)
+  ![슬라이드2](https://user-images.githubusercontent.com/81007362/151125815-43e52fd1-9c9b-494c-aac6-7a8766491da2.PNG)
+  ![슬라이드3](https://user-images.githubusercontent.com/81007362/151125826-2edeb218-5083-4dd1-9e01-7888c675a812.PNG)
   ## 엔딩 종류
   **기본 엔딩**  
   금액대에 따라 Bad, Normal, Good으로 분류된다.  
