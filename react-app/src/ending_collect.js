@@ -23,7 +23,7 @@ function Endcollectview(props){
                     <Endingcollect ending = "Bad Ending" text = "월세를 마련하지 못해 고시원에 들어갔습니다" unlock = {props.ending_info[2]===1}/>
                 </div>
                 <div className='ending_collect'>
-                    {props.ending_info[3]===1&&<Endingcollect ending = "Hidden Ending1" text = "중고거래 사기꾼으로 고소 당했습니다" unlock = {true}/>}
+                    {props.ending_info[3]===1&&<Endingcollect ending = "전과자" text = "중고거래 사기꾼으로 고소 당했습니다" unlock = {true}/>}
                     {props.ending_info[4]===1&&<Endingcollect ending = "퇴사 엔딩" text = "터무니 없는 회장의 갑질을 견디지 못한 당신은 퇴사했습니다." unlock = {true}/>}
                     {props.ending_info[5]===1&&<Endingcollect ending = "Hidden Ending3" text = "" unlock = {true}/>}
                 </div>
