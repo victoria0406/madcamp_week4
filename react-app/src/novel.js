@@ -14,14 +14,8 @@ function randomValueFromArray(array) {
   npcImage = [npcImage[random]];
   return array[random];
 }
-//const shuffle = () => (Math.random() - 0.5);
-//let shuffled = [...trade_scenario].sort(shuffle);
+
 let randomText = randomValueFromArray(trade_scenario);
-
-//console.log("random value from array: ", randomText.case[0]);
-//console.log("shuffle", shuffled);
-
-//console.log("test", test[0]);
 
 function Novelview(props) {
   const [count, setCount] = useState(1);
@@ -58,15 +52,22 @@ function Novelview(props) {
       <div id="script_text">
         {text}
         {count === randomText.case.length ? (
-          <></>
+          <button
+            onClick={() => {
+              props.final_next();
+              randomText = randomValueFromArray(trade_scenario);
+            }}
+            id="script_next"
+          >
+            거래마치기
+          </button>
         ) : (
           <button
             onClick={() => {
               go_next();
             }}
             id="script_next"
-          >
-          </button>
+          ></button>
         )}
       </div>
     </div>

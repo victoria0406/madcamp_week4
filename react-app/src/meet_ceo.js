@@ -2,84 +2,90 @@ import "./styles/Game.css";
 import scenario from "./scenario/scenario.json";
 import trade_scenario from "./scenario/trade_scenario.json";
 import test from "./scenario/test.json";
-import innerText from "react-innertext";
-
-import person1 from "./images/items/공기청정기.png";
-import person2 from "./images/items/청소기.png";
-import person3 from "./images/items/캡슐커피머신.png";
-import person4 from "./images/items/바람막이.jpg";
-
 import React, { Component, useEffect, useState } from "react";
-let person = person1;
 
 let randomText = [
-    {
-        "text": "나는 지나의 결혼식에 참여했다",
-        "type": "trade"
-    },
-    {
-        "text": "그리고 내 손에 ",
-        "type": "trade"
-    },
-    {
-        "name": "Player",
-        "text": "예?",
-        "type": "trade"
-    },
-    {
-        "text": "......",
-        "type": "trade"
-    },
-    {
-        "name": "SYSTEM",
-        "text": "성공적인 거래였다.",
-        "type": "trade"
-    }
-]
-//const shuffle = () => (Math.random() - 0.5);
-//let shuffled = [...trade_scenario].sort(shuffle);
-
-
-//console.log("random value from array: ", randomText.case[0]);
-//console.log("shuffle", shuffled);
-
-//console.log("test", test[0]);
-
+  {
+    text: "나는 지나의 결혼식에 갔다.",
+  },
+  {
+    text: "지나는 답례의 선물로 희귀 LP 판을 선물했다.",
+  },
+  {
+    text: "해당 LP판은 루바의 연주가 녹음되어 있었다.",
+  },
+  {
+    text: "회장 때문에 나는 루바라면 진절머리가 나는 상황이었지만, 나는 친구의 마음이 고마워 선물을 받았다.",
+  },
+  {
+    text: "그런데 결혼식장 입구에서 나는 우연히 회장을 만났다.",
+  },
+  {
+    name: "회장",
+    text: "자네... 그 우리 회사의... 그 포인트 좋아하는 차장 아닌가?",
+  },
+  {
+    text: "하고 싶은 말이 목구멍까지 올라왔지만, 참았다.",
+  },
+  {
+    name: "회장",
+    text: "자네 손에 그거... 루보프 스미르노바의 LP판 아닌가? 자네 뭘 좀 아는구만",
+  },
+  {
+    name: "회장",
+    text: "그건 나도 아직 못 구한 판인데... 자네 나한테 팔지 않겠나?",
+  },
+  {
+    name: "Player",
+    text: "아닙니다. 회장님, 그냥 드리겠습니다",
+  },
+  {
+    name: "회장",
+    text: "대표가 되어서 사원의 돈을 갈취하면 안되지... 대신 차장이 부담스러워 하는 것 같으니 자네가 좋아하는 포-인-트로 주겠네",
+  },
+  {
+    name: "System",
+    text: "회장과의 거래를 성공적으로 끝냈습니다. 대가로 10000000 포인트를 획득했습니다.",
+  },
+];
 function CEOview(props) {
-  
   const [count, setCount] = useState(1);
-  let [name, setName] = useState(randomText.case[0].name);
-  //const [person, setPerson] = useState(person1);
-  const [text, setText] = useState(randomText.case[0].text);
-  const [type, setType] = useState(randomText.case[0].type);
+  let [name, setName] = useState(randomText[0].name);
+  const [text, setText] = useState(randomText[0].text);
+  const [type, setType] = useState(randomText[0].type);
 
   if (name == "Player") {
+    name = props.user_name;
     //console.log("이름 바꾸기" + name + "\n user name: " + user_name);
   }
 
   function go_next() {
     setCount(count + 1);
-    setName(randomText.case[count].name);
-    setText(randomText.case[count].text);
-    setType(randomText.case[count].type);
+    setName(randomText[count].name);
+    setText(randomText[count].text);
+    setType(randomText[count].type);
   }
 
   useEffect(() => {
-    if (count === randomText.case.length) {
-      props.setScriptEnd(true);
+    if (count === randomText.length - 1) {
+      props.setPoint(props.point + 10000000);
     }
   }, [count]);
 
-  //console.log("name: ", shuffled[0].case.name, "text: ", shuffled[0].case.text);
-
   return (
-      <div class="novel">
+    <div class="novel">
       {name == null ? <></> : <div id="script_name">{name}</div>}
-      
       <div id="script_text">
         {text}
-        {count === randomText.case.length ? (
-          <></>
+        {count === randomText.length ? (
+          <button
+            onClick={() => {
+              props.final_next();
+            }}
+            id="script_next"
+          >
+            거래마치기
+          </button>
         ) : (
           <button
             onClick={() => {
@@ -92,7 +98,6 @@ function CEOview(props) {
         )}
       </div>
     </div>
-    
   );
 }
 
