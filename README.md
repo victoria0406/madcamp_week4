@@ -1,4 +1,6 @@
-  # MADCAMP WEEK 4: 중기슬(중고거래의 기쁨과 슬픔)
+  # MADCAMP WEEK 4: 중고거래의 기쁨과 슬픔
+  
+  ![image](https://user-images.githubusercontent.com/81007362/151159293-5a380856-9dcc-4cd5-8896-e93925ead0a1.png)
   
   ## 소개
   회장의 비위를 거슬려 포인트로 월급을 받게 된 당신, 회장의 터무니 없는 갑질에 포인트로 물건을 구매하여 돈으로 환전하게 되는데...  
@@ -32,6 +34,15 @@
   **히든 엔딩**  
   경찰 엔딩 - 거래를 하지 않아 경찰에 불려가는 엔딩(hint: 거래에 나타나지 말아보자)  
   퇴사 엔딩 - 회장님께 퇴사를 요청해서 퇴사를 하는 엔딩(hint: 회장과 카톡을 해보자)    
+  
+  ### **Tech stack**
+
+---
+
+- Frontend: HTML, CSS, JavaScript, React.js
+- Backend Server: Node.js
+- Database: MongoDB
+
   ## Credit
 | devinfo | github | Email |  
 | ------ | ------ | ------ |
@@ -48,3 +59,4 @@
   ![image](https://user-images.githubusercontent.com/81007362/151113727-b9cda4dc-6eb0-4542-8a19-6a907392100d.png)
   
   배설영
+  - 게임 하시는 김에 책도 한 권 사 주세요
