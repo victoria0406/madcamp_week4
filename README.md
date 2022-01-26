@@ -20,11 +20,11 @@
   경찰 엔딩 - 거래를 하지 않아 경찰에 불려가는 엔딩(hint: 거래에 나타나지 말아보자)  
   퇴사 엔딩 - 회장님께 퇴사를 요청해서 퇴사를 하는 엔딩(hint: 회장과 카톡을 해보자)    
   ## Credit
-| devinfo | github |
+| devinfo | github | Email
 | ------ | ------ |
-| 윤정인 | [깃허브주소](https://github.com/pell13) |
-| 박도윤 | [깃허브주소](https://github.com/victoria0406) |
-| 배설영 | [깃허브주소](https://github.com/JeongIn37) | 
+| 윤정인 | [깃허브주소](https://github.com/JeongIn37) | 
+| 박도윤 | [깃허브주소](https://github.com/victoria0406) | victoria0406@kaist.ac.kr |
+| 배설영 | [깃허브주소]( https://github.com/pell13) | 
 
   ## 하고 싶은 말
   ![image](https://user-images.githubusercontent.com/81007362/151113727-b9cda4dc-6eb0-4542-8a19-6a907392100d.png)
