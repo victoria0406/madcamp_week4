@@ -150,7 +150,7 @@ const Login = () => {
           <input
             type="submit"
             className="authInput_authSubmit"
-            value={newAccount ? "Create Account" : "Sign In"}
+            value={newAccount ? "계정 생성" : "Sign In"}
           />
           {error && <span className="authError">{error}</span>}
         </form>
