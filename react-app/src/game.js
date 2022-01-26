@@ -27,6 +27,9 @@ import Endview from "./ending";
 import HiddenEndingview from "./hidden_ending";
 import PoliceEventView from "./trade_special_novel";
 import CEOview from "./meet_ceo";
+import { Modal } from "bootstrap";
+import Popup from "./popup";
+import Tutorial from "./Tutorial";
 
 const days = ["일", "월", "화", "수", "목", "금", "토"];
 const doing_ment = [
@@ -335,6 +338,14 @@ function Gameview(props) {
   if (init) {
     return (
       <div>
+        {props.isNewUser && day == 1 && (
+          <div>
+            <Popup>
+              <Tutorial></Tutorial>
+            </Popup>
+          </div>
+        )}
+
         <div className="main">
           <div className="game_image">
             <img
