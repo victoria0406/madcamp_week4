@@ -1,5 +1,6 @@
 * {
   font-family: "pf";
+  cursor: url("/src/images/game_component/cursor.png"), auto;
 }
 
 @font-face {
@@ -14,6 +15,7 @@
 body {
   background-color: #9fcfa8;
 }
+
 
 .horiz {
   display: flex;

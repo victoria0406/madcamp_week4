@@ -419,7 +419,8 @@ function Gameview(props) {
             )}
           {doing===1&&day===7&&!script_end&&
             (have_items[5]==1? 
-              <CEOview 
+              <CEOview
+                user_name={user_name} 
                 final_next={do_next_work} 
                 point = {point} 
                 setPoint={setPoint}

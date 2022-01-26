@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.cursor {
+  width: 40px;
+  height: 40px;
+  background-image: url("/src/images/game_component/cursor.png");
+  background-color: rgba(0,0,0,0);
+}

@@ -27,9 +27,19 @@ window.addEventListener("resize", function () {
   resizeApply();
 });
 
+
+
 function App() {
   const [init, setInit] = useState(false);
-  
+
+  const[cursorX, setCursorX] = useState();
+  const[cursorY, setCursorY] = useState();
+
+  window.addEventListener('mousemove', (e) => {
+    setCursorX(e.pageX)
+    setCursorY(e.pageY)
+  })
+
   useEffect(() => {
     resizeApply();
     if(!init){
@@ -37,10 +47,13 @@ function App() {
     setInit(true);
   }, []);
   return (
+    <>
+    
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/*" element={<GameRouter />} />
     </Routes>
+    </>
   );
 }
 
