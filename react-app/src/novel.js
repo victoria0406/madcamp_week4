@@ -32,7 +32,6 @@ function Novelview(props) {
   function go_next() {
     setCount(count + 1);
     setName(randomText.case[count].name);
-    setText(randomText.case[count].text);
     setType(randomText.case[count].type);
   }
 
