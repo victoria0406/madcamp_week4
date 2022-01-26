@@ -14,7 +14,7 @@ import {
   Routes,
 } from "react-router-dom";
 import Credit from "./credit";
-import { useEffect } from "react";
+import { useEffect, useReducer, useState } from "react";
 import GameRouter from "./GameRouter";
 
 function resizeApply() {
@@ -28,9 +28,6 @@ window.addEventListener("resize", function () {
 });
 
 function App() {
-  useEffect(() => {
-    resizeApply();
-  }, []);
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
