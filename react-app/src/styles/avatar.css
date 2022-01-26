@@ -1,0 +1,47 @@
+.npc_img1 {
+  background-image: url("../images/npc/npc1.png");
+  background-size: 100% 100%;
+  width: 20em;
+  height: 25em;
+  position: absolute;
+  z-index: -1;
+  left: 13em;
+  bottom: 5em;
+  color: red;
+}
+
+.npc_img2 {
+  background-image: url("../images/npc/npc2.png");
+  background-size: 100% 100%;
+  width: 20em;
+  height: 25em;
+  position: absolute;
+  z-index: -1;
+  left: 13em;
+  bottom: 5em;
+  color: red;
+}
+
+.npc_img3 {
+  background-image: url("../images/npc/npc3.png");
+  background-size: cover;
+  width: 22em;
+  height: 30em;
+  position: absolute;
+  z-index: -1;
+  left: 11em;
+  bottom: 6em;
+  color: red;
+}
+
+.npc_img4 {
+  background-image: url("../images/npc/npc4.png");
+  background-size: 100% 100%;
+  width: 20em;
+  height: 25em;
+  position: absolute;
+  z-index: -1;
+  left: 13em;
+  bottom: 5em;
+  color: red;
+}

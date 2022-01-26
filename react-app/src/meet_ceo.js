@@ -24,6 +24,9 @@ let randomText = [
 
     },
     {
+      text: "나는 회장에게 인사를 하러 가야할까?"
+    },
+    {
         name:"회장",
         text:"자네... 그 우리 회사의... 그 포인트 좋아하는 차장 아닌가?"
     },
@@ -70,8 +73,9 @@ function CEOview(props) {
   }
 
   useEffect(()=>{
-      if(count===randomText.length-1){
+      if(count===randomText.length){
         props.setPoint(props.point+10000000);
+        props.setScriptEnd(true);
       }
 
   },[count])
@@ -82,15 +86,30 @@ function CEOview(props) {
       {name == null ? <></> : <div id="script_name">{name}</div>}
       <div id="script_text">
         {text}
-        {count === randomText.length   ? (
+        {count===6?(
+          <>
           <button
             onClick={() => {
-              props.final_next();
+              go_next();
             }}
-            id="script_next"
+            id="select_A"
           >
-            거래마치기
+            간다
           </button>
+          <button
+            onClick={() => {
+              props.setScriptEnd(true);
+            }}
+            id="select_B"
+          >
+            가지 않는다
+          </button>
+        </>):<></>
+        }
+
+
+        {count!==6&&(count === randomText.length   ? (
+          <></>
         ) : (
           <button
             onClick={() => {
@@ -98,9 +117,9 @@ function CEOview(props) {
             }}
             id="script_next"
           >
-            넘어가기
+            {">>>>"}
           </button>
-        )}
+        ))}
       </div>
     </div>
   );

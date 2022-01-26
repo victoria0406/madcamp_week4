@@ -1,10 +1,8 @@
-import './styles/Game.css';
-import trade_special from './scenario/trade_special.json'
-import innerText from 'react-innertext'
+import "./styles/Game.css";
+import trade_special from "./scenario/trade_special.json";
+import innerText from "react-innertext";
 
-import React, { Component, useEffect, useState } from 'react';
-
-
+import React, { Component, useEffect, useState } from "react";
 
 function PoliceEventView(props) {
   const [count, setCount] = useState(1);
@@ -24,10 +22,10 @@ function PoliceEventView(props) {
     setType(trade_special[0].case[count].type);
   }
 
+  console.log("경찰 이벤트");
   //console.log("name: ", shuffled[0].case.name, "text: ", shuffled[0].case.text);
 
   return (
-
     <div class="novel">
       {name == null ? <></> : <div id="script_name">{name}</div>}
       <div id="script_text">
@@ -58,7 +56,7 @@ function PoliceEventView(props) {
             }}
             id="script_next"
           >
-            넘어가기
+            >>>>
           </button>
         )}
       </div>

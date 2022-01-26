@@ -1,17 +1,17 @@
-*{
+* {
   font-family: "pf";
 }
 
 @font-face {
   font-family: "pf";
-  
+
   src: url("../font/PF스타더스트.ttf");
 }
 @font-face {
   font-family: "pf_bold";
   src: url("../font/PF스타더스트+Bold.ttf");
 }
-body{
+body {
   background-color: #9fcfa8;
 }
 
@@ -124,13 +124,14 @@ body{
 }
 
 #game_button {
-  width: 120px;
+  width: 150px;
   height: 50px;
-  font-size: 16px;
+  font-size: 1.5em;
   position: absolute;
   top: 425px;
-  left: 350px;
+  left: 335px;
   background-image: url("../images/game_component/button.png");
+  background-size: 100% 100%;
   padding: 0%;
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
@@ -159,11 +160,21 @@ body{
   top: 80px;
 }
 
+#no_event {
+  position: absolute;
+  font-size: 20px;
+  color:black;
+  top: 350px;
+  left: 210px;
+  font-weight: bold;
+  z-index: -1;
+}
+
 /*market.js에서 이용*/
 #carrot {
   font-weight: bold;
   padding-top: 1em;
-  width: 20em;
+  width: 19.1em;
   background-color: #f1988d;
   text-align: center;
   color: white;
@@ -206,12 +217,23 @@ body{
   height: 30px;
   line-height: 30px;
 }
+
 .deal_button {
   border: none;
   margin-right: 1.5em;
   border-radius: 0.3em;
   color: rgb(247, 247, 247);
   background-color: orange;
+  height: 30px;
+  width: 70px;
+}
+
+.deal_button:hover {
+  border: none;
+  margin-right: 1.5em;
+  border-radius: 0.3em;
+  color: rgb(247, 247, 247);
+  background-color: rgb(255, 94, 0);
   height: 30px;
   width: 70px;
 }
@@ -315,17 +337,19 @@ body{
 
 }
 #script_name {
-  width: 150px;
+  width: 8em;
   height: 40px;
-  background-color: aliceblue;
-  background-color: rgba(0, 0, 0, 0);
   background-image: url("../images/background_name.png");
+  background-size: 100% 100%;
   margin-bottom: 10px;
   margin-left: 7px;
+  font-size: 1.5em;
   color: #efe0c3;
   text-align: center;
   box-sizing: border-box;
-  padding:10px;
+  padding: 10px;
+  position: relative;
+  z-index: 5;
 }
 #script_text {
   width: 720px;
@@ -333,6 +357,9 @@ body{
   background-color: aliceblue;
   background-color: rgba(0, 0, 0, 0);
   box-sizing: border-box;
+  position: relative;
+  z-index: 5;
+  font-size: 1.5em;
   padding-top: 20px;
   padding-left: 20px;
   background-image: url("../images/background_text.png");
@@ -340,12 +367,17 @@ body{
 }
 #script_next {
   position: absolute;
+  background-color: #efe0c3;
   bottom: 20px;
+  color: slategray;
+  font-size: 1.2em;
   right: 20px;
+  border: none;
 }
 #select_A {
   position: absolute;
   bottom: 370px;
+  left: 20em;
   font-size: 16px;
   width: 120px;
   height: 50px;
@@ -356,9 +388,10 @@ body{
   background-image: url("../images/game_component/button.png");
 }
 
-#select_B{
+#select_B {
   position: absolute;
   bottom: 300px;
+  left: 20em;
   font-size: 16px;
   width: 120px;
   height: 50px;
@@ -380,7 +413,7 @@ body{
 #toss {
   font-weight: bold;
   padding-top: 1em;
-  width: 20em;
+  width: 19.1em;
   background-color: #615b95;
   line-height: 50px;
   text-align: center;
@@ -441,7 +474,7 @@ body{
 #kakao {
   font-weight: bold;
   padding-top: 1em;
-  width: 20em;
+  width: 19.1em;
   background-color: #e3dd68;
   line-height: 50px;
   text-align: center;
@@ -508,6 +541,7 @@ body{
 
 .chat_text {
   margin-bottom: 1em;
+  width: 13em;
   font-size: 14px;
 }
 
