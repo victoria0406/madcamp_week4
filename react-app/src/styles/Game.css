@@ -57,7 +57,6 @@ body{
   margin: 25px;
   margin-top: 80px;
   height: 742px;
-  background-color: rgba(255, 255, 255, 0.2);
   border: 8px solid #574138;
 }
 
@@ -313,6 +312,7 @@ body{
   position: absolute;
   bottom: 70px;
   margin: 10px;
+
 }
 #script_name {
   width: 150px;
@@ -336,6 +336,7 @@ body{
   padding-top: 20px;
   padding-left: 20px;
   background-image: url("../images/background_text.png");
+  z-index: 10;
 }
 #script_next {
   position: absolute;
@@ -366,6 +367,13 @@ body{
   color: #efd9c6;
   background-color: rgba(0, 0, 0, 0);
   background-image: url("../images/game_component/button.png");
+}
+
+.person_img{
+  position: absolute;
+  bottom: 60px;
+  right: 10px;
+  z-index: -1;
 }
 
 /*======bank.js에서 사용=========*/

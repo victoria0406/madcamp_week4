@@ -118,7 +118,7 @@ const Login = () => {
             />
           ) : (
             <div className="login_subment">
-              {newAccount ? "" : "로그인을 안하면 소중한 돈이 사라져요!!"}
+              {newAccount ? "" : "★로그인을 안하면 소중한 돈이 사라져요★"}
             </div>
           )}
           <input
@@ -143,7 +143,7 @@ const Login = () => {
           />
           <input
             type="submit"
-            className="authInput authSubmit"
+            className="authInput_authSubmit"
             value={newAccount ? "Create Account" : "Sign In"}
           />
           {error && <span className="authError">{error}</span>}
