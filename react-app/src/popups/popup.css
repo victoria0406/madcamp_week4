@@ -71,14 +71,19 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.deal_subject {
+  font-size: 1.5em;
+}
+
 #deal_popup {
-  width: 220px;
-  height: 120px;
+  width: 24em;
+  height: 14em;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  background-size: 100% 100%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -93,14 +98,44 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  
+  padding-top: 1em;
 }
 
-.popup_button{
-  width: 100px;
-  height: 20px;
+.popup_button {
+  width: 8em;
+  height: 4em;
+  border: 1px bold black;
+  margin-bottom: 0.4em;
+  font-size: 1.5em;
+  background-color: rgb(255, 255, 255);
 }
 
+.popup_button:hover {
+  border: 1px bold black;
+  background-color: rgb(255, 199, 161);
+}
+
+.popup_button_event {
+  width: 8em;
+  height: 2em;
+  border: 1px bold black;
+  margin-bottom: 0.4em;
+  font-size: 1.5em;
+  background-color: rgb(255, 255, 255);
+}
+
+.popup_button_event:hover {
+  border: 1px bold black;
+  background-color: rgb(255, 199, 161);
+}
+
+.popup_ment_event {
+  font-size: 1.5em;
+  word-break: keep-all;
+  padding: 1em;
+  text-align: center;
+  word-spacing: 0.2em;
+}
 
 #chat_popup {
   width: 250px;
@@ -119,6 +154,7 @@
 }
 
 .p_chat_text {
+  word-break: keep-all;
   margin: 20px;
 }
 
@@ -142,8 +178,16 @@
 }
 
 .chat_popup_button {
-  color:white;
+  color: white;
   background-color: rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  width: 80px;
+  height: 30px;
+}
+
+.chat_popup_button:hover {
+  color: rgb(0, 0, 0);
+  background-color: white;
   border: 1px solid white;
   width: 80px;
   height: 30px;

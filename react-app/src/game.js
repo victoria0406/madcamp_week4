@@ -28,7 +28,6 @@ import HiddenEndingview from "./hidden_ending";
 import PoliceEventView from "./trade_special_novel";
 import CEOview from "./meet_ceo";
 
-
 const days = ["일", "월", "화", "수", "목", "금", "토"];
 const doing_ment = [
   "출근 준비 중",
@@ -45,7 +44,7 @@ const doing_ment_sat = [
   "친구 만나기",
 ];
 const next_do_ment_sat = [
-  "특별한 거래 하기",
+  "외출하기",
   "일반 거래 하기",
   "거래 마치기",
   "다음날",
@@ -194,12 +193,17 @@ function Gameview(props) {
     if (day % 7 === 1) {
       setPoint(point + 1000000);
     }
-    if(day>1){
-      const game_info = {day:day, money:money, name: user_name, point:point, have_item:have_items};
+    if (day > 1) {
+      const game_info = {
+        day: day,
+        money: money,
+        name: user_name,
+        point: point,
+        have_item: have_items,
+      };
       props.setIngameInfo(game_info);
       setSellItems(choose_items());
     }
-    
   }, [day]);
 
   //DB로부터 로드
@@ -214,21 +218,20 @@ function Gameview(props) {
     setInit(true);
   }, []);
 
-
-  useEffect(()=>{
-    if(goto_wedding==true){
-      if(money<50000){
-        setWeddingment("돈이 부족해 결혼식에 가지 못하게 되었습니다.");
-      }
-      else{
-        setMoney(money-50000);
-        have_items[5]=1;
+  useEffect(() => {
+    if (goto_wedding == true) {
+      if (money < 50000) {
+        setWeddingment("돈이 부족해 결혼식에 가지 못했습니다.");
+      } else {
+        setMoney(money - 50000);
+        have_items[5] = 1;
         setHaveItems(have_items);
-        setWeddingment("당신의 계좌에서 축의금 5만원이 빠져나갔습니다. 그리고 당신은 친구에게 희귀 클래식 LP판을 얻었습니다.");
+        setWeddingment(
+          "당신의 계좌에서 축의금 5만원이 빠져나갔습니다. 그리고 당신은 친구에게 희귀 클래식 LP판을 얻었습니다."
+        );
       }
     }
-  },[goto_wedding])
-
+  }, [goto_wedding]);
 
   function go_toss() {
     for (var i = 0; i < page; i++) {
@@ -251,10 +254,16 @@ function Gameview(props) {
     setPage(2);
   }
 
-    //경찰 특수 엔딩 분기점
-    function police_ending(){
-      console.log("hidden ending working?")
-      return <HiddenEndingview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd} />  
+  //경찰 특수 엔딩 분기점
+  function police_ending() {
+    console.log("hidden ending working?");
+    return (
+      <HiddenEndingview
+        user_name={user_name}
+        final_next={do_next_work}
+        setScriptEnd={setScriptEnd}
+      />
+    );
   }
 
   //doing 넘어가는 역할만함, 각각 넘어가는 거에 대한 변화는 useeffect에서 처리
@@ -318,7 +327,7 @@ function Gameview(props) {
     });
     return checked;
   }
-  if(init){
+  if (init) {
     return (
       <div>
         <div className="main">
@@ -380,12 +389,34 @@ function Gameview(props) {
             ) : (
               <></>
             )}
-            {goto_wedding&& (
+            {goto_wedding && (
               <Weddingpopup
-              ment ={wedding_ment} setGotoWedding = {setGotoWedding}/>
+                ment={wedding_ment}
+                setGotoWedding={setGotoWedding}
+              />
             )}
+            {doing === 2 ? (
+              day === 9 ? (
+                <PoliceEventView
+                  user_name={user_name}
+                  final_next={do_next_work}
+                  police_ending={police_ending}
+                />
+              ) : (
+                <Novelview
+                  user_name={user_name}
+                  final_next={do_next_work}
+                  setScriptEnd={setScriptEnd}
+                />
+              )
+            ) : (
+              <></>
+            )}
+<<<<<<< HEAD
           {doing==1&&day==7&&(have_items[5]==1? <CEOview final_next={do_next_work} point = {point} setPoint={setPoint}/>:<div>조건을 만족하지 못해 특별 거래를 성사하지 못했습니다.</div>)}
           { doing === 2 ? day == 9 ? <PoliceEventView user_name={user_name} final_next={do_next_work} police_ending={police_ending} /> : <Novelview user_name={user_name} final_next={do_next_work} setScriptEnd={setScriptEnd}/> : <></> }
+=======
+>>>>>>> 09bbf3ab65ceaf0dbde4a89be54c270a31367c9a
           </div>
           <div className="phone">
             <div className="phoneFrame" />
@@ -396,7 +427,11 @@ function Gameview(props) {
                 ref={(el) => (reactSwipeEl = el)}
               >
                 <div>
-                  <Bankview money={money} point={point} have_items={have_items}/>
+                  <Bankview
+                    money={money}
+                    point={point}
+                    have_items={have_items}
+                  />
                 </div>
                 <div>
                   {day % 7 == 1 ? (
@@ -420,7 +455,7 @@ function Gameview(props) {
                   )}
                 </div>
                 <div>
-                  <Chatview day = {day} setGotoWedding = {setGotoWedding}/>
+                  <Chatview day={day} setGotoWedding={setGotoWedding} />
                 </div>
               </ReactSwipe>
             </div>
@@ -479,8 +514,8 @@ function Gameview(props) {
         <Menu />
       </div>
     );
-  }else{
-    return <></>
+  } else {
+    return <></>;
   }
 }
 

@@ -1,86 +1,126 @@
-.ending{
-    max-width: 1200px;
-    width: 100vw;
-    height: 900px;
-    background-color: beige;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../images/background.png");
+.ending {
+  max-width: 1200px;
+  width: 100vw;
+  height: 900px;
+  background-color: beige;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/background.png");
 }
 
-.ending_collect{
-    width: 1000px;
-    display: flex;
-    flex-direction: row; 
-    justify-content: space-around;
-    margin: 30px;
+.cradit_maker {
+  padding: 1em;
+  width: 20em;
+  display: flex;
+  margin-top: 2em;
+  justify-content: space-between;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
 }
 
-.card_unlock{
-    width: 250px;
-    height: 250px;
-    background-image: url("../images/game_component/ending.png");
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-
+.buy_book {
+  margin-top: 3em;
 }
 
-.card_lock{
-    width: 250px;
-    height: 250px;
-    background-image: url("../images/game_component/ending_block.png");
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-
+.github {
+  margin-top: 0.5em;
+  background-image: url("../images/github.png");
+  width: 2em;
+  height: 2em;
+  background-size: 100% 100%;
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+  border-radius: 20em;
 }
 
-.ending_head{
-    width: 250px;
-    text-align: center;
-    font-size: 16px;
-    color: white;
-    position: relative;
-    height: 32px;
-}
-.ending_text{
-    margin: 10px;
-    width: 200px;
-    height: 100px;
-    
-}
-
-#head_text{
-    height: 150px;
-    line-height: 240px;
-    font-size: 48px;
-    color:white;
+.credit_text {
+  max-width: 1200px;
+  width: 100vw;
+  height: 900px;
+  background-color: beige;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  font-size: 2em;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/background.png");
 }
 
-#ending_ment{
-    color:white;
-    font-size: 24px;
-
+.ending_collect {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 30px;
 }
 
-#restart_button{
-    width: 120px;
-    height: 50px;
-    font-size: 16px;
-    position: absolute;
-    bottom: 300px;
-    background-image: url("../images/game_component/button.png");
-    padding: 0%;
-    border: 0px;
-    background-color: rgba(0, 0, 0, 0);
-    color: #eFd9c6;
+.card_unlock {
+  width: 250px;
+  height: 250px;
+  background-image: url("../images/game_component/ending.png");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.card_lock {
+  width: 250px;
+  height: 250px;
+  background-image: url("../images/game_component/ending_block.png");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ending_head {
+  width: 250px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  position: relative;
+  height: 32px;
+}
+.ending_text {
+  margin: 10px;
+  width: 200px;
+  height: 100px;
+}
+
+#head_text {
+  height: 150px;
+  line-height: 240px;
+  font-size: 48px;
+  color: white;
+}
+
+#ending_ment {
+  color: white;
+  font-size: 24px;
+}
+
+#restart_button {
+  width: 120px;
+  height: 50px;
+  font-size: 16px;
+  position: absolute;
+  bottom: 300px;
+  background-image: url("../images/game_component/button.png");
+  padding: 0%;
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #efd9c6;
 }
