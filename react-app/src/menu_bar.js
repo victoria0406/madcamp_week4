@@ -31,6 +31,15 @@ function Menu(props) {
           크레딧
         </Link>
       </button>
+      <button className="menu_button"
+      onClick={()=>{localStorage.removeItem('user_id');}}>
+        <Link
+          to="/"
+          style={{ textDecoration: "none", color: "white", padding: 40 }}
+        >
+          로그아웃
+        </Link>
+      </button>
     </div>
   );
 }
