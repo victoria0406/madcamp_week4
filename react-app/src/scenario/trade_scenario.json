@@ -25,7 +25,7 @@
                 "type": "trade"
             },
             {
-                "name": "거래자A",
+                "name": "거북이알",
                 "text": "음, 흠집이 좀 있는 것 같은데요.",
                 "type": "trade"
             },
@@ -35,7 +35,7 @@
                 "type": "trade"
             },
             {
-                "name": "거래자A",
+                "name": "거북이알",
                 "text": "아님 말구요~",
                 "type": "trade"
             },
@@ -58,7 +58,7 @@
                 "type": "trade"
             },
             {
-                "name": "거래자B",
+                "name": "별찍는만장이",
                 "text": "저 멀리서 왔는데~ 만 원만 깎아주시면 안 되나요?",
                 "type": "trade"
             },
@@ -68,7 +68,7 @@
                 "type": "trade"
             },
             {
-                "name": "거래자B",
+                "name": "별찍는만장이",
                 "text": "싫음 말구요~",
                 "type": "trade"
             },
@@ -91,7 +91,7 @@
                 "type": "trade"
             },
             {
-                "name": "거래자C",
+                "name": "도찍도",
                 "text": "혹시 신을 믿으십니까?",
                 "type": "trade"
             },

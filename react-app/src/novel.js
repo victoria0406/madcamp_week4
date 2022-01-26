@@ -1,9 +1,6 @@
 import "./styles/Game.css";
 import "./styles/avatar.css";
-import scenario from "./scenario/scenario.json";
 import trade_scenario from "./scenario/trade_scenario.json";
-import test from "./scenario/test.json";
-import innerText from "react-innertext";
 
 import React, { Component, useEffect, useState } from "react";
 

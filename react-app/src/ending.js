@@ -76,6 +76,17 @@ function Endview(props) {
           </Link>
         </button>
       </div>
+      {pathname.split("/")[2] == "accused" ? 
+        <div className="car-container">
+          <div className="car"></div>
+          <div className="wheel-1"></div>
+          <div className="wheel-2"></div>
+        </div> : <></>
+        }
+      {pathname.split("/")[2] == "good" ? 
+
+        <div className="money"></div> :<></>}
+        
       <Menu />
     </div>
   );
