@@ -147,13 +147,13 @@ app.patch('/save/:id', (req,res) => {
   }
   var o_id = new ObjectId(req.params.id);
 
-  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:req.body.money, point:req.body.point, day:req.body.day, item_list:req.body.item_list} } , (err, user) => {
+  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:req.body.money, point:req.body.point, day:req.body.day, item_list:req.body.item_list, endingList:req.body.endingList} } , (err, user) => {
     if (err){
       return res.status(404).end()
     }
+    console.log("save 요청 응답", user);
     res.json({ok: true, users: user});
   });
-
 })
 
 app.patch('/reset/:id', (req,res) => { 
@@ -167,7 +167,7 @@ app.patch('/reset/:id', (req,res) => {
   }
   var o_id = new ObjectId(req.params.id);
 
-  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:"0", point:"1000000", day:"1", item_list:"[0,0,0,0,0]", endingList:req.body.endingList} } , (err, user) => {
+  UserNew.findOneAndUpdate( { _id:o_id }, { $set: {money:"0", point:"0", day:"1", item_list:"[0,0,0,0,0,0]", endingList:req.body.endingList} } , (err, user) => {
     if (err){
       return res.status(404).end()
     }
