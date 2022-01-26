@@ -417,34 +417,15 @@ function Gameview(props) {
             ) : (
               <></>
             )}
-            {doing == 1 &&
-              day == 7 &&
-              (have_items[5] == 1 ? (
-                <CEOview
-                  final_next={do_next_work}
-                  point={point}
-                  setPoint={setPoint}
-                />
-              ) : (
-                <div>조건을 만족하지 못해 특별 거래를 성사하지 못했습니다.</div>
-              ))}
-            {doing === 2 ? (
-              day == 9 ? (
-                <PoliceEventView
-                  user_name={user_name}
-                  final_next={do_next_work}
-                  police_ending={police_ending}
-                />
-              ) : (
-                <Novelview
-                  user_name={user_name}
-                  final_next={do_next_work}
-                  setScriptEnd={setScriptEnd}
-                />
-              )
-            ) : (
-              <></>
-            )}
+          {doing===1&&day===7&&!script_end&&
+            (have_items[5]==1? 
+              <CEOview 
+                final_next={do_next_work} 
+                point = {point} 
+                setPoint={setPoint}
+                setScriptEnd={setScriptEnd}
+              />
+            :<div id="no_event">조건을 만족하지 못해 특별 거래를 성사하지 못했습니다.</div>)}
           </div>
           <div className="phone">
             <div className="phoneFrame" />
