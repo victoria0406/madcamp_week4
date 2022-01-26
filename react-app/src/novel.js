@@ -7,11 +7,13 @@ import innerText from "react-innertext";
 
 import React, { Component, useEffect, useState } from "react";
 
-let npcImage = ["npc_img1", "npc_img2", "npc_img3", "npc_img4"];
+let npcImages = ["npc_img3", "npc_img4", "npc_img2", "npc_img1"];
+
+let npcImage =  npcImages[0];
 
 function randomValueFromArray(array) {
   const random = Math.floor(Math.random() * array.length);
-  npcImage = [npcImage[random]];
+  npcImage = npcImages[random];
   return array[random];
 }
 
@@ -23,6 +25,7 @@ function Novelview(props) {
   const [text, setText] = useState(randomText.case[0].text);
   const [isNovelView, setIsNovelView] = useState(false);
   const [type, setType] = useState(randomText.case[0].type);
+  const [end, setEnd] = useState(false);
 
   if (name == "Player") {
     name = props.user_name;
@@ -38,6 +41,9 @@ function Novelview(props) {
   useEffect(() => {
     if (count === randomText.case.length) {
       props.setScriptEnd(true);
+      randomText = randomValueFromArray(trade_scenario);
+      console.log("hihi");
+      setEnd(true);
     }
     setIsNovelView(true);
   }, [count]);
@@ -46,20 +52,12 @@ function Novelview(props) {
 
   return (
     <div className="novel">
-      {props.day != 9 ? <div className={npcImage} /> : <></>}
+      {!end&&(props.day != 9 ? <div className={npcImage} /> : <></>)}
       {name == null ? <></> : <div id="script_name">{name}</div>}
       <div id="script_text">
         {text}
-        {count === randomText.case.length ? (
-          <button
-            onClick={() => {
-              props.final_next();
-              randomText = randomValueFromArray(trade_scenario);
-            }}
-            id="script_next"
-          >
-            거래마치기
-          </button>
+        {end ? (
+          <></>
         ) : (
           <button
             onClick={() => {
@@ -67,6 +65,7 @@ function Novelview(props) {
             }}
             id="script_next"
           >
+            {">>>>"}
           </button>
         )}
       </div>

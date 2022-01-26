@@ -160,6 +160,16 @@ body {
   top: 80px;
 }
 
+#no_event {
+  position: absolute;
+  font-size: 20px;
+  color:black;
+  top: 350px;
+  left: 210px;
+  font-weight: bold;
+  z-index: -1;
+}
+
 /*market.js에서 이용*/
 #carrot {
   font-weight: bold;
