@@ -18,9 +18,9 @@
   경찰 엔딩 - 거래를 하지 않아 경찰에 불려가는 엔딩(hint: 거래에 나타나지 말아보자)  
   퇴사 엔딩 - 회장님께 퇴사를 요청해서 퇴사를 하는 엔딩(hint: 회장과 카톡을 해보자)    
   ## Credit
-  +윤정인( 
-  +박도윤(victoria0406) victoria0406@kaist.ac.kr
-  +배설영
+  +윤정인(JeongIn37)   
+  +박도윤(victoria0406) victoria0406@kaist.ac.kr  
+  +배설영(pell13) 
 
   ## 하고 싶은 말
   ![image](https://user-images.githubusercontent.com/81007362/151113727-b9cda4dc-6eb0-4542-8a19-6a907392100d.png)
