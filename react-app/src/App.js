@@ -28,9 +28,17 @@ window.addEventListener("resize", function () {
 });
 
 function App() {
+  const [init, setInit] = useState(false);
+  
+  useEffect(() => {
+    resizeApply();
+    if(!init){
+    }
+    setInit(true);
+  }, []);
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login />} />
       <Route path="/*" element={<GameRouter />} />
     </Routes>
   );
