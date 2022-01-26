@@ -48,3 +48,4 @@
   ![image](https://user-images.githubusercontent.com/81007362/151113727-b9cda4dc-6eb0-4542-8a19-6a907392100d.png)
   
   배설영
+  - 게임 하시는 김에 책도 한 권 사 주세요
