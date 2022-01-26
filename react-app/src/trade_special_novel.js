@@ -56,7 +56,7 @@ function PoliceEventView(props) {
             }}
             id="script_next"
           >
-            >>>>
+            {">>>>"}
           </button>
         )}
       </div>
