@@ -119,6 +119,9 @@ function Chatview(props) {
     if (props.day > 4) {
       setIsnewchat(true);
     }
+    if(props.day>6){
+      setIsPopup(false);
+    }
   }, [props.day]);
   return (
     <div className="chat_view">

@@ -13,6 +13,12 @@ const Login = () => {
   const [error, setError] = useState("");
   const [isCorrect, setIsCorrect] = useState(""); //아이디, 비밀번호 확인용
 
+  useEffect(()=>{
+    if(localStorage.getItem("user_id")!=null){
+      document.location.href="/main";
+    }
+  },[]);
+
   //입력할때 이메일이랑 패스워드 설정
   const onChange = (event) => {
     const {
