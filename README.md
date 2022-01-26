@@ -32,6 +32,15 @@
   **히든 엔딩**  
   경찰 엔딩 - 거래를 하지 않아 경찰에 불려가는 엔딩(hint: 거래에 나타나지 말아보자)  
   퇴사 엔딩 - 회장님께 퇴사를 요청해서 퇴사를 하는 엔딩(hint: 회장과 카톡을 해보자)    
+  
+  ### **Tech stack**
+
+---
+
+- Frontend: HTML, CSS, JavaScript, React.js
+- Backend Server: Node.js
+- Database: MongoDB
+
   ## Credit
 | devinfo | github | Email |  
 | ------ | ------ | ------ |
