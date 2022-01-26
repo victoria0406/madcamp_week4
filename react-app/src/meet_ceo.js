@@ -78,7 +78,6 @@ function CEOview(props) {
   },[count])
 
   return (
-
     <div class="novel">
       {name == null ? <></> : <div id="script_name">{name}</div>}
       <div id="script_text">

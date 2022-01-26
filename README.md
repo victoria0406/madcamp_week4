@@ -17,8 +17,14 @@
 <div markdown="1"> 
 카드 회사에서 근무하는 당신, 당신은 회장에게 잘못을 저질러 2주치 급여를 회사 포인트로 지급받게 되었다. 그런 당신이 저지른 잘못은 회사의 이벤트를 회장의 SNS보다 먼저 회사 홈페이지에 올려버린 잘못이다. SNS 중독자인 회장은 그런 당신에게 포인트 급여라는 상상도 못할 조치를 내렸다. 그렇게 당신은 2주동안 포인트로 살아야 한다.
 </div>
-</details>   
+</details> 
+
+
+## 구성  
   
+  ![슬라이드1](https://user-images.githubusercontent.com/81007362/151125796-a5ebb4fe-09ed-4478-9437-45e7bb304a70.PNG)
+  ![슬라이드2](https://user-images.githubusercontent.com/81007362/151125815-43e52fd1-9c9b-494c-aac6-7a8766491da2.PNG)
+  ![슬라이드3](https://user-images.githubusercontent.com/81007362/151125826-2edeb218-5083-4dd1-9e01-7888c675a812.PNG)
   ## 엔딩 종류
   **기본 엔딩**  
   금액대에 따라 Bad, Normal, Good으로 분류된다.  
@@ -34,4 +40,10 @@
 | 배설영 | [깃허브주소]( https://github.com/pell13) | seolyeongbae@gm.gist.ac.kr |
 
   ## 하고 싶은 말
+  
+  윤정인
+  
+  박도윤  
   ![image](https://user-images.githubusercontent.com/81007362/151113727-b9cda4dc-6eb0-4542-8a19-6a907392100d.png)
+  
+  배설영

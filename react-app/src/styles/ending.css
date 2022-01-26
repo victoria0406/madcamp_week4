@@ -98,6 +98,9 @@
   margin: 10px;
   width: 200px;
   height: 100px;
+  word-break: keep-all;
+  text-align: center;
+  font-size: 1.4em;
 }
 
 #head_text {
@@ -109,15 +112,50 @@
 
 #ending_ment {
   color: white;
-  font-size: 24px;
+  font-size: 1.5em;
+}
+
+/* Animation */
+.typing-demo {
+  white-space: nowrap;
+  overflow: hidden;
+  animation: animated-text 3s steps(40, end) 1s 1 normal both;
+  text-align: center;
+}
+
+/* text animation */
+
+@keyframes animated-text {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 #restart_button {
+  animation: button_appear 3.5s;
+}
+/*3초 뒤에 버튼 나타나게 하는 애니메이션*/
+
+@keyframes button_appear {
+  0% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#restart_button {
+  margin-top: 2em;
   width: 120px;
   height: 50px;
   font-size: 16px;
-  position: absolute;
-  bottom: 300px;
   background-image: url("../images/game_component/button.png");
   padding: 0%;
   border: 0px;
@@ -238,4 +276,43 @@
     transform: translateX(-100%);
   }
 
+}
+.good {
+  width: 47em;
+  height: 25em;
+  background-size: 100% 100%;
+  margin-bottom: 2em;
+  background-image: url("../images/endings/good_ending.png");
+}
+
+.normal {
+  background-image: url("../images/endings/normal_ending.png");
+  width: 47em;
+  height: 25em;
+  background-size: 100% 100%;
+  margin-bottom: 2em;
+}
+
+.leave {
+  background-image: url("../images/endings/leave_ending.png");
+  width: 47em;
+  height: 25em;
+  background-size: 100% 100%;
+  margin-bottom: 2em;
+}
+
+.bad {
+  background-image: url("../images/endings/bad_ending.png");
+  width: 47em;
+  height: 25em;
+  background-size: 100% 100%;
+  margin-bottom: 2em;
+}
+
+.accused {
+  background-image: url("../images/endings/police_ending.png");
+  width: 47em;
+  height: 25em;
+  background-size: 100% 100%;
+  margin-bottom: 2em;
 }
