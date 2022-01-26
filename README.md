@@ -1,4 +1,4 @@
-  # MADCAMP WEEK 4: 중기슬(중고거래의 기쁨과 슬픔)
+  # MADCAMP WEEK 4: 중고거래의 기쁨과 슬픔
   
   ![image](https://user-images.githubusercontent.com/81007362/151159293-5a380856-9dcc-4cd5-8896-e93925ead0a1.png)
   
