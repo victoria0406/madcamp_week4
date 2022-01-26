@@ -11,6 +11,7 @@
   이 게임은 소설 **일의 기쁨과 슬픔**에서 영감을 얻었다. 해당 소설에서는 회장의 비위를 거슬려 포인트로 월급을 받게되는 터무니 없는 조치를 당한 인물이 등장한다. 우리는 그 인물에 이입했고, 그 인물이 포인트를 잘 돈으로 환산하는 게임을 만들고자 하였다.
   
   ## 게임의 스토리
+  당신은 매주 일요일마다 포인트로 물건을 살 수 있다. 그렇게 구매한 물건을 
 <details>
 <summary>전체 스토리</summary>
 <div markdown="1"> 
@@ -28,9 +29,9 @@
   ## Credit
 | devinfo | github | Email |  
 | ------ | ------ | ------ |
-| 윤정인 | [깃허브주소](https://github.com/JeongIn37) | 
+| 윤정인 | [깃허브주소](https://github.com/JeongIn37) | yoonjeongin@sookmyung.ac.kr |
 | 박도윤 | [깃허브주소](https://github.com/victoria0406) | victoria0406@kaist.ac.kr |  
-| 배설영 | [깃허브주소]( https://github.com/pell13) | 
+| 배설영 | [깃허브주소]( https://github.com/pell13) | seolyeongbae@gm.gist.ac.kr |
 
   ## 하고 싶은 말
   ![image](https://user-images.githubusercontent.com/81007362/151113727-b9cda4dc-6eb0-4542-8a19-6a907392100d.png)
