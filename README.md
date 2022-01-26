@@ -41,8 +41,9 @@
 
   ## 하고 싶은 말
   
-  윤정인
-  
+  윤정인   
+  ![image](https://user-images.githubusercontent.com/54874529/151155226-b89d1bc8-517a-4dc6-8ef7-3a9e78441112.png)
+
   박도윤  
   ![image](https://user-images.githubusercontent.com/81007362/151113727-b9cda4dc-6eb0-4542-8a19-6a907392100d.png)
   
